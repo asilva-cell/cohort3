@@ -1,62 +1,79 @@
+
+const functions = {
+
+
 //*** define attributes / variables
 // number
-let num = 5;
+
+    xnumber : (num) => {
+        return num;
+    },
+        
 // string
-let myString = "Hola";
+    myString : (string) => {
+        return string;
+    },
+
 
 // boolean
-let bool1 = true;
-let bool2 = false;
+    bool : (int1, int2) => {
+        if (int1 > int2) return true;
+        return false;
+    },
 
 // array
-let weekdays = ["Mon", "Tue","Wed", "Thru", "Fri"];
-let digits = [1, 2, 3, 4, 5];
+
+    array : (array) => {
+        return array;
+    },
+
+
 
 // dictionary / objects
-let user = {
-    firstName : "Adriana",
-    lastName : "Silva",
-    isMarid : false,
-    numKids : 0,
-    motto : function() {console.log("Hakuna Matata")}
-};
+    dict : () => {
+        return {
+            userName : "Adriana",
+            age : age
+        }
+
+    },
 
 // undefined
-function undef (a, b) {
-    c = a + b;
-};
+    undef : (a, b) => {
+        a + b;
+    },
 
 
 // *** sample if / else
-function  size (a) {
-    if (a < 0) {
-        return `${a} is negative`;
-    } else if (a < 10) {
-        return `${a} is small`;
-    } else if (a < 19){
-        return `${a} is medium`;
-    } else if (a < 50) {
-        return `${a} is large`;
-    } else {
-        return `${a} is extra-large`;
-    };
-};
 
-// functions
+    size : (a) => {
+        if (a < 0) {
+            return `${a} is negative`;
+        } else if (a < 10) {
+            return `${a} is small`;
+        } else if (a < 19){
+            return `${a} is medium`;
+        } else if (a < 50) {
+            return `${a} is large`;
+        } else {
+            return `${a} is extra-large`;
+        }
+    },
+
+
+// ***functions
 // parameters
-// returns
-
-const compare = (a, b) => {
-    if (a > b) return `${a} is greater than ${b}`;
-    if (a < b) return `${a} is less than ${b}`;
-    return `${a} is equal to ${b}`;
-};
-
-
+// // returns
+    paraReturn : (a, b) => {
+        let c = a + b;
+        return c;
+    },
 
 // ***arrays
-
 // add to the front
+    addToArray : (itemToAdd, array) => {
+
+    }
 
 // add to the end
 // update values
@@ -69,6 +86,6 @@ const compare = (a, b) => {
 // Objects / Dictionaries
 // declare object
 // lookup key to retrieve value
+};
 
-
-export {size, compare};
+export default functions;
