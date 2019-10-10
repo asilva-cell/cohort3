@@ -33,7 +33,7 @@ const functions = {
     dict : () => {
         return {
             userName : "Adriana",
-            age : age
+            age : 34
         }
 
     },
@@ -71,18 +71,85 @@ const functions = {
 
 // ***arrays
 // add to the front
-    addToArray : (itemToAdd, array) => {
+    addToBeginingArray : (itemToAdd, array) => {
+        array.unshift(itemToAdd);
+        return array;
 
-    }
+    },
 
 // add to the end
+    addToEndArray : (itemToAdd, array) => {
+        array.push(itemToAdd);
+        return array;
+
+    },
+
 // update values
+    updateValue : (value) => {
+        return value + 1;
+
+    },
+
 // loops 
 // for
+    forArray : (array) => {
+        let myArray = [];
+        for (let i = 0; i < array.length; i ++) {
+            myArray.push(array[i] * 2);
+        }
+        return myArray;
+    },
+
 // for/in
+    forInObj : () => {
+        let key;
+        let listKeys = [];
+        let obj = {
+            userName : 'Adriana',
+            age : 34,
+            gender: 'female',
+            car : 'kia',
+        }
+        
+        for (key in obj) {
+            listKeys.push(key);
+        }
+        return listKeys;
+    },
+
 // while
+    whileLopping : (array) => {
+        let i = 0;
+        let myArray2 = [];
+        while (i < array.length) {
+            myArray2.push(array[i] * 2);
+            i ++;
+        }
+        return myArray2;
+    },
+
+
 // do while
+    doWhileLopping : (array) => {
+    let i = 0;
+    let myArray3 = [];
+     do {
+        myArray3.push(array[i] * 2);
+        i ++;
+    } while (i < array.length)
+    return myArray3;
+},
+
 // forEach (with array and function)
+    forEachInArray : (array) => {
+    let myArray4 = [];
+    array.forEach (function (item) {
+        console.log(item);
+        myArray4.push(item * 2);
+    });
+    return myArray4;
+}
+
 // Objects / Dictionaries
 // declare object
 // lookup key to retrieve value
