@@ -73,3 +73,11 @@ test('check do while loop in array by pushing value into a new array', () => {
 test('check for each loop in array by pushing value into a new array', () => {
     expect(functions.forEachInArray([1,2,3])).toEqual([2,4,6]);
 });
+
+test('check object declaration by class', () => {
+    expect(functions.objDeclaration()).toEqual("Adriana");
+});
+
+test('check key look up', () => {
+    expect(functions.keyLookUp({userName: "Adriana", age: 33, gender: "female", car: "kia"})).toBe("Adriana");
+});

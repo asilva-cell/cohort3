@@ -106,7 +106,7 @@ const functions = {
         let listKeys = [];
         let obj = {
             userName : 'Adriana',
-            age : 34,
+            age : 33,
             gender: 'female',
             car : 'kia',
         }
@@ -144,15 +144,30 @@ const functions = {
     forEachInArray : (array) => {
     let myArray4 = [];
     array.forEach (function (item) {
-        console.log(item);
         myArray4.push(item * 2);
     });
     return myArray4;
-}
+},
 
-// Objects / Dictionaries
+// ***Objects / Dictionaries
 // declare object
-// lookup key to retrieve value
+    objDeclaration : () => {
+        function User (uName, age, gen, car) {
+            this.userName = uName;
+            this.age = age;
+            this.gender = gen;
+            this.car = car;
+        }
+        var user1 = new User('Adriana', 33, 'female', 'kia');
+        return user1.userName;
+    },
+
+//lookup key to retrieve value
+    keyLookUp : (obj) => {
+        if (obj.hasOwnProperty('userName')) {
+            return obj.userName;
+        }
+    }
 };
 
 export default functions;
