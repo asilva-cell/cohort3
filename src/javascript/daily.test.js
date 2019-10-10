@@ -1,5 +1,5 @@
 //my first test
-import assertEquals from './daily';
+import functions from './daily';
 
 test('this is me playing', () => {
    console.log("Hello World!");
@@ -7,9 +7,23 @@ test('this is me playing', () => {
 });
 
  test('Check the comparison', () => {
-    expect(assertEquals('a', 'b')).toBe(false);
-    expect(assertEquals(1, '1')).toBe(false);
-    expect(assertEquals('a', 'a')).toBe(true);
-    expect(assertEquals(1, 1)).toBe(true);
+    expect(functions.assertEquals('a', 'b')).toBe(false);
+    expect(functions.assertEquals(1, '1')).toBe(false);
+    expect(functions.assertEquals('a', 'a')).toBe(true);
+    expect(functions.assertEquals(1, 1)).toBe(true);
 
+});
+
+
+
+// Write a function to format an email based on an array.
+
+test('email builder from an array', () => {
+   const name = ["first", "last"];
+   expect(functions.makeEmailArr(name))
+       .toEqual("first.last@evolveu.ca");
+   expect(functions.makeEmailArr(["First", "Last"]))
+       .toEqual("first.last@evolveu.ca");
+   expect(functions.makeEmailArr(["Bill", "Smith"]))
+       .toEqual("bill.smith@evolveu.ca");
 });
