@@ -31,7 +31,7 @@ const userFace = {
     },
 
     displayResults : (numbers, result, operator) => { 
-         resultField.textContent = (numbers.n1+ " " + operator + " " + numbers.n2+ " = " + result);
+        resultField.textContent = (numbers.n1+ " " + operator + " " + numbers.n2+ " = " + result);
     },
 
     operations : (operator) => {
