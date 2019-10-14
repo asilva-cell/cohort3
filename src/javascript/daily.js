@@ -22,7 +22,7 @@ const functions = {
                 console.log(`*** The two values are not the same: \n p1 --> ${p1} \n p2 --> ${p2}`);
                 return false;
             } else {
-                return true
+                return true;
             }
     },
 
