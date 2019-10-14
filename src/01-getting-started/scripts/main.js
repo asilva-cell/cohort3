@@ -16,14 +16,6 @@ idNumber.addEventListener('change', (() => {
 
 const userFace = {
 
-    overFirstField: () => {
-        firstField.value = "";
-    },
-    
-    overSecondField: () => {
-        secondField.value = "";
-    },
-
     getNumber: () => {
         let num1 = Number(firstField.value);
         let num2 = Number(secondField.value);
@@ -36,45 +28,40 @@ const userFace = {
 
     operations : (operator) => {
         let numbers = userFace.getNumber();
-       
+        let result = NaN    
        
         if ((isNaN(numbers.n1)) || (isNaN(numbers.n2))) {
             resultField.textContent = "Please enter two numbers!";
             return;
         }
         else if (operator === "+") {
-            let result = calculations.add(numbers.n1, numbers.n2);
-            userFace.displayResults(numbers, result, "+");
-            return result;
+            result = calculations.add(numbers.n1, numbers.n2);
         }
         else if (operator === "-") {
-            let result = calculations.subtract(numbers.n1, numbers.n2);
-            userFace.displayResults(numbers, result, "-");
-            return result;
+            result = calculations.subtract(numbers.n1, numbers.n2);
         }
         else if (operator === "*") {
-            let result = calculations.multiplication(numbers.n1, numbers.n2);
-            userFace.displayResults(numbers, result, "*");
-            return result;
+            result = calculations.multiplication(numbers.n1, numbers.n2);
         }
         else{
-            let result = calculations.division(numbers.n1, numbers.n2);
-            userFace.displayResults(numbers, result, "/");
-            return result;
+            result = calculations.division(numbers.n1, numbers.n2);
         }
+        userFace.displayResults(numbers, result, operator);
+        return result;
+
+
     },
 
     onClearClicked: () => {
-        firstField.value = "Type 1st Number";
-        secondField.value = "Type 2nd Number";
-        resultField.textContent ="";    
+        firstField.value = "";
+        secondField.value = "";
+        resultField.textContent ="";
+            
     }
 
 };
 
 clearBtn.addEventListener("click", userFace.onClearClicked);
-firstField.addEventListener("click", userFace.overFirstField);
-secondField.addEventListener("click", userFace.overSecondField);
 plusBtn.addEventListener("click", function() { userFace.operations("+");});
 minusBtn.addEventListener("click", function() { userFace.operations("-");});
 multBtn.addEventListener("click", function() { userFace.operations("*");});
