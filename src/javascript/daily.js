@@ -30,12 +30,14 @@ const functions = {
         let firstName = name[0].toLowerCase();
         let lastName = name[1].toLowerCase();
         return `${firstName}.${lastName}@evolveu.ca`
-
+    },
+    
+    makeEmailObj : (name) => {
+            let fulName = `${name.fname}.${name.lname}@evolveu.ca`
+            return fulName.toLowerCase();
     }
 
-// and before this comment ---
-};
-
+}; 
 
 export default functions;
 
