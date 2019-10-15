@@ -1,6 +1,16 @@
 import functions from "./functions.js";
-import calculations from "./calculator.js";
+import {calculations} from "./calculator.js";
+//import {taxCalculator} from "./taxCal.js";
 
+
+
+idNumber.addEventListener('change', (() => {
+    idNumberSize.textContent = functions.size(idNumber.value);
+}));
+
+
+
+    // user interface calculator 
 const firstField = document.getElementById("num1");
 const secondField = document.getElementById("num2");
 const resultField = document.getElementById("result");
@@ -44,3 +54,7 @@ plusBtn.addEventListener("click", function() { userFace.operations("+", "add");}
 minusBtn.addEventListener("click", function() { userFace.operations("-", "subtract");});
 multBtn.addEventListener("click", function() { userFace.operations("*", "multiply");});
 divBtn.addEventListener("click", function() { userFace.operations("/", "divide");});
+
+
+// User interface Canadian Taxes
+

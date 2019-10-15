@@ -21,4 +21,4 @@ const calculations = {
 
 
 
-export default calculations;
+export {calculations};
