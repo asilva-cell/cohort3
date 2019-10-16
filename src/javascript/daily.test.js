@@ -1,5 +1,32 @@
-//my first test
 import functions from './daily';
+
+
+//PREPARED FOR ARRAY - 2019/10/15
+test('checking fo rArray ', () => {
+    expect(functions.forArray([0, 1, 2])).toEqual([0, 2, 4]);
+});
+
+test('check while loop in array by pushing value into a new array', () => {
+    expect(functions.whileLopping([1,2,3])).toEqual([2,4,6]);
+});
+
+test('check do while loop in array by pushing value into a new array', () => {
+    expect(functions.doWhileLopping([1,2,3])).toEqual([2,4,6]);
+});
+
+test('check for/ in loop in object by returning an array of keys', () => {
+    expect(functions.forIn({a:1, b:2})).toEqual(["a", "b"]);
+});
+
+test('check for/ of loop with array by adding !to each item', () => {
+    expect(functions.forOf(["Hello", "Bye"])).toEqual(["Hello!", "Bye!"]);
+});
+
+
+
+
+//my first test
+
 
 test('this is me playing', () => {
    console.log("Hello World!");
