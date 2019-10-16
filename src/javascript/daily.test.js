@@ -1,6 +1,20 @@
 import functions from './daily';
 
 
+test('check slice', () => {
+    expect(functions.slice([1,2,3,4])).toEqual([2,3]);
+});
+
+test('check splice', () => {
+    expect(functions.splice(2,2, "hi", [1,2,3,4])).toEqual([3,4]);
+});
+
+
+test('check for each loop in array by pushing value into a new array', () => {
+    expect(functions.forEachInArray([1,2,3])).toEqual([2,4,6]);
+});
+
+
 //PREPARED FOR ARRAY - 2019/10/15
 test('checking fo rArray ', () => {
     expect(functions.forArray([0, 1, 2])).toEqual([0, 2, 4]);

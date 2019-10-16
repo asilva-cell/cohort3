@@ -6,6 +6,38 @@
 // Write the function after this comment ---
 
 const functions = {
+    //MORE ARRAY WORK - 2019/10/17
+
+    slice : (array) => {
+        return array.slice(1,3);
+    },
+
+    splice : ( i, toRemove, toAdd, array) => {
+        let newArray = array.splice(i, toRemove,toAdd);
+        return newArray;
+    }, //splice returns deleted items
+
+    forEachInArray : (array) => {
+        let myArray4 = [];
+        array.forEach (function (item) {
+            myArray4.push(item * 2);
+        });
+        return myArray4;
+    },
+
+    map : () => {
+        return 0;
+    },
+
+    reduce : () => {
+        return 0;
+    },
+
+    filter : () => {
+        return 0;
+    },
+
+
 
     //PREPARED FOR ARRAY - 2019/10/15
     forArray : (array) => {
