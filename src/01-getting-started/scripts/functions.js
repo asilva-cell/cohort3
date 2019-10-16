@@ -11,4 +11,4 @@ const functions = {
     
 };
 
-export default functions;
+export {functions};

@@ -1,4 +1,4 @@
-import taxCalculator from './taxCal.js';
+import {taxCalculator} from './taxCal.js';
  
 test('check income has been input', () => {
     expect(taxCalculator.checkIfIncome("")).toBe(0);
@@ -12,5 +12,5 @@ test('check tax calculation', () => {
     expect(taxCalculator.calulateTax(50000)).toBe(7630.85);
     expect(taxCalculator.calulateTax(100000)).toBe(18140.66);
     expect(taxCalculator.calulateTax(150000)).toBe(31211.57);
-    expect(taxCalculator.calulateTax(250000)).toBe(60211.41);
+    expect(taxCalculator.calulateTax(250000)).toBe(61796.57);
 });

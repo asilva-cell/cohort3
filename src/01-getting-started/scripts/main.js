@@ -1,6 +1,6 @@
-import functions from "./functions.js";
+import {functions} from "./functions.js";
 import {calculations} from "./calculator.js";
-//import {taxCalculator} from "./taxCal.js";
+import {taxCalculator} from "./taxCal.js";
 
 
 
@@ -10,7 +10,7 @@ idNumber.addEventListener('change', (() => {
 
 
 
-    // user interface calculator 
+    // USER INTERFACE FOR CALCULATOR
 const firstField = document.getElementById("num1");
 const secondField = document.getElementById("num2");
 const resultField = document.getElementById("result");
@@ -56,5 +56,25 @@ multBtn.addEventListener("click", function() { userFace.operations("*", "multipl
 divBtn.addEventListener("click", function() { userFace.operations("/", "divide");});
 
 
-// User interface Canadian Taxes
+// USER INTERFACE FOR CANADIAN TAXES
+const userIncome = document.getElementById("idIncome");
+const calculateBtn = document.getElementById("idCalculate");
+
+const userFaceTax = {
+    getIncome: () => {
+        let income = Number(userIncome.value);
+        return income;
+    },
+
+    calculateTax: () => {
+        let income = userFaceTax.getIncome();
+        let payment = taxCalculator.calulateTax(income);
+        idPayment.textContent = `Based on an income of $${income}, your Canadian Taxes is $${payment}.`;
+        
+    }
+};
+
+calculateBtn.addEventListener("click", function () {userFaceTax.calculateTax();});
+
+
 

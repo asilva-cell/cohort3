@@ -65,8 +65,20 @@ html {
 }
 
 #idNumber {
-    border: 0;
     width: 50px;
+}
+
+/* Calculalor */
+#num1, #num2 {
+    width: 300px;
+    text-align: center;
+}
+
+
+/* Tax Calculalor */
+#idIncome {
+    width: 300px;
+    text-align: center;
 }
 
 
