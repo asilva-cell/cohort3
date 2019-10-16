@@ -1,6 +1,7 @@
 import {functions} from "./functions.js";
 import {calculations} from "./calculator.js";
 import {taxCalculator} from "./taxCal.js";
+import {jsArrays} from "./workingArrays.js";
 
 
 
@@ -76,5 +77,36 @@ const userFaceTax = {
 
 calculateBtn.addEventListener("click", function () {userFaceTax.calculateTax();});
 
+// USER INTERFACE FOR WORKING WITH ARRAYS
 
+const userArray = {
+    getInput: (buttonName) => {
+        let userInput = buttonName.value;
+        return userInput;
+    }
+}
+let myArray = [];
+idAddToArray.addEventListener('click', (event) => {
+    let input = idInputArray.value;
+    if (jsArrays.isNumber(idInputArray.value)) {
+        idMessageArray.textContent = 'The input is not a valid input.';
+        idInputArray.value = "";
+        return;
+    };
+    myArray = jsArrays.addToArray(input, myArray);
+    idInputArray.value = "";
+    idMessageArray.textContent = `${input} has been added to the list.`;   
+});
 
+idShowArray.addEventListener('click', (event) => {
+    idMessageArray.textContent = `The numbers in your list are: ${jsArrays.showArray(myArray)}`;
+});
+
+idTotalArray.addEventListener('click', (event) => {
+    idMessageArray.textContent = `The sum of your numbers is ${jsArrays.totalArray(myArray)}`;
+});
+
+idClearArray.addEventListener('click', (event) => {
+    myArray = jsArrays.clearArray(myArray);
+    idMessageArray.textContent = "";
+});

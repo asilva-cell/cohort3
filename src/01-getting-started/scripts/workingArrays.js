@@ -1,32 +1,30 @@
 
 const jsArrays = {
-    createArray: () => {
-        let myArray = [];
-        return myArray;
+
+    isNumber: (input) => {
+        if (isNaN(input)) return true;
     },
 
-    addToArray: (myArray, input) => {
-        if (isNaN(input)) { 
-            console.log('The input is not a valid number');
-            return false;
-        };
-        myArray.push(input);
-        console.log(`${input} has been added to the array`);
+    addToArray: (input, myArray) => {
+        myArray.push(Number(input));
         return myArray;
     },
 
     showArray: (myArray) => {
-        console.log(myArray.join(', '));
         return myArray.join(', ');
     },
     
     totalArray: (myArray) => {
-        // console.log(myArray.join(', '));
-        return myArray;
+        let total = "";
+        for (let num of myArray) {
+            total = Number(total + num);
+        }
+        return total;
     },
 
     clearArray: (myArray) => {
-        // console.log(myArray.join(', '));
+        myArray = [];
+        console.log(myArray);
         return myArray;
     }
         
