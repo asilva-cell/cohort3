@@ -1,15 +1,11 @@
 
 
-
-//my first function to test
-
-// Write the function after this comment ---
-
 const functions = {
-    //MORE ARRAY WORK - 2019/10/17
+    //2019/10/17 - slice, splice, forEach, map, filter and reduce
+    //https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
 
-    slice : (array) => {
-        return array.slice(1,3);
+    slice : (array2, start, end) => {
+        return array2.slice(start, end);
     },
 
     splice : ( i, toRemove, toAdd, array) => {
@@ -25,16 +21,56 @@ const functions = {
         return myArray4;
     },
 
-    map : () => {
-        return 0;
+    map1 : () => {
+        let userDatabase = [
+            {fName: "Anna", lName: "Smith", age: 33, gender: "female"},
+            {fName: "Laura", lName: "Jhons", age: 65, gender: "female"},
+            {fName: "Jhon", lName: "Cooper", age: 46, gender: "male"},
+            {fName: "Julia", lName: "Foxx", age: 45, gender: "female"},
+            {fName: "Eric", lName: "Blunt",  age: 33, gender: "male"}
+        ];
+        const userAge = userDatabase.map(function (user) {return user.age});
+
+        return userAge;
+    },
+
+    map2 : () => {
+        let userDatabase = [
+            {fName: "Anna", lName: "Smith", age: 33, gender: "female"},
+            {fName: "Laura", lName: "Jhons", age: 65, gender: "female"},
+            {fName: "Jhon", lName: "Cooper", age: 46, gender: "male"},
+            {fName: "Julia", lName: "Foxx", age: 45, gender: "female"},
+            {fName: "Eric", lName: "Blunt",  age: 33, gender: "male"}
+        ];
+        const userFullName = userDatabase.map(user => [user.fName, user.lName].join(" "));
+        return userFullName;
     },
 
     reduce : () => {
-        return 0;
+        let userDatabase = [
+            {fName: "Anna", lName: "Smith", age: 33, gender: "female"},
+            {fName: "Laura", lName: "Jhons", age: 65, gender: "female"},
+            {fName: "Jhon", lName: "Cooper", age: 46, gender: "male"},
+            {fName: "Julia", lName: "Foxx", age: 45, gender: "female"},
+            {fName: "Eric", lName: "Blunt",  age: 33, gender: "male"}
+        ];
+
+        let ageTotal = userDatabase.reduce((accumulator, user) => accumulator + user.age, 0);
+        // accumulator is the sum of age
+        return ageTotal;
     },
 
     filter : () => {
-        return 0;
+        let userDatabase = [
+            {fName: "Anna", lName: "Smith", age: 33, gender: "female"},
+            {fName: "Laura", lName: "Jhons", age: 65, gender: "female"},
+            {fName: "Jhon", lName: "Cooper", age: 46, gender: "male"},
+            {fName: "Julia", lName: "Foxx", age: 45, gender: "female"},
+            {fName: "Eric", lName: "Blunt",  age: 33, gender: "male"}
+        ];
+
+        let under50 = userDatabase.filter(user => user.age >= 50);
+        return under50; //returns an ARRAY of the users older that 50
     },
 
 

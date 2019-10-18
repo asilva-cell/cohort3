@@ -1,17 +1,32 @@
 import functions from './daily';
 
-
+//2019/10/17 - slice, splice, forEach, map, filter and reduce
 test('check slice', () => {
-    expect(functions.slice([1,2,3,4])).toEqual([2,3]);
+    expect(functions.slice([1,2,3,4], 1,3)).toEqual([2,3]);
 });
 
 test('check splice', () => {
     expect(functions.splice(2,2, "hi", [1,2,3,4])).toEqual([3,4]);
 });
 
-
 test('check for each loop in array by pushing value into a new array', () => {
     expect(functions.forEachInArray([1,2,3])).toEqual([2,4,6]);
+});
+
+test('check mapping through an array of objects and returns users age', () => {
+    expect(functions.map1()).toEqual([33, 65, 46, 45, 33]);
+});
+
+test('check mapping through an array of objects and returns users full name', () => {
+    expect(functions.map2()).toEqual(['Anna Smith', 'Laura Jhons', 'Jhon Cooper', 'Julia Foxx', 'Eric Blunt' ]);
+});
+
+test('check reduce to add up users age', () => {
+    expect(functions.reduce()).toBe(222);
+});
+
+test('check filter users over 50', () => {
+    expect(functions.filter()).toEqual([{fName: "Laura", lName: "Jhons", age: 65, gender: "female"}]);
 });
 
 
