@@ -1,9 +1,5 @@
 import {jsArrays} from "./workingArrays.js";
 
-// test('empty array return', () => {
-//     expect(jsArrays.createArray()).toEqual([]);
-// });
-
 test('check if input is a NOT number', () => {
     expect(jsArrays.isNumber("a")).toEqual(true);
 });

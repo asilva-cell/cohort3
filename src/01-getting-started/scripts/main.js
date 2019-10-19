@@ -2,6 +2,7 @@ import {functions} from "./functions.js";
 import {calculations} from "./calculator.js";
 import {taxCalculator} from "./taxCal.js";
 import {jsArrays} from "./workingArrays.js";
+import {jsDictionaries} from "./workingDictionaries.js";
 
 
 
@@ -109,4 +110,22 @@ idTotalArray.addEventListener('click', (event) => {
 idClearArray.addEventListener('click', (event) => {
     myArray = jsArrays.clearArray(myArray);
     idMessageArray.textContent = "";
+});
+
+
+// USER INTERFACE FOR WORKING WITH DICTIONARIES
+
+LookupBtn.addEventListener('click', (event) => {
+    let input = idInputDict.value;
+    console.log(input);
+    if (jsDictionaries.isString(input)) {
+        let userProv = jsDictionaries.provinceLookup(input);
+        idInputDict.value = "";
+        idMessageProvince.textContent = `${input.toUpperCase()} code corresponds to the province of ${userProv}.`;
+        return;
+    }else{
+        idMessageProvince.textContent = 'The input is not a valid provice code.';
+        idInputDict.value = "";    
+    };
+    
 });

@@ -24,12 +24,8 @@ const jsArrays = {
 
     clearArray: (myArray) => {
         myArray = [];
-        console.log(myArray);
         return myArray;
     }
-        
-
-
 };
 
 export {jsArrays};
