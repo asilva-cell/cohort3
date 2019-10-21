@@ -1,10 +1,6 @@
 
 const jsDictionaries = {
 
-    isString: (input) => {
-        if (typeof input === 'string') return true;
-    },
-
     provinceLookup: (input) => {
         const province = [
         {code : "AB", name : 'Alberta'},

@@ -117,8 +117,7 @@ idClearArray.addEventListener('click', (event) => {
 
 LookupBtn.addEventListener('click', (event) => {
     let input = idInputDict.value;
-    console.log(input);
-    if (jsDictionaries.isString(input)) {
+    if (isNaN(input) && input.length === 2) {
         let userProv = jsDictionaries.provinceLookup(input);
         idInputDict.value = "";
         idMessageProvince.textContent = `${input.toUpperCase()} code corresponds to the province of ${userProv}.`;
