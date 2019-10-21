@@ -1,6 +1,21 @@
 
 
+
+
+
 const functions = {
+        
+    //2019/10/21 - take the array of objects and returns list of emails
+    loopStaff : (array) => {
+        let staffEmail = [];
+        array.forEach (function (item) {
+            let email = functions.makeEmailObj(item)
+            staffEmail.push(email);
+        });
+        return staffEmail;
+    },
+    
+
     //2019/10/17 - slice, splice, forEach, map, filter and reduce
     //https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d
 
@@ -69,7 +84,8 @@ const functions = {
             {fName: "Eric", lName: "Blunt",  age: 33, gender: "male"}
         ];
 
-        let under50 = userDatabase.filter(user => user.age >= 50);
+        let under50 = userDatabase.filter(user => eval(user.fName === "Laura"));
+        console.log(under50);
         return under50; //returns an ARRAY of the users older that 50
     },
 
@@ -145,5 +161,5 @@ const functions = {
 
 }; 
 
-export default functions;
+export {functions};
 
