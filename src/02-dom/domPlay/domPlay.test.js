@@ -17,6 +17,8 @@ test('check whatCards', () => {
     domTesting.addCard(myDiv, 3);
     expect(domTesting.whatCards(myDiv)).toEqual([0, 1, 2, 3]);
     
+    domTesting.addCard(myDiv, 7);
+    expect(domTesting.whatCards(myDiv)).toEqual([0, 1, 2, 3, 7]);
 });
 
 

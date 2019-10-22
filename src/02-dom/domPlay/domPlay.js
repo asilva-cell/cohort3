@@ -1,21 +1,23 @@
 
 
 const domTesting = {
-    addCard: (node, counter) => {
-        console.log('in the card');
-        let newCard = document.createElement('div');
-        node.appendChild(newCard);
-        newCard.className = 'cards';
-        newCard.setAttribute('counter', counter),
-        newCard.textContent = `Card # ${counter}`;
+    addCard: (parent, counter) => {
+        let newChild = document.createElement('div');
+        parent.appendChild(newChild);
+        newChild.className = 'cards';
+        newChild.setAttribute('counter', counter),
+        newChild.textContent = `Card # ${counter}`;
     },
 
-    whatCards: (node) => {
-        return [0, 1, 2];
+    whatCards: (parent) => {
+        let children = parent.children;
+        let childrenList = [];
+        for (const child of children) {
+            childrenList.push(Number(child.getAttribute('counter')));
+        };
+        return childrenList;
     }
     
 };
-
-
 
 export {domTesting};
