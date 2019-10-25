@@ -1,10 +1,26 @@
 
 
-
-
-
 const functions = {
-        
+
+    //2019/10/24 - take the array of objects and returns list of emails
+    loopStaffIn : (staffArray) => {
+        let staffEmailIn = [];
+    
+        for (const indexPerson in staffArray) {
+            let staffInfo = (staffArray[indexPerson]);
+            staffEmailIn.push(functions.makeEmailObj(staffInfo));
+        };
+        return staffEmailIn;
+    },
+
+    loopStaffOf : (staffArray) => {
+        let staffEmailOf = [];
+        for (const person of staffArray) {
+            staffEmailOf.push(functions.makeEmailObj(person));
+        };
+        return staffEmailOf;
+    }, 
+
     //2019/10/21 - take the array of objects and returns list of emails
     loopStaff : (array) => {
         let staffEmail = [];
@@ -125,7 +141,7 @@ const functions = {
         let listKeys = [];
         for (key in object) {
             listKeys.push(key);
-        }
+        };
         return listKeys;
     },
 

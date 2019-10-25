@@ -1,23 +1,48 @@
 import {functions} from './daily';
 
 
-//2019/10/17 - take an array of objects and return an array of emails
-test('email builder for company', () => {
-    const data = {       
-        staff: [
-            { fname: "Jane", lname: "Smith", balance: 10 },
-            { fname: "Liam", lname: "Henry", balance: 1000 },
-            { fname: "Emma", lname: "Jones", balance: 1330 },
-            { fname: "Olivia", lname: "Notly", balance: 310 },
-            { fname: "Noah", lname: "Ho", balance: 503 },
-            { fname: "William", lname: "Lee", balance: 520 },
-            { fname: "Benjamin", lname: "Amis", balance: 150 },
-        ],
-        company: "EvolveU",
-        city: "Calgary",
-        prov: "Alberta",
-    
-        };
+const data = {       
+    staff: [
+        { fname: "Jane", lname: "Smith", balance: 10 },
+        { fname: "Liam", lname: "Henry", balance: 1000 },
+        { fname: "Emma", lname: "Jones", balance: 1330 },
+        { fname: "Olivia", lname: "Notly", balance: 310 },
+        { fname: "Noah", lname: "Ho", balance: 503 },
+        { fname: "William", lname: "Lee", balance: 520 },
+        { fname: "Benjamin", lname: "Amis", balance: 150 },
+    ],
+    company: "EvolveU",
+    city: "Calgary",
+    prov: "Alberta",
+
+    };
+
+//2019/10/24 - USING IN take an array of objects and return an array of emails 
+test('for in: email builder for company', () => {
+   
+    const staffEmailIn = functions.loopStaffIn(data.staff);
+    expect(staffEmailIn[0])
+        .toEqual("jane.smith@evolveu.ca");
+    expect(staffEmailIn[3])
+        .toEqual("olivia.notly@evolveu.ca");
+    expect(staffEmailIn[6])
+        .toEqual("benjamin.amis@evolveu.ca");
+});
+
+test('for of: email builder for company', () => {
+   
+    const staffEmailOf = functions.loopStaffOf(data.staff);
+    expect(staffEmailOf[0])
+        .toEqual("jane.smith@evolveu.ca");
+    expect(staffEmailOf[3])
+        .toEqual("olivia.notly@evolveu.ca");
+    expect(staffEmailOf[6])
+        .toEqual("benjamin.amis@evolveu.ca");
+});
+
+//2019/10/21 - take an array of objects and return an array of emails
+test('for each: email builder for company', () => {
+   
     const staffEmail = functions.loopStaff(data.staff);
     expect(staffEmail[0])
         .toEqual("jane.smith@evolveu.ca");
