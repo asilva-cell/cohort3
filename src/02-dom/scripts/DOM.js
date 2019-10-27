@@ -1,17 +1,44 @@
 
-
-
-
 const domTesting = {
-
-    createLi: (num1, num2) => {
-        return 0;
+     // EXERCISE 1 - ADD ITEMS TO LIST
+    createLiItem: (orgList, text) => {
+        let li = document.createElement('li');
+        li.appendChild(document.createTextNode(text));
+        orgList.appendChild(li);
+        return orgList.childElementCount;
     },
 
-    // EXERCISE 2 - ADD CARDS AND BUTTONS
     addBreak: () => {
         let br = document.createElement('br');
         return br;
+    },
+
+    showItems: (orgList, parent) => {
+        if (document.getElementById('showList')) {
+            document.getElementById('showList').remove();
+        };
+
+        let showList = document.createElement('ol');
+        showList.id = 'showList';
+        for (let i = 0; i < orgList.childElementCount; i++) {
+            domTesting.createLiItem(showList, orgList.children[i].textContent);
+        };
+        parent.appendChild(showList);
+        return showList;
+        
+
+        
+    },
+
+
+    // EXERCISE 2 - ADD CARDS AND BUTTONS
+   
+    addButton: (parentCard, value) => {
+        let newButton = document.createElement('button');
+        parentCard.appendChild(newButton);
+        newButton.name = value;
+        newButton.textContent = value;
+        return newButton.name;
     },
 
     addCard: (parent, counter) => {
@@ -30,19 +57,21 @@ const domTesting = {
         return newChild;
     },
 
-    addButton: (parentCard, value) => {
-        let newButton = document.createElement('button');
-        parentCard.appendChild(newButton);
-        newButton.name = value;
-        newButton.textContent = value;
-        return newButton.name;
+    addBefore : (parent, counter, currentCard) => {
+        parent.insertBefore(domTesting.addCard(parent, counter), currentCard); 
+        return currentCard.getAttribute('counter');
     },
 
-    addBefore : (parent, counter) => {
-        let currentCard = domTesting.addCard(parent, counter).closest('.cards');
-        console.log(currentCard);
-        return 'cardBefore';
+    addAfter : (parent, counter, currentCard) => {
+        currentCard.after(domTesting.addCard(parent, counter));
+        return currentCard.getAttribute('counter');
     },
+
+    deleteCard : (currentCard, parent) => {
+        currentCard.remove();
+        return parent.childElementCount;
+    },
+
 
     whatCards: (parent) => {
         let children = parent.children;
@@ -54,6 +83,8 @@ const domTesting = {
     }
     
 };
+
+
 
 export {domTesting};
     

@@ -1,33 +1,43 @@
 import {domTesting} from './DOM.js';
 
+
 const oList = document.getElementById("idOList");
-
-// home.addEventListener('click', (event) => {
-//     console.log(event);
-// });
-
-
-idShow.addEventListener('click', (event) => {
-    console.log(oList.children);
+home.addEventListener('click', (event) => {
+    switch (event.target.value){
+        case "Show":
+            domTesting.showItems(oList, event.target.parentNode);
+            break;
+        case "Add":
+            domTesting.createLiItem(oList, "Item");
+            break;
+    };
 });
 
-idAdd.addEventListener('click', (event) => {
-    let li = document.createElement('li');
-    li.appendChild(document.createTextNode('Testing'));
-    oList.appendChild(li);
-});
 
 
 // 2nd exercise
 let counter = 0;
 idPlay.addEventListener('click', (event) => {
+    let curent = event.target.parentNode;
+    switch (event.target.name) {
+        case "Add Card":
+            let newcard = domTesting.addCard(idPlay, counter++);
+            break;
 
-    if (event.target.id === "idAddCard") {
-        let newcard = domTesting.addCard(idPlay, counter++);
-    }
+        case "Add Before":
+            domTesting.addBefore(idPlay, counter++, curent);
+            break;
+        
+        case "Add After":
+            domTesting.addAfter(idPlay, counter++, curent);
+            break;
 
-    if (event.target.name === "Add Before") {
-        let newcard = domTesting.addBefore(idPlay, counter++);
-    }
+        case "Delete":
+            domTesting.deleteCard(curent, idPlay);
+            break;
+        }
+        
+
+
     console.log(event);
 });
