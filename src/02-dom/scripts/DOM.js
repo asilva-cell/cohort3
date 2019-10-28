@@ -29,7 +29,7 @@ const domTesting = {
     },
 
 
-    // EXERCISE 2 - ADD CARDS AND BUTTONS
+    // EXERCISE 2 - ADD CARDS AND BUTTONS testing
    
     addButton: (parentCard, value) => {
         let newButton = document.createElement('button');
