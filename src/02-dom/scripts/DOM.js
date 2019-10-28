@@ -14,13 +14,13 @@ const domTesting = {
     },
 
     showItems: (orgList, parent) => {
-        
-        if (document.getElementById('showList')) {
-            document.getElementById('showList').remove();
+        if (parent.lastElementChild.className ==='showList') {
+            parent.lastElementChild.remove();
         };
 
         let showList = document.createElement('ol');
-        showList.id = 'showList';
+        showList.className = 'showList';
+
         for (let i = 0; i < orgList.childElementCount; i++) {
             domTesting.createLiItem(showList, orgList.children[i].textContent);
         };
@@ -29,7 +29,7 @@ const domTesting = {
     },
 
 
-    // EXERCISE 2 - ADD CARDS AND BUTTONS testing
+    // EXERCISE 2 - ADD CARDS AND BUTTONS
    
     addButton: (parentCard, value) => {
         let newButton = document.createElement('button');

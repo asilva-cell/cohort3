@@ -12,11 +12,13 @@ test('check show list item', () => {
     myDiv.appendChild(oList);
     domTesting.createLiItem(oList, 'Item');
     const childrenCount = myDiv.childElementCount;
-    const showList = domTesting.showItems(oList, myDiv);
-    showList.id = "showList";
-    expect(showList.id).toEqual('showList');
+    let showList = domTesting.showItems(oList, myDiv);
+    expect(myDiv.childElementCount).toEqual(childrenCount + 1);
+
+   
+    showList.className = 'showList';
     domTesting.showItems(oList, myDiv);
-    expect(myDiv.childElementCount).toEqual(childrenCount + 2);
+    expect(myDiv.childElementCount).toEqual(childrenCount + 1);
 });
 
 test('check add card', () => {
