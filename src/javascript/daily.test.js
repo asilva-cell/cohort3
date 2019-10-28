@@ -17,6 +17,29 @@ const data = {
 
     };
 
+//2019/10/25 - USING FOR EACH take an array of objects and return an array of emails 
+test('for each: email builder for company', () => {
+    const staffEmailForEach = functions.loopStaffForEach(data.staff);
+    expect(staffEmailForEach[0])
+        .toEqual("jane.smith@evolveu.ca");
+    expect(staffEmailForEach[3])
+        .toEqual("olivia.notly@evolveu.ca");
+    expect(staffEmailForEach[6])
+        .toEqual("benjamin.amis@evolveu.ca");
+});
+
+test('map: email builder for company', () => {
+    const staffEmailMap = functions.loopStaffMap(data.staff);
+    
+  
+    expect(staffEmailMap[0])
+        .toEqual("jane.smith@evolveu.ca");
+    expect(staffEmailMap[3])
+        .toEqual("olivia.notly@evolveu.ca");
+    expect(staffEmailMap[6])
+        .toEqual("benjamin.amis@evolveu.ca");
+});
+
 //2019/10/24 - USING IN take an array of objects and return an array of emails 
 test('for in: email builder for company', () => {
    

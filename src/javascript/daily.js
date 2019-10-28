@@ -2,6 +2,23 @@
 
 const functions = {
 
+    loopStaffForEach: (staffArray) => {
+        let staffForEach = [];
+        staffArray.forEach (function (person) {
+            staffForEach.push(functions.makeEmailObj(person));
+        });
+    
+        return staffForEach;
+    },
+   
+    loopStaffMap: (staffArray) => {
+        
+        let staffMap  = staffArray.map(person => {
+            return functions.makeEmailObj(person)});
+            
+        return staffMap;
+    }, 
+
     //2019/10/24 - take the array of objects and returns list of emails
     loopStaffIn : (staffArray) => {
         let staffEmailIn = [];
