@@ -12,8 +12,11 @@ test('check show list item', () => {
     myDiv.appendChild(oList);
     domTesting.createLiItem(oList, 'Item');
     const childrenCount = myDiv.childElementCount;
+    const showList = domTesting.showItems(oList, myDiv);
+    showList.id = "showList";
+    expect(showList.id).toEqual('showList');
     domTesting.showItems(oList, myDiv);
-    expect(myDiv.childElementCount).toEqual(childrenCount + 1);
+    expect(myDiv.childElementCount).toEqual(childrenCount + 2);
 });
 
 test('check add card', () => {
@@ -48,9 +51,7 @@ test('check add After', () => {
 test('check delete card', () => {
     const myDiv = document.createElement('div');
     const currentCard = domTesting.addCard(myDiv,0);
-
-    expect(domTesting.deleteCard(currentCard, myDiv)).toEqual(0); 
-    
+    expect(domTesting.deleteCard(currentCard, myDiv)).toEqual(0);    
 });
  
 test('check whatCards', () => {

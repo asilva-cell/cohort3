@@ -30,6 +30,9 @@ html {
     width: 80%
 }
 
+.input {
+    text-align: center
+}
 
 /* First image (Logo. Full height) */
 
@@ -54,6 +57,9 @@ html {
     background-image: url("https://cdn.pixabay.com/photo/2016/11/19/15/32/code-1839877_960_720.jpg");
     min-height: 200px;
     opacity: 0.5;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 .w3-wide {
@@ -68,18 +74,12 @@ html {
     width: 50px;
 }
 
-/* Calculalor */
-#num1, #num2 {
+/* Input boxes */
+#num1, #num2, #idIncome, #idInputArray, #idInputDict {
     width: 300px;
     text-align: center;
 }
 
-
-/* Tax Calculalor */
-#idIncome {
-    width: 300px;
-    text-align: center;
-}
 
 
 /* Turn off parallax scrolling for tablets and phones */

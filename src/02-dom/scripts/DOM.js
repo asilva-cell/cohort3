@@ -14,6 +14,7 @@ const domTesting = {
     },
 
     showItems: (orgList, parent) => {
+        
         if (document.getElementById('showList')) {
             document.getElementById('showList').remove();
         };
@@ -25,9 +26,6 @@ const domTesting = {
         };
         parent.appendChild(showList);
         return showList;
-        
-
-        
     },
 
 
