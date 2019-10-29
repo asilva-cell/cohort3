@@ -17,11 +17,10 @@ class Account {
     }
 
     show () {
-        console.log(this.balance);
         return this.balance;
     }
 
-}
+};
 
 
 

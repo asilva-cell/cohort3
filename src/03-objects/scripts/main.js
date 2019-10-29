@@ -1,1 +1,0 @@
-import {classAccount} from './functions.js';
