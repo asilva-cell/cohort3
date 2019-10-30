@@ -25,18 +25,26 @@ test('check added balance', () => {
 //  EXERCISE 130.C
 const controller1 = new AccountController();
 
-test('check create account1', () => {
-   console.log(controller1);
-   let account1 = controller1.addAccount('maria', 'checking', 10);
-   expect(account1.accountName).toBe('checking');
-   console.log(account1);
+test('check create account ', () => {
+   controller1.addAccount('checking', 50);
+   expect(controller1.userAccounts[0].accountName).toBe('checking');
 
-   let account2 = controller1.addAccount('maria', 'saving', 5);
-   expect(account2.accountName).toBe('saving');
-   console.log(account2);
+   let expected = controller1.addAccount('checking', 100);
+   expect(expected).toBe('Account Exists');
 
-   let account3 = controller1.addAccount('maria', 'saving', 50);
-   expect(account3.accountName).toBe('saving');
-   console.log(account3);
+   controller1.addAccount('savings', 100);
+   expect(controller1.userAccounts[1].accountName).toBe('savings');
+});
+
+test('check remove account', () => {
+   let userAccountsLength = controller1.userAccounts.length;
+   controller1.removeAccount('checking');
+   expect(userAccountsLength).toEqual(userAccountsLength--);
+});
+
+test('check total balance', () => {
+   let expected = controller1.addAccount('checking', 100);
+   
+   expect(controller1.totalBalance()).toEqual(200);
 });
 
