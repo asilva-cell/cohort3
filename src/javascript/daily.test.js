@@ -14,8 +14,20 @@ const data = {
     company: "EvolveU",
     city: "Calgary",
     prov: "Alberta",
-
     };
+
+//2019/10/30 - USING REDUCE AND MAP take an array of objects and return totals
+test('reduce: balance addition', () => {
+    const totalBalance = functions.loopStaffBalance(data.staff);
+    expect(totalBalance).toBe(3823);
+});
+
+test('map: average balance ', () => {
+    const averageBalance = functions.loopStaffAverageBalance(data.staff);
+    expect(averageBalance).toBe(546.14);
+});
+
+
 
 //2019/10/25 - USING FOR EACH take an array of objects and return an array of emails 
 test('for each: email builder for company', () => {

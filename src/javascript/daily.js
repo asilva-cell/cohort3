@@ -1,7 +1,19 @@
 
-
 const functions = {
 
+    //2019/10/30 - reduce(): take the array of objects and returns total of balance
+    loopStaffBalance : (staffArray) => {
+        let totalBalance = staffArray.reduce((accumulator, user) => accumulator + user.balance, 0);
+        // accumulator is the sum of balance
+        return totalBalance;    
+    },
+
+    loopStaffAverageBalance : (staffArray) =>  {
+        let averageBalance = functions.loopStaffBalance(staffArray)/(staffArray.length);
+        return Number(averageBalance.toFixed(2));    
+    },
+
+    //2019/10/25 - for echa / map: take the array of objects and returns list of emails
     loopStaffForEach: (staffArray) => {
         let staffForEach = [];
         staffArray.forEach (function (person) {
@@ -19,7 +31,7 @@ const functions = {
         return staffMap;
     }, 
 
-    //2019/10/24 - take the array of objects and returns list of emails
+    //2019/10/24 - for in / for of: take the array of objects and returns list of emails
     loopStaffIn : (staffArray) => {
         let staffEmailIn = [];
     
