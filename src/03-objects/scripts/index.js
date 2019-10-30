@@ -1,6 +1,6 @@
-import {Account} from './functions.js';
+import {Account, AccountController} from './functions.js';
 
-const checkingAccount = new Account ('maria', 25000);
+const checkingAccount = new Account ('Checking Account', 25000);
 
 idHome.addEventListener('click', (event) => {
     let curent = event.target.parentNode;
