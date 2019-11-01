@@ -59,17 +59,22 @@ class AccountController {
     }
 
     totalBalance () {
-        let totalBalance = 0;
-        this.userAccounts.forEach(function(element) {
-            totalBalance += element.balance;  
-        });
+        let totalBalance = this.userAccounts.reduce((accumulator, user) => 
+            accumulator + user.balance, 0);
         return totalBalance;
     }
 
-    // compareBalance () {
-    //}
+    mapObject () {
+        return this.userAccounts.map(function (user) {return user.balance});
+    }
+   
+    maxBalance (arrayBalance) {
+        return Math.max(...arrayBalance);
+    }
 
-
+    minBalance (arrayBalance) {
+        return Math.min(...arrayBalance);
+    }
 };
 
 export {Account, AccountController};

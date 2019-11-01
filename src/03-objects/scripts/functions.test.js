@@ -43,8 +43,25 @@ test('check remove account', () => {
 });
 
 test('check total balance', () => {
-   let expected = controller1.addAccount('checking', 100);
-   
-   expect(controller1.totalBalance()).toEqual(200);
+   controller1.addAccount('checking', 150);
+   expect(controller1.totalBalance()).toEqual(250);
 });
+
+test('check map account list', () => {
+   expect(controller1.mapObject()).toEqual([100, 150]);
+
+   controller1.addAccount('student', 50);
+   expect(controller1.mapObject()).toEqual([100, 150, 50]);
+});
+
+test('check max balance', () => {
+   let arrayOfBalances = controller1.mapObject();
+   expect(controller1.maxBalance(arrayOfBalances)).toEqual(150);
+});
+
+test('check min balance', () => {
+   let arrayOfBalances = controller1.mapObject();
+   expect(controller1.minBalance(arrayOfBalances)).toEqual(50);
+});
+
 
