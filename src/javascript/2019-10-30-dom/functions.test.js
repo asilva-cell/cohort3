@@ -65,11 +65,28 @@ test('check add before', () => {
     let arrayCounter = utilities.arrayCounter(arrayCards);
     expect(arrayCounter).toEqual(['1', '2', '3']);
     
-//     let current = myDiv.children[1].getAttribute('count')
-//     console.log(current);
+    //holds card#2 
+    let count2 = myDiv.children[1];
+    functions.addBefore(count2);
+    let arrayCards2 = utilities.arrayChildren(myDiv);
+    let arrayCounter2 = utilities.arrayCounter(arrayCards2);
 
-//     functions.addBefore(myDiv)
-//     expect(utilities.arrayCounter()).toEqual(['1', '4', '2', '3']);
+    expect(arrayCounter2).toEqual(['1', '4', '2', '3']);
+});
+
+test('check add after', () => {
+    functions.cardCounter = 0;
+    let myDiv = utilities.giveThreeCards();
+    let arrayCards = utilities.arrayChildren(myDiv);
+    let arrayCounter = utilities.arrayCounter(arrayCards);
+    expect(arrayCounter).toEqual(['1', '2', '3']);
+
+    //holds card#2 
+    let count2 = myDiv.children[1];
+    functions.addAfter(count2);
+    let arrayCards2 = utilities.arrayChildren(myDiv);
+    let arrayCounter2 = utilities.arrayCounter(arrayCards2);
+    expect(arrayCounter2).toEqual(['1', '2', '4', '3']);
 });
 
 

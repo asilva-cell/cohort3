@@ -17,45 +17,33 @@ const functions = {
     },
 
     addCard : (parent) => {
-        
         let newCard = functions.createCard();
         parent.appendChild(newCard);
+
+        let btnAddCardBefore = document.createElement('button');
+        btnAddCardBefore.id = 'idAddCardBefore';
+        btnAddCardBefore.textContent = 'Add Before';
+        newCard.appendChild(btnAddCardBefore);
+
+        let btnAddCardAfter = document.createElement('button');
+        btnAddCardAfter.id = 'idAddCardAfter';
+        btnAddCardAfter.textContent = 'Add After';
+        newCard.appendChild(btnAddCardAfter);
+
         return newCard;
     },
 
 
     addBefore : (currentCard) => {
-        return 0;
+        let parent = currentCard.parentNode;
+        let newCard = functions.addCard(currentCard.parentNode);
+        parent.insertBefore(newCard, currentCard);
+    },
+
+    addAfter : (currentCard) => {
+        let newCard = functions.addCard(currentCard.parentNode);
+        currentCard.after(newCard);
     }
-
-
-
-
-
-
-
-
-
-    
-    // mapObject : (array) => {
-    //     let arrayBalance = array.map(function (user) {return user.balance});
-    //     console.log(arrayBalance);
-    //     return arrayBalance;
-    // },
-
-    // maxBalance : (arrayBalance) => {
-    //     let maxBalance = Math.max.apply(...arrayBalance); 
-    //     console.log(maxBalance);
-    //     return maxBalance;
-    // },
-
-    // minBalance : (arrayBalance) => {
-    //     let minBalance = Math.min.apply(...arrayBalance); 
-    //     console.log(maxBalance);
-    //     return minBalance;
-    // }
-
-
 };
 
 export {functions};
