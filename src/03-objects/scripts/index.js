@@ -1,4 +1,4 @@
-import {Account, AccountController} from './functions.js';
+import {Account, AccountController} from './accounts.js';
 
 const checkingAccount = new Account ('Checking Account', 25000);
 
