@@ -12,22 +12,77 @@ h6 {
 
 body,
 html {
-    background-color: lightgrey;
+    background-color: rgb(228, 226, 238);
+    width: auto;
     height: 100%;
     line-height: 1.5;
     margin: 0;
 }
 
+
+
 #idHome {
-    border-style: solid;
-    margin: auto;
-    margin-top: 20%;
-    margin-bottom: 30px;
-    width: 600px;
-    text-align: center;
-    
+    background-color: rgb(39, 16, 173);
     border-color: black;
+    border-style: solid 2px;
+    /* margin: 15px; */
+    margin-bottom: 30px;
+    width: auto;
+    text-align: start;
+    padding: 15px;
+    
 }
+
+
+.container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-gap:10px; 
+}
+.panel {
+    background-color: rgb(228, 226, 238);
+    align-items: center;
+    padding:10px;
+    
+}
+
+#idCreateAccForm {
+    visibility: collapse;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 20px;
+    border-color:  rgb(39, 16, 173);
+    border-width: 2px;
+}
+
+/* #idAccTable {
+    width: 100%;
+} */
+.cards{
+    display: grid;
+    grid-template-columns: 6fr 3fr 1fr;
+    
+    width: auto;
+    padding: 5px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color:  rgb(39, 16, 173);
+    border-width: 2px;
+
+} 
+
+.text{
+    grid-column: 2;
+    justify-self: end;
+}
+.Delete{
+    grid-column: 3;
+    justify-self: end;
+    align-self: center;
+}
+
+
+
 
 h1{
     margin: 0;
@@ -37,9 +92,17 @@ h1{
     
 }
 
+h3, h4{
+    text-align: center;
+    margin: 10px;
+}
 
  #idInput{
-    width: 200px;
+    width: auto;
+    text-align: center;
+ }
+
+ #idSubmit{
     text-align: center;
  }
 
