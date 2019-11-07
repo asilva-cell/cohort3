@@ -50,17 +50,34 @@ class City {
 class Community {
     constructor() {
         this.cities = [];
+        this.byName = {};
     }
 
-    whichSphere() {
-        let latitude = this.latitude;
-        if (latitude > 0) {
-            console.log('from if');
-            this.hemisphere = 'Northern Hemisphere';}
-        else{this.hemisphere = 'Southern Hemisphere';};
-        console.log(this.hemisphere);
+    createCity(name,latitude, longitude, population) {
+		const newCity = new City(name,latitude, longitude, population);
+        this.cities.push(newCity);
+        this.byName[name] = newCity;
+		this.message = `${name} has been created.`;
     }
-    
+    checkCityExists(cityToCheck) {
+		for (let cityObj in this.byName) {
+			if (cityObj === cityToCheck) {
+				return true;
+			}
+		}
+		return false;
+    }
+    deleteCity(name) {
+        delete this.byName[name];
+	}
+    getPopulation() {
+        console.log(this.cities);
+		let totalPopulation = this.cities.reduce(
+			(accumulator, city) => accumulator + city.population,0);
+        return totalPopulation;
+	}
+
 }
+
 
 export { City, Community };
