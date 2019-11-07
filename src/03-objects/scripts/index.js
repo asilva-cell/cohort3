@@ -84,5 +84,3 @@ const updates = {
             in your ${accController.minBalance().accountName} account.`;
     }
 };
-
-

@@ -69,6 +69,14 @@ class Community {
     }
     deleteCity(name) {
         delete this.byName[name];
+		this.cities.forEach((key,index) => {
+            if (key.name === name) {
+                this.cities.splice(index, 1);
+            }
+        });
+		
+		
+        // console.log(this.cities.indexOf(this.cities.filter(city =>(city.name === name))));
 	}
     getPopulation() {
 		let totalPopulation = this.cities.reduce(
