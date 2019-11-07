@@ -71,12 +71,26 @@ class Community {
         delete this.byName[name];
 	}
     getPopulation() {
-        console.log(this.cities);
 		let totalPopulation = this.cities.reduce(
 			(accumulator, city) => accumulator + city.population,0);
         return totalPopulation;
 	}
 
+
+	getMostNorthern() {
+		this.cities.sort(
+			(city1, city2) => city2.latitude - city1.latitude
+        );
+		return this.cities[0];
+	}
+
+	getMostSouthern() {
+		this.cities.sort(
+			(city1, city2) => city2.latitude - city1.latitude
+		);
+		let lastItem = this.cities.length - 1;
+		return this.cities[lastItem];
+	}
 }
 
 

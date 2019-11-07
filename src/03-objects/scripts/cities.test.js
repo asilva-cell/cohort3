@@ -32,7 +32,7 @@ test('check whichSphere', () => {
     northernCity.whichSphere();
     expect(northernCity.hemisphere).toBe('Northern Hemisphere');
 
-    let southernCity = new City ('Sidney', -33.870453, 151.208755 , 4741874);
+    let southernCity = new City ('Sydney', -33.870453, 151.208755 , 4741874);
     southernCity.whichSphere();
     expect(southernCity.hemisphere).toBe('Southern Hemisphere');
  });
@@ -55,29 +55,23 @@ test('check whichSphere', () => {
 
     cityController.deleteCity('Medicine Hat');
     expect(cityController.checkCityExists('Medicine Hat')).toBe(false);
-     //console.log(cityController.byName['Red Deer'].name);
-     console.log(cityController.cities);
-     console.log(cityController.byName);
 });
 test('check getPopulation, ', () => {
     let cityController = new Community();
-    console.log(cityController.cities);
-    console.log(cityController.byName);
   
     cityController.createCity('Red Deer', 52.2690, -113.8116, 100418);
     cityController.createCity('Medicine Hat', 50.0421, -110.7197, 63260);
-    cityController.createCity('Strathmore', 51.0378, -113.4004, 13528);
-    expect(cityController.getPopulation()).toBe(177206);
+    cityController.createCity('Yellowknife', 62.453972, -114.371788, 19569);
+    expect(cityController.getPopulation()).toBe(183247);
 
     cityController.createCity('Flagstaff County', 52.6531, -111.8823, 639);
     cityController.createCity('Tilt Cove', 49.88499646, -55.622830842, 6);
-    expect(cityController.getPopulation()).toBe(177851);
-    console.log(cityController.cities);
-    console.log(cityController.byName);
-});
 
-// const utilities = {
-//     createCity (name, latitude, longitude, population) {
-//         return new City(name, latitude, longitude, population);
-//     }
-// };
+    expect(cityController.getPopulation()).toBe(183892);
+
+    cityController.createCity('Sydney', -33.870453, 151.208755 , 4741874);
+    
+    expect(cityController.getMostNorthern().name).toBe('Yellowknife');
+    expect(cityController.getMostSouthern().name).toBe('Sydney');
+
+});
