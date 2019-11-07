@@ -15,8 +15,7 @@ class City {
         this.population += peopleIn;
     }
     movedOut(peopleOut) {
-        this.population -= peopleOut;
-        
+        this.population -= peopleOut;  
     }
     howBig (){
         let population = this.population;
@@ -39,18 +38,28 @@ class City {
           }
         return this.type;
     }
-    // create a method “howBig” that will return one of the following:
-    // City – a population > 100,000
-    // Large town – a large town has a population of 20,000 to 100,000
-    // Town – a town has a population of 1,000 to 20,000
-    // Village – larger than a hamlet but smaller than a town
-    // Hamlet – population 1 - 100
-    
-
-
+    whichSphere() {
+        let latitude = this.latitude;
+        if (latitude > 0) {
+            this.hemisphere = 'Northern Hemisphere';}
+        else{this.hemisphere = 'Southern Hemisphere';};
+    }
 }
 
+
 class Community {
+    constructor() {
+        this.cities = [];
+    }
+
+    whichSphere() {
+        let latitude = this.latitude;
+        if (latitude > 0) {
+            console.log('from if');
+            this.hemisphere = 'Northern Hemisphere';}
+        else{this.hemisphere = 'Southern Hemisphere';};
+        console.log(this.hemisphere);
+    }
     
 }
 
