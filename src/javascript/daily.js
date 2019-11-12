@@ -3,31 +3,37 @@ const functions = {
 
 
     //2019/11/8 - callbacks part 1
+
     peopleABBC : (people, callback) => {
-        let arrFullName =[]
         let peopleOfAbAndBc = people.filter(function (person) {
-            if (person.province === 'AB' || person.province === 'BC'){
-                if (typeof callback === 'function') {
-                    console.log('from if2');
-                    console.log(callback(person));
-                    arrFullName.push(callback(person));
-                }
-            console.log(arrFullName);
-            };
-        
             return person.province === 'AB' || person.province === 'BC';});
-      
+
+        if (typeof callback === 'function') {
+            let peopleFullNames = callback(peopleOfAbAndBc); 
+            return peopleFullNames;
+        };
 
         return peopleOfAbAndBc;
     },
 
-    fullName : (person) => {
-        return `${person.fname} ${person.lname}`; 
+    fullName : (people) => {
+        let peopleFullName = [];
+        people.forEach (function (person) {
+            peopleFullName.push(`${person.fname} ${person.lname}`);
+        });
+        return peopleFullName;
     },
+
     
-    
-    
-    //2019/11/6 - which callback were researched?
+    //2019/11/6 - filter callback
+
+    balanceGreater : (staffArray, filterBalance) => {
+        let balanceGreater = staffArray.filter(function (person) {
+            return person.balance >= filterBalance;});
+
+        console.log(balanceGreater);
+        return balanceGreater;
+    },
 
 
 

@@ -73,13 +73,23 @@ const data = {
     expect(peopleABBC[0].province).toBe('BC');
     expect(peopleABBC[1].province).toBe('AB');
 
-    
-    expect(functions.fullName({fname:"Alex", lname:"Smith", province:"BC", age:33}))
-        .toBe('Alex Smith');
+    let fullNameStr = functions.fullName([{fname:"Alex", lname:"Smith", province:"BC", age:33}]);
+    expect(fullNameStr[0]).toBe('Alex Smith');
 
-    let fullName = functions.peopleABBC(people, functions.fullName);
-
+    const peopleABBC2 = functions.peopleABBC(people, functions.fullName);
+    expect(peopleABBC2.length).toBe(22);
+    expect(peopleABBC2[0]).toBe('Alex Smith');
+    expect(peopleABBC2[21]).toBe('Trent Kerr');
 });
+
+//2019/11/6 - filter callback
+test('filter: balance=>1000', () => {
+    const balanceGreater = functions.balanceGreater(data.staff,1000);
+    expect(balanceGreater.length).toBe(2);
+    expect(balanceGreater[0].balance).toBeGreaterThanOrEqual(1000);
+    expect(balanceGreater[1].balance).toBeGreaterThanOrEqual(1000);
+});
+
 
 //2019/10/30 - USING REDUCE AND MAP take an array of objects and return totals
 test('reduce: balance addition', () => {
