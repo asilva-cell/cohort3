@@ -46,7 +46,7 @@ html {
     
 }
 
-#idCreateAccForm {
+#idCreateCityForm {
     visibility: collapse;
     padding: 5px;
     border-style: solid;
@@ -55,12 +55,10 @@ html {
     border-width: 2px;
 }
 
-/* #idAccTable {
-    width: 100%;
-} */
+
 .cards{
     display: grid;
-    grid-template-columns: 6fr 3fr 1fr;
+    /* grid-template-columns: 6fr 3fr 1fr; */
     
     width: auto;
     padding: 5px;

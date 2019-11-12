@@ -1,5 +1,5 @@
 
-global.fetch = require('node-fetch');
+//global.fetch = require('node-fetch');
 
 /*
     These are destructive tests. The URL will have its data
@@ -9,7 +9,7 @@ global.fetch = require('node-fetch');
     on how to interact with an API. It does the full CRUD. Comments
     are appreciated.
 */
-const url = "http://127.0.0.1:5000/";;
+const url = "http://127.0.0.1:5000/";
 
     async function postData(url = '', data = {}) {
         // Default options are marked with *

@@ -1,5 +1,7 @@
 import {Community} from './cities.js';
 import {domCity} from './domCity.js';
+import {postData} from './api.js';
+
 
 
 
@@ -9,12 +11,15 @@ let latitude = 0;
 let longitude = 0;
 let population = 0;
 
+
 let transaction;
 let account;
 let accountIndex = 0;
 let amount = 0;
 let currentCard=document.getElementById(`id${account}`);
 let currentCardName;
+
+
 
 // RIGHT SIDE PANEL
 idRightPanel.addEventListener('click', (event) => {
@@ -56,9 +61,44 @@ idRightPanel.addEventListener('click', (event) => {
         // domCity.deleteSelectOption(idAccNameSelect, currentCardName);
         // idRightDisplay.textContent= communityController.message;
         // updates.updateDisplay();
+
+
+
+
+  
+
     }
    
 });
+idAdd.addEventListener('click', (event) => {
+    console.log("from add");
+    addData();
+    
+    
+});
+idAll.addEventListener('click', (event) => {
+    console.log("from all");
+    getData();
+    
+    
+});
+
+async function getData () {
+    const url = "http://127.0.0.1:5000/";
+    let data = await postData(url + 'all');
+    console.log(data);
+} 
+
+let count =0;
+
+async function addData () {
+
+    const url = "http://127.0.0.1:5000/";
+    let data = await postData(url + 'add', {key: count++, city:"Calgary", pop: 868368});
+    console.log(data);
+} 
+
+
 
 // LEFT SIDE PANEL
 idLeftSubmit.addEventListener('click', (event) => {
