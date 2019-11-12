@@ -1,6 +1,36 @@
 
 const functions = {
 
+
+    //2019/11/8 - callbacks part 1
+    peopleABBC : (people, callback) => {
+        let arrFullName =[]
+        let peopleOfAbAndBc = people.filter(function (person) {
+            if (person.province === 'AB' || person.province === 'BC'){
+                if (typeof callback === 'function') {
+                    console.log('from if2');
+                    console.log(callback(person));
+                    arrFullName.push(callback(person));
+                }
+            console.log(arrFullName);
+            };
+        
+            return person.province === 'AB' || person.province === 'BC';});
+      
+
+        return peopleOfAbAndBc;
+    },
+
+    fullName : (person) => {
+        return `${person.fname} ${person.lname}`; 
+    },
+    
+    
+    
+    //2019/11/6 - which callback were researched?
+
+
+
     //2019/10/30 - reduce(): take the array of objects and returns total of balance
     loopStaffBalance : (staffArray) => {
         let totalBalance = staffArray.reduce((accumulator, user) => accumulator + user.balance, 0);
@@ -130,7 +160,7 @@ const functions = {
         ];
 
         let under50 = userDatabase.filter(user => eval(user.fName === "Laura"));
-        console.log(under50);
+        // console.log(under50);
         return under50; //returns an ARRAY of the users older that 50
     },
 
@@ -186,7 +216,7 @@ const functions = {
     //DAYLY 2
     assertEquals : (p1, p2) => {
             if (p1 !== p2) {
-                console.log(`*** The two values are not the same: \n p1 --> ${p1} \n p2 --> ${p2}`);
+                // console.log(`*** The two values are not the same: \n p1 --> ${p1} \n p2 --> ${p2}`);
                 return false;
             } else {
                 return true;
