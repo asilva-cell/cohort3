@@ -1,25 +1,25 @@
 import {Community} from './cities.js';
 import {domCity} from './domCity.js';
-import {postData} from './api.js';
+import {postData, getData, addData, clearData, deleteData, updateData} from './api.js';
 
 
 
-
+let count = 0;
 const communityController = new Community();
-let name ="";
-let latitude = 0;
-let longitude = 0;
-let population = 0;
+//let name ="";
+//let latitude = 0;
+//let longitude = 0;
+//let population = 0;
+// let accountIndex = 0;
+// let amount = 0;
+// let currentCard=document.getElementById(`id${account}`);
+// let currentCardName;
 
-
-let transaction;
-let account;
-let accountIndex = 0;
-let amount = 0;
-let currentCard=document.getElementById(`id${account}`);
-let currentCardName;
-
-
+//ON PAGE LOAD
+window.onload = (event) => {
+    //clearData();
+    getData();
+};
 
 // RIGHT SIDE PANEL
 idRightPanel.addEventListener('click', (event) => {
@@ -28,16 +28,16 @@ idRightPanel.addEventListener('click', (event) => {
     }
     
     if (event.target.id === 'idRightSubmit') {
-        name = idNewName.value;
-        latitude = Number(idNewLatitude.value);
-        longitude = Number(idNewLongitude.value);
-        population = Number(idNewPopulation.value);
-        console.log(name, latitude,longitude,population);
-        communityController.createCity(name, latitude, longitude, population);
-        domCity.addCard(idCityTable, name, latitude, longitude, population);
-        console.log(communityController.byName);
-        console.log(communityController.cities);
-        
+        let name = idNewName.value;
+        let latitude = Number(idNewLatitude.value);
+        let longitude = Number(idNewLongitude.value);
+        let population = Number(idNewPopulation.value);
+        let newCity = communityController.createCity(name, latitude, longitude, population);
+        console.log(newCity);
+        addData(newCity);
+        domCity.addCard(idCityTable, newCity.key, name, latitude, longitude, population);
+        domCity.createSelectOption(idCityNameSelect, newCity.name);
+        //createSelectOption: (selectParent, optionText)
     }
     
     if (event.target.id === 'idRightCancel') {
@@ -46,9 +46,9 @@ idRightPanel.addEventListener('click', (event) => {
         idCreateAccForm.style.visibility = 'collapse';
     }
     if(event.target.className === 'Delete') {
-        currentCard = event.target.parentNode;
-        currentCardName = currentCard.children[0].textContent;
-        console.log(currentCard, currentCardName);
+        let currentCard = event.target.parentNode;
+        let currentCardName = currentCard.children[0].textContent;
+        console.log(currentCard.name);
         console.log(communityController.cities);
 
         communityController.deleteCity(currentCardName);
@@ -56,70 +56,70 @@ idRightPanel.addEventListener('click', (event) => {
         console.log(communityController.byName);
     
         communityController.deleteCity(currentCardName);
-        console.log(communityController.byName);
-        console.log(communityController.cities);
-        // domCity.deleteSelectOption(idAccNameSelect, currentCardName);
-        // idRightDisplay.textContent= communityController.message;
-        // updates.updateDisplay();
-
-
-
-
-  
-
+        
+        domCity.deleteSelectOption(idCityNameSelect, currentCardName);
+        //idRightDisplay.textContent= communityController.message;
+        // updates.updateDisplay();      
+        deleteData(currentCard.getAttribute("key"));
     }
    
 });
-idAdd.addEventListener('click', (event) => {
-    console.log("from add");
-    addData();
-    
-    
-});
-idAll.addEventListener('click', (event) => {
-    console.log("from all");
-    getData();
-    
-    
-});
-
-async function getData () {
-    const url = "http://127.0.0.1:5000/";
-    let data = await postData(url + 'all');
-    console.log(data);
-} 
-
-let count =0;
-
-async function addData () {
-
-    const url = "http://127.0.0.1:5000/";
-    let data = await postData(url + 'add', {key: count++, city:"Calgary", pop: 868368});
-    console.log(data);
-} 
-
-
-
 // LEFT SIDE PANEL
 idLeftSubmit.addEventListener('click', (event) => {
-    
-    account = idAccNameSelect.value;
-    if (account !== 'default') {
-        transaction = idTransactions.value;
-        amount = Number(idBalanceInp.value);
-        accountIndex = communityController.getAccountIndex(account);
+    let cityName = idCityNameSelect.value;
+    if (cityName !== 'default') {
+
+        let populationChange;
         
-        currentCard = document.getElementById(`${account}`);
+        // let populationChange = idPopulationChange.value;
+        let amount = Number(idAmountInp.value);;
+
+        console.log(populationChange); //type of move
+        console.log(amount); //people moving
+
+        console.log(communityController.byName); //all cities
+        console.log(communityController.byName[cityName]); //single city object
+        console.log(communityController.byName[cityName].key); //single city object KEY
+        let cityObj = communityController.byName[cityName];
+
+        let currentCityCard = document.getElementById(`${cityObj.name}`);
+        let currentCityKey = cityObj.key;
+
+            if (document.getElementById("idMoveIn").checked) {
+                populationChange = "moveIn";
+            }else{populationChange = "moveOut";}
+        communityController.populationControl(cityObj, populationChange, amount);
+        currentCityCard.children[3].textContent = `Population: ${cityObj.population}`;
+
+
+
+        console.log(populationChange);
+       
+        updateData(cityObj);
+
+        console.log(communityController.byName);
+        console.log(communityController.cities);
+
+
         
-        balance = communityController.operationControl(transaction, amount, accountIndex);
-        if (balance !== undefined) {
-            domCity.adjustCardBalance(currentCard, communityController.userAccounts[accountIndex].balance);
-            updates.updateDisplay();   
-        };
-    }else{communityController.message= 'Please select a valid account.'};
-    idBalanceInp.value = '';
-    idRightDisplay.textContent = '';
-    idLeftDisplay.textContent = communityController.message;
+
+       
+
+
+    };
+    //     accountIndex = communityController.getAccountIndex(account);
+        
+    //     currentCard = document.getElementById(`${account}`);
+        
+    //     balance = communityController.operationControl(populationChange, amount, accountIndex);
+    //     if (balance !== undefined) {
+    //         domCity.adjustCardBalance(currentCard, communityController.userAccounts[accountIndex].balance);
+    //         updates.updateDisplay();   
+    //     };
+    // }else{communityController.message= 'Please select a valid account.'};
+    // idBalanceInp.value = '';
+    // idRightDisplay.textContent = '';
+    // idLeftDisplay.textContent = communityController.message;
     
 });
 

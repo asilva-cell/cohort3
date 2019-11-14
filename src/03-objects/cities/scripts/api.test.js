@@ -1,13 +1,9 @@
-import {postData} from './api.js';
+import {postData, getData, addData, clearData, deleteData, updateData} from './api.js';
 global.fetch = require('node-fetch');
 
 /*
     These are destructive tests. The URL will have its data
     blown away.
-
-    These tests were created to give a fairly comprehensive example
-    on how to interact with an API. It does the full CRUD. Comments
-    are appreciated.
 */
 
 const url = 'http://localhost:5000/';
@@ -20,50 +16,39 @@ test('test that the fetch works?', async () => {
     ]
 
     // Check that the server is running and clear any data
-    let data = await postData(url + 'clear');
+    let dataTest = await clearData();
+    expect(dataTest.status).toEqual(200);
+    // gets data from server
+    dataTest= await getData();
+    expect(dataTest.length).toBe(0);
 
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(0);
+    // adds a city to the server,chek status and get data
+    dataTest= await addData(cities[0]);
+    expect(dataTest.status).toEqual(200);
+    dataTest= await getData(); //gets data
+    expect(dataTest.length).toBe(1);
 
-    data = await postData(url + 'add', cities[0]);
-    expect(data.status).toEqual(200);
+    // adds another city to the server,chek status and get data
+    dataTest= await addData(cities[1]);
+    expect(dataTest.status).toEqual(200);
+    dataTest= await getData();
+    expect(dataTest.length).toBe(2);
 
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(1);
-    expect(data[0].name).toBe("Sydney");
+    // deletes a city given a key
+    dataTest= await deleteData(1);
+    expect(dataTest.status).toEqual(200);
+    dataTest= await getData();
+    expect(dataTest.length).toBe(1);
+    expect(dataTest[0].key).toBe(2);
 
-    // add a second with the same key which should be an error
-    data = await postData(url + 'add', cities[0]);
-    expect(data.status).toEqual(400);
+    // check population before and after update function
+    expect(dataTest[0].population).toBe(4741874);
+    dataTest= await updateData({key:2, name:'China', latitude: 33.870453, longitude: -151.208755 , population: 100});
+    expect(dataTest.status).toEqual(200);
+    dataTest= await getData();
+    expect(dataTest[0].population).toBe(100);
 
-    // add a second which should be ok
-    data = await postData(url + 'add', cities[1]);
-    expect(data.status).toEqual(200);
-
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(2);
-    expect(data[1].name).toBe("China");
-
-    data = await postData(url + 'read', {key:1});
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(1);
-    expect(data[0].name).toBe("Sydney");
-
-    data = await postData(url + 'update', {key:1, name:"Calgary"});
-    expect(data.status).toEqual(200);
-
-    data = await postData(url + 'read', {key:1});
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(1);
-    expect(data[0].name).toBe("Calgary");
-
-    data = await postData(url + 'delete', {key:1});
-    expect(data.status).toEqual(200);
-
-    data = await postData(url + 'read', {key:1});
-    expect(data.status).toEqual(400);
+    // clears the server again
+    await clearData();
 });
 

@@ -9,27 +9,25 @@
 </head>
 
 <body>
-    <h1>Welcome to the city site!</h1>
+    <h1>Welcome to Your Cities Site!</h1>
     
    
     <div class='container' id="idHome">
        
         <!-- LEFT PANEL -->
         <div id="idLeftPanel" class="panel">
-            <h3>Quick City Controls</h3>
-            <div>Choose your city:
-                <select id="idAccNameSelect">
+            <h3>Update City</h3>
+            <div>Select City:
+                <select id="idCityNameSelect">
                     <option value="default">Select City</option>
-                </select><br>
+                </select><br><br>
             </div>
-            <div>Type of Transactions:
-                <select required id="idTransactions"> 
-                        <option value="deposit">Deposit</option>
-                        <option value="withdraw">Withdraw</option>
-                </select><br>
+            <div>Population Change?
+                    <br><input id="idMoveIn" type="radio" value="MoveIn" name="moving" checked>Move In<br>
+                    <input id="idMoveOut" type="radio" value="MoveOut" name="moving">Move Out<br><br>
             </div>
-            <div>$:
-                    <input id="idBalanceInp" type="number" placeholder ="0.00"><br>
+            <div>Amount:
+                    <input id="idAmountInp" type="number" placeholder ="0.00"><br><br>
             </div>
 
             <input id="idLeftSubmit" type="button" value="Submit">
@@ -54,14 +52,7 @@
                 <input id="idRightSubmit" type="button" value="Submit">
                 <input id="idRightCancel" type="button" value="Cancel">
                 <p id=idRightInputError></p>
-
-
-
             </form>
-           
-            <input id="idAdd" type="button" value="Add">
-            <input id="idAll" type="button" value="all">
-               
         </div>
 
     </div>

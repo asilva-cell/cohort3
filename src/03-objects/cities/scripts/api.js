@@ -1,17 +1,41 @@
 
-//global.fetch = require('node-fetch');
 
-/*
-    These are destructive tests. The URL will have its data
-    blown away.
+async function clearData () {
+    const url = "http://127.0.0.1:5000/";
+    return await postData(url + 'clear');
+};
 
-    These tests were created to give a fairly comprehensive example
-    on how to interact with an API. It does the full CRUD. Comments
-    are appreciated.
-*/
+async function getData () {
+    const url = "http://127.0.0.1:5000/";
+    let data = await postData(url + 'all');
+    return data;
+}; 
+
+async function addData (cityData) {
+    const url = "http://127.0.0.1:5000/";
+    let data = await postData(url + 'add', cityData);
+    return data;
+};
+
+async function deleteData (key) {
+    const url = "http://127.0.0.1:5000/";
+    let data = await postData(url + 'delete', {key :Number(key)});
+    return data;
+};
+
+async function updateData (cityObj) {
+    const url = "http://127.0.0.1:5000/";
+    let data = await postData(url + 'update', cityObj);
+    return data;
+};
+
+
+
+
 const url = "http://127.0.0.1:5000/";
 
     async function postData(url = '', data = {}) {
+
         // Default options are marked with *
         const response = await fetch(url, {
             method: 'POST',     // *GET, POST, PUT, DELETE, etc.
@@ -30,8 +54,7 @@ const url = "http://127.0.0.1:5000/";
         const json = await response.json();    // parses JSON response into native JavaScript objects
         json.status = response.status;
         json.statusText = response.statusText;
-        // console.log(json, typeof(json));
         return json;
     }
 
-export {postData};
+export {postData, getData, addData, clearData, deleteData, updateData};

@@ -1,12 +1,13 @@
 
 class City {
-    constructor(name, latitude, longitude, population) {
+    constructor(key, name, latitude, longitude, population) {
+        this.key = key;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.population = population;
     }
-    
+
     show () {
         let showStr = `name:${this.name}, latitude:${this.latitude}, longitude:${this.longitude}, population:${this.population}`;
         return showStr;
@@ -51,13 +52,16 @@ class Community {
     constructor() {
         this.cities = [];
         this.byName = {};
+        this.keyCount = 1;
     }
 
+
     createCity(name,latitude, longitude, population) {
-		const newCity = new City(name,latitude, longitude, population);
+        const newCity = new City(this.keyCount++, name, latitude, longitude, population);
         this.cities.push(newCity);
         this.byName[name] = newCity;
-		this.message = `${name} has been created.`;
+        this.message = `${name} has been created.`;
+        return newCity;
     }
     checkCityExists(cityToCheck) {
 		for (let cityObj in this.byName) {
@@ -74,17 +78,18 @@ class Community {
                 this.cities.splice(index, 1);
             }
         });
-		
-		
-        // console.log(this.cities.indexOf(this.cities.filter(city =>(city.name === name))));
-	}
+    }
+    populationControl (cityObj, change, amount) {
+        if (change === 'moveOut') {
+            return cityObj.movedOut(amount)
+        }
+        return cityObj.movedIn(amount);
+    }
     getPopulation() {
 		let totalPopulation = this.cities.reduce(
 			(accumulator, city) => accumulator + city.population,0);
         return totalPopulation;
-	}
-
-
+    }
 	getMostNorthern() {
 		this.cities.sort(
 			(city1, city2) => city2.latitude - city1.latitude

@@ -40,10 +40,11 @@ const domCity = {
         return newText;
     },
     
-    addCard: (parent, name, latitude, longitude, population) => {
+    addCard: (parent, cardCounter, name, latitude, longitude, population) => {
         let newChild = document.createElement('div');
         newChild.className = 'cards';
         newChild.id=`${name}`;
+        newChild.setAttribute("key", cardCounter);
         domCity.addText(newChild, `${name}`);
         domCity.addText(newChild, `Latitude: ${latitude}`);
         domCity.addText(newChild, `Longitude: ${longitude}`);
