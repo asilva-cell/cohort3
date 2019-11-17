@@ -65,6 +65,7 @@ class Community {
         serverData.map(city => {
             this.createCity(city.key, city.name, city.latitude, city.longitude, city.population);
         });
+        this.message =  `Cities above have been loaded from the server.`
         return this.cities;
     }
 

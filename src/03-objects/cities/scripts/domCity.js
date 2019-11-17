@@ -7,7 +7,6 @@ const domCity = {
     },
     loadSelectOptionServer: (selectParent, arrCitiesServer) => {
         arrCitiesServer.map(city => {
-            console.log(city.name);
             domCity.createSelectOption(selectParent, city.name); 
         });
         return;
@@ -23,12 +22,6 @@ const domCity = {
         optionToRemove.remove();
         return selectParent;
     },
-
-    // addBreak: () => {
-    //     let br = document.createElement('br');
-    //     return br;
-    // },
-
     addButton: (parentCard, value) => {
         let newButton = document.createElement('button');
         parentCard.appendChild(newButton);
@@ -61,9 +54,7 @@ const domCity = {
     },
 
     loadCardsServer : (parent, arrCitiesServer) => {
-        console.log(arrCitiesServer);
         arrCitiesServer.map(city => {
-            console.log(city);
             domCity.addCard(parent, city.key, city.name, city.latitude, city.longitude, city.population); 
         });
         return;
