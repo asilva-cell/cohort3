@@ -1,4 +1,3 @@
-
 class City {
     constructor(key, name, latitude, longitude, population) {
         this.key = key;
@@ -54,15 +53,22 @@ class Community {
         this.byName = {};
         this.keyCount = 1;
     }
-
-
-    createCity(name,latitude, longitude, population) {
-        const newCity = new City(this.keyCount++, name, latitude, longitude, population);
+    createCity(lastKey, name,latitude, longitude, population) {
+        this.keyCount = lastKey;
+        const newCity = new City(this.keyCount, name, latitude, longitude, population);
         this.cities.push(newCity);
         this.byName[name] = newCity;
         this.message = `${name} has been created.`;
         return newCity;
     }
+    loadCitiesServer (serverData, lastKey) {
+        serverData.map(city => {
+            this.createCity(city.key, city.name, city.latitude, city.longitude, city.population);
+        });
+        return this.cities;
+    }
+
+
     checkCityExists(cityToCheck) {
 		for (let cityObj in this.byName) {
 			if (cityObj === cityToCheck) {

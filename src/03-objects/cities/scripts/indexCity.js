@@ -15,14 +15,24 @@ const communityController = new Community();
 // let currentCard=document.getElementById(`id${account}`);
 // let currentCardName;
 
+let serverData = [];
+let lastKey = 0;
 //ON PAGE LOAD
-window.onload = (event) => {
+window.onload = async (event) => {
     //clearData();
-    getData();
+    serverData = await getData();
+    console.log(serverData);
+    if (serverData.length !== 0) {
+        lastKey = serverData[serverData.length-1].key;
+        communityController.loadCitiesServer(serverData, lastKey);
+        domCity.loadCardsServer(idCityTable, serverData);
+        domCity.loadSelectOptionServer(idCityNameSelect, serverData);
+    };
+    console.log(communityController.cities);
 };
 
 // RIGHT SIDE PANEL
-idRightPanel.addEventListener('click', (event) => {
+idRightPanel.addEventListener('click', async (event) => {
     if (event.target.id === 'idCreateBtn') {
         idCreateCityForm.style.visibility = 'visible';
     }
@@ -32,9 +42,16 @@ idRightPanel.addEventListener('click', (event) => {
         let latitude = Number(idNewLatitude.value);
         let longitude = Number(idNewLongitude.value);
         let population = Number(idNewPopulation.value);
-        let newCity = communityController.createCity(name, latitude, longitude, population);
+
+        
+        lastKey++;
+        
+        let newCity = communityController.createCity(lastKey, name, latitude, longitude, population);
         console.log(newCity);
-        addData(newCity);
+        console.log(communityController.cities);
+
+
+        await addData(newCity);
         domCity.addCard(idCityTable, newCity.key, name, latitude, longitude, population);
         domCity.createSelectOption(idCityNameSelect, newCity.name);
         //createSelectOption: (selectParent, optionText)
@@ -47,11 +64,16 @@ idRightPanel.addEventListener('click', (event) => {
     }
     if(event.target.className === 'Delete') {
         let currentCard = event.target.parentNode;
+        console.log(currentCard);
+
         let currentCardName = currentCard.children[0].textContent;
-        console.log(currentCard.name);
+        console.log(currentCardName);
         console.log(communityController.cities);
 
-        communityController.deleteCity(currentCardName);
+        communityController.deleteCity(currentCard);
+        console.log(communityController.cities);
+
+
         domCity.deleteCard(currentCard);
         console.log(communityController.byName);
     
@@ -60,12 +82,12 @@ idRightPanel.addEventListener('click', (event) => {
         domCity.deleteSelectOption(idCityNameSelect, currentCardName);
         //idRightDisplay.textContent= communityController.message;
         // updates.updateDisplay();      
-        deleteData(currentCard.getAttribute("key"));
+        await deleteData(currentCard.getAttribute("key"));
     }
    
 });
 // LEFT SIDE PANEL
-idLeftSubmit.addEventListener('click', (event) => {
+idLeftSubmit.addEventListener('click', async (event) => {
     let cityName = idCityNameSelect.value;
     if (cityName !== 'default') {
 
@@ -95,7 +117,7 @@ idLeftSubmit.addEventListener('click', (event) => {
 
         console.log(populationChange);
        
-        updateData(cityObj);
+        await updateData(cityObj);
 
         console.log(communityController.byName);
         console.log(communityController.cities);
@@ -132,5 +154,4 @@ const updates = {
             in your ${communityController.minBalance().accountName} account.`;
     }
 };
-
 

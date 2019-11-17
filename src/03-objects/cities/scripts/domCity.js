@@ -1,10 +1,16 @@
-
 const domCity = {
     createSelectOption: (selectParent, optionText) => {
         let option = document.createElement('option');
         option.text = optionText;
         selectParent.add(option);
         return selectParent;
+    },
+    loadSelectOptionServer: (selectParent, arrCitiesServer) => {
+        arrCitiesServer.map(city => {
+            console.log(city.name);
+            domCity.createSelectOption(selectParent, city.name); 
+        });
+        return;
     },
 
     deleteSelectOption: (selectParent, optionText) => {
@@ -54,6 +60,15 @@ const domCity = {
         return newChild;
     },
 
+    loadCardsServer : (parent, arrCitiesServer) => {
+        console.log(arrCitiesServer);
+        arrCitiesServer.map(city => {
+            console.log(city);
+            domCity.addCard(parent, city.key, city.name, city.latitude, city.longitude, city.population); 
+        });
+        return;
+    },
+
     adjustCardBalance : (currentCard, newBalance) => {
         currentCard.children[1].textContent = `$${newBalance}`;
         return currentCard;
@@ -71,5 +86,3 @@ const domCity = {
 export {domCity};
     
     
-
-

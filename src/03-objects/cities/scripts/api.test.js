@@ -41,7 +41,7 @@ test('test that the fetch works?', async () => {
     expect(dataTest.length).toBe(1);
     expect(dataTest[0].key).toBe(2);
 
-    // check population before and after update function
+    // check UPDATE population before and after update function
     expect(dataTest[0].population).toBe(4741874);
     dataTest= await updateData({key:2, name:'China', latitude: 33.870453, longitude: -151.208755 , population: 100});
     expect(dataTest.status).toEqual(200);
