@@ -28,6 +28,11 @@ idRightPanel.addEventListener('click', async (event) => {
     
     if (event.target.id === 'idRightSubmit') {
         let name = idNewName.value;
+        if (communityController.checkCityExists(name) === true){
+            idRightInputError.textContent = communityController.message;
+            return;
+        };
+
         let latitude = Number(idNewLatitude.value);
         let longitude = Number(idNewLongitude.value);
         let population = Number(idNewPopulation.value);
@@ -39,13 +44,14 @@ idRightPanel.addEventListener('click', async (event) => {
         await addData(newCity);
         domCity.addCard(idCityTable, newCity.key, name, latitude, longitude, population);
         domCity.createSelectOption(idCityNameSelect, newCity.name);
+        idRightDisplay.textContent = communityController.message;
     }
     
-    if (event.target.id === 'idRightCancel') {
+    // if (event.target.id === 'idRightCancel') {
         
-        idNewLatitude.value = "";
-        idCreateAccForm.style.visibility = 'collapse';
-    }
+    //     idNewLatitude.value = "";
+    //     idCreateAccForm.style.visibility = 'collapse';
+    // }
     if(event.target.className === 'Delete') {
         let currentCard = event.target.parentNode;
         let currentCardName = currentCard.children[0].textContent;
@@ -63,16 +69,11 @@ idRightPanel.addEventListener('click', async (event) => {
 idLeftSubmit.addEventListener('click', async (event) => {
     let cityName = idCityNameSelect.value;
     if (cityName !== 'default') {
-
         let populationChange;
-
         let amount = Number(idAmountInp.value);;
-
         let cityObj = communityController.byName[cityName];
-
         let currentCityCard = document.getElementById(`${cityObj.name}`);
-        let currentCityKey = cityObj.key;
-
+        //let currentCityKey = cityObj.key;
         if (document.getElementById("idMoveIn").checked) {
             populationChange = "moveIn";
         }else{populationChange = "moveOut";}
@@ -80,10 +81,6 @@ idLeftSubmit.addEventListener('click', async (event) => {
         currentCityCard.children[3].textContent = `Population: ${cityObj.population}`;
 
         await updateData(cityObj);
-
-        
-
-
     };
  
 });

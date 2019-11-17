@@ -58,7 +58,7 @@ class Community {
         const newCity = new City(this.keyCount, name, latitude, longitude, population);
         this.cities.push(newCity);
         this.byName[name] = newCity;
-        this.message = `${name} has been created.`;
+        this.message = `${name} has been added.`;
         return newCity;
     }
     loadCitiesServer (serverData, lastKey) {
@@ -68,18 +68,20 @@ class Community {
         this.message =  `Cities above have been loaded from the server.`
         return this.cities;
     }
-
-
     checkCityExists(cityToCheck) {
-		for (let cityObj in this.byName) {
-			if (cityObj === cityToCheck) {
-				return true;
-			}
-		}
+        const checkingCity = this.cities
+            .map(city => {return city.name})
+            .filter(city => {return city === cityToCheck});
+    
+		if (checkingCity.length === 1) {
+            this.message = `${cityToCheck} is in your list already.`;
+			return true;
+        };
 		return false;
     }
     deleteCity(name) {
         delete this.byName[name];
+        this.message = `${name} has been deteled from your list.`
 		this.cities.forEach((key,index) => {
             if (key.name === name) {
                 this.cities.splice(index, 1);
@@ -112,6 +114,4 @@ class Community {
 		return this.cities[lastItem];
 	}
 }
-
-
 export { City, Community };
