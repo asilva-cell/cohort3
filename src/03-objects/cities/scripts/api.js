@@ -1,30 +1,34 @@
+const url = "http://127.0.0.1:5000/";
 
-
+// async function checkServerConnection () {
+//     // const url = "http://127.0.0.1:5000/";
+//     return await postData(url + 'all');
+// };
 async function clearData () {
-    const url = "http://127.0.0.1:5000/";
+    // const url = "http://127.0.0.1:5000/";
     return await postData(url + 'clear');
 };
 
 async function getData () {
-    const url = "http://127.0.0.1:5000/";
+    // const url = "http://127.0.0.1:5000/";
     let data = await postData(url + 'all');
     return data;
 }; 
 
 async function addData (cityData) {
-    const url = "http://127.0.0.1:5000/";
+    // const url = "http://127.0.0.1:5000/";
     let data = await postData(url + 'add', cityData);
     return data;
 };
 
 async function deleteData (key) {
-    const url = "http://127.0.0.1:5000/";
+    // const url = "http://127.0.0.1:5000/";
     let data = await postData(url + 'delete', {key :Number(key)});
     return data;
 };
 
 async function updateData (cityObj) {
-    const url = "http://127.0.0.1:5000/";
+    // const url = "http://127.0.0.1:5000/";
     let data = await postData(url + 'update', cityObj);
     return data;
 };
@@ -32,10 +36,10 @@ async function updateData (cityObj) {
 
 
 
-const url = "http://127.0.0.1:5000/";
+
 
     async function postData(url = '', data = {}) {
-
+        try {
         // Default options are marked with *
         const response = await fetch(url, {
             method: 'POST',     // *GET, POST, PUT, DELETE, etc.
@@ -55,6 +59,12 @@ const url = "http://127.0.0.1:5000/";
         json.status = response.status;
         json.statusText = response.statusText;
         return json;
+
+        }
+        catch(error){
+            
+            console.log(error);
+        }
     }
 
 export {postData, getData, addData, clearData, deleteData, updateData};
