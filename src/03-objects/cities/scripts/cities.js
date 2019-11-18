@@ -5,6 +5,8 @@ class City {
         this.latitude = latitude;
         this.longitude = longitude;
         this.population = population;
+        this.hemisphere = "";
+        this.type = "";
     }
 
     show () {
@@ -56,6 +58,8 @@ class Community {
     createCity(lastKey, name,latitude, longitude, population) {
         this.keyCount = lastKey;
         const newCity = new City(this.keyCount, name, latitude, longitude, population);
+        this.hemisphere = newCity.whichSphere();
+        this.type = newCity.howBig();
         this.cities.push(newCity);
         this.byName[name] = newCity;
         this.message = `${name} has been added.`;
@@ -103,6 +107,7 @@ class Community {
 		this.cities.sort(
 			(city1, city2) => city2.latitude - city1.latitude
         );
+
 		return this.cities[0];
 	}
 

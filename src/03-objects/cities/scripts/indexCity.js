@@ -43,9 +43,10 @@ idHome.addEventListener('click', async (event) => {
         let longitude = Number(idNewLongitude.value);
         let population = Number(idNewPopulation.value);
         let newCity = communityController.createCity(lastKey, name, latitude, longitude, population);
+        
+        console.log(newCity);
         await addData(newCity);
-        let hemisphere = newCity.whichSphere();
-        domCity.addCard(idCityTable, newCity.key, name, latitude, longitude, population, hemisphere);
+        domCity.addCard(idCityTable, newCity.key, newCity.name, newCity.latitude, newCity.longitude, newCity.population, newCity.hemisphere);
         domCity.createSelectOption(idCityNameSelect, newCity.name);
         idSummaryDisplay.textContent = communityController.message;
         updates.updateDisplay();
