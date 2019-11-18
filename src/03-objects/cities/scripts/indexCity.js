@@ -3,8 +3,6 @@ import {domCity} from './domCity.js';
 import {postData, getData, addData, clearData, deleteData, updateData} from './api.js';
 
 const communityController = new Community();
-
-
 let serverData = [];
 let lastKey = 0;
 
@@ -17,18 +15,25 @@ window.onload = async (event) => {
         communityController.loadCitiesServer(serverData, lastKey);
         domCity.loadCardsServer(idCityTable, serverData);
         domCity.loadSelectOptionServer(idCityNameSelect, serverData);
-        idRightDisplay.textContent = communityController.message;
+        idSummaryDisplay.textContent = communityController.message;
+        updates.updateDisplay();
         return;
     };
-    idRightDisplay.textContent = `Please add a city.`
+    idSummaryDisplay.textContent = `Please add a city.`
 };
+// updates.updateDisplay();
 
-// RIGHT SIDE PANEL
-idRightPanel.addEventListener('click', async (event) => {
-    
-    if (event.target.value === 'Add City') {
-      
+idHome.addEventListener('click', async (event) => {
+
+    // CITY INFORMATION PANEL
+    if (event.target.id === 'idAddCity') {
         let name = idNewName.value;
+        
+        name = name.toLowerCase()
+            .split(' ')
+            .map((words) => words.charAt(0).toUpperCase() + words.substring(1))
+            .join(' ');
+        //let name = idNewName.value.charAt(0).toUpperCase() + idNewName.value.slice(1);
         if (communityController.checkCityExists(name) === true){
             idRightInputError.textContent = communityController.message;
             return;
@@ -41,30 +46,12 @@ idRightPanel.addEventListener('click', async (event) => {
         await addData(newCity);
         domCity.addCard(idCityTable, newCity.key, name, latitude, longitude, population);
         domCity.createSelectOption(idCityNameSelect, newCity.name);
-        idRightDisplay.textContent = communityController.message;
+        idSummaryDisplay.textContent = communityController.message;
+        updates.updateDisplay();
         return;
-        
-    }
+    };
 
-    if(event.target.className === 'Delete') {
-        console.log(await getData());
-        const toConfirm = confirm('Are you sure you want to delete this city?');
-        if (toConfirm === true) {
-            let currentCard = event.target.parentNode;
-            let currentCardName = currentCard.children[0].textContent;
-            await deleteData(currentCard.getAttribute("key"));
-            communityController.deleteCity(currentCard);
-            domCity.deleteCard(currentCard);
-            communityController.deleteCity(currentCardName);
-            domCity.deleteSelectOption(idCityNameSelect, currentCardName);
-            idRightDisplay.textContent= communityController.message;
-            // updates.updateDisplay();      
-            
-        }
-    }    
-});
-// LEFT SIDE PANEL
-idLeftSubmit.addEventListener('click', async (event) => {
+     // UPDATE CITY PANEL
     let cityName = idCityNameSelect.value;
     if (cityName !== 'default') {
         let cityObj = communityController.byName[cityName];
@@ -77,30 +64,47 @@ idLeftSubmit.addEventListener('click', async (event) => {
         if (document.getElementById("idMoveIn").checked) {
             populationChange = "moveIn";
         }else{populationChange = "moveOut";};
-
+ 
         if (populationChange === "moveOut" && cityObj.population < amount){
             idLeftDisplay.textContent = `Moving out people should be less than current population.`;
             return;
         };
-
+ 
         let currentCityCard = document.getElementById(`${cityObj.name}`);
         communityController.populationControl(cityObj, populationChange, amount);
         await updateData(cityObj);
         currentCityCard.children[3].textContent = `Population: ${cityObj.population}`;
-
+        
     }else{
         idLeftDisplay.textContent = `Please select a city to update.`
-    };
+     };
 
+    // DELETE CARDS
+    if(event.target.className === 'Delete') {
+        console.log(await getData());
+        const toConfirm = confirm('Are you sure you want to delete this city?');
+        if (toConfirm === true) {
+            let currentCard = event.target.parentNode;
+            let currentCardName = currentCard.children[0].textContent;
+            await deleteData(currentCard.getAttribute("key"));
+            communityController.deleteCity(currentCard);
+            domCity.deleteCard(currentCard);
+            communityController.deleteCity(currentCardName);
+            domCity.deleteSelectOption(idCityNameSelect, currentCardName);
+            idSummaryDisplay.textContent= communityController.message;
+            updates.updateDisplay();        
+        };
+    };    
 });
 
-// const updates = {
-//     updateDisplay : () =>{
-//         idRightTotal.textContent = `Total account balance is $${communityController.totalBalance()}.`;
-//         idRightMaxBalance.textContent = `Your maximum balance is $${communityController.maxBalance().balance}
-//             in your ${communityController.maxBalance().accountName} account.`;
-//         idRightMinBalance.textContent =  `Your minimum balance is $${communityController.minBalance().balance}
-//             in your ${communityController.minBalance().accountName} account.`;
-//     }
-// };
+const updates = {
+    updateDisplay : () =>{
+        idTotal.textContent = `Total population is ${communityController.getPopulation()}.
+        The most northern city in your list is ${communityController.getMostNorthern().name}
+        and the most southern is ${communityController.getMostSouthern().name}.`;
+        
+        // idMostNorth.textContent = `The most northern city in your list is ${communityController.getMostNorthern().name}.`;
+        // idMostSouth.textContent =  `The most southern city in your list is ${communityController.getMostSouthern().name}.`;
+    }
+};
 

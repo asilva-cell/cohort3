@@ -65,7 +65,7 @@ class Community {
         serverData.map(city => {
             this.createCity(city.key, city.name, city.latitude, city.longitude, city.population);
         });
-        this.message =  `Cities above have been loaded from the server.`
+        this.message =  `Cities below have been loaded from the server.`
         return this.cities;
     }
     checkCityExists(cityToCheck) {
@@ -96,13 +96,14 @@ class Community {
     }
     getPopulation() {
 		let totalPopulation = this.cities.reduce(
-			(accumulator, city) => accumulator + city.population,0);
+            (accumulator, city) => accumulator + city.population,0);
         return totalPopulation;
     }
 	getMostNorthern() {
 		this.cities.sort(
 			(city1, city2) => city2.latitude - city1.latitude
         );
+        console.log(this.cities[0].name);
 		return this.cities[0];
 	}
 
