@@ -41,8 +41,8 @@ class City {
     whichSphere() {
         let latitude = this.latitude;
         if (latitude > 0) {
-            this.hemisphere = 'Northern Hemisphere';}
-        else{this.hemisphere = 'Southern Hemisphere';};
+            return this.hemisphere = 'Northern hemisphere';}
+        else{return this.hemisphere = 'Southern hemisphere';};
     }
 }
 
@@ -103,7 +103,6 @@ class Community {
 		this.cities.sort(
 			(city1, city2) => city2.latitude - city1.latitude
         );
-        console.log(this.cities[0].name);
 		return this.cities[0];
 	}
 

@@ -39,7 +39,7 @@ const domCity = {
         return newText;
     },
     
-    addCard: (parent, cardCounter, name, latitude, longitude, population) => {
+    addCard: (parent, cardCounter, name, latitude, longitude, population, hemisphere) => {
         let newChild = document.createElement('div');
         newChild.className = 'cards';
         newChild.id=`${name}`;
@@ -49,6 +49,7 @@ const domCity = {
         domCity.addText(newChild, `Longitude: ${longitude}`);
         domCity.addText(newChild, `Population: ${population}`);
         domCity.addButton(newChild, 'Delete');
+        domCity.addText(newChild,`This city is in the ${hemisphere}.`)
         parent.appendChild(newChild);
         return newChild;
     },

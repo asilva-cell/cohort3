@@ -44,7 +44,8 @@ idHome.addEventListener('click', async (event) => {
         let population = Number(idNewPopulation.value);
         let newCity = communityController.createCity(lastKey, name, latitude, longitude, population);
         await addData(newCity);
-        domCity.addCard(idCityTable, newCity.key, name, latitude, longitude, population);
+        let hemisphere = newCity.whichSphere();
+        domCity.addCard(idCityTable, newCity.key, name, latitude, longitude, population, hemisphere);
         domCity.createSelectOption(idCityNameSelect, newCity.name);
         idSummaryDisplay.textContent = communityController.message;
         updates.updateDisplay();
@@ -107,4 +108,3 @@ const updates = {
         // idMostSouth.textContent =  `The most southern city in your list is ${communityController.getMostSouthern().name}.`;
     }
 };
-
