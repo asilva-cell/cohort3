@@ -22,7 +22,6 @@ html {
     border-color: black;
     border-style: solid 2px;
     line-height: 1;
-    /* margin: 15px; */
     margin-bottom: 30px;
     width: auto;
     text-align: start;
@@ -32,45 +31,49 @@ html {
 #idLowerPanel{
     background-image: url("skyline_LosAngeles.jpg");
     background-size: cover;
+    background-position: center;
     opacity: 0.8;
 }
-.container {
-    display: grid;
-}
+/* .container {
+    display: flex;
+    flex-wrap: wrap;
+} */
 .panel {
     margin: 10px;
     align-items: center;
     text-align: center;
     border-style: solid;
+    border-width: 2px;
     border-radius: 15px;
     border-color:  rgb(39, 16, 173);    
-}
-.input{
-    margin:10px;
 }
 p {
     margin: 5px;
 }
 
-#idCreateCityForm {
-    border-width: 2px;
-}
 #idAddCity,
 #idRightCancel {
     margin:5px;
 }
-.cityInput {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr); 
-    /* text-align: center; */
-    width: auto;
+.groupInput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+    
+}
+.input {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.cards{
+.cards {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    width: auto;
-    margin: 2px;
+    /* display: flex; */
+   
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 5px;
     border-radius: 15px;
     border-style: solid;
@@ -79,8 +82,10 @@ p {
     align-items: center;
     text-align: start;
 } 
-
-
+.cardDisplay{
+    grid-column-start: 1;
+    grid-column-end: five;
+}
 .Delete{
     grid-column: 5;
     justify-self: end;
@@ -100,7 +105,7 @@ h1{
 }
 
 h3{
-    display: grid;
+    /* display: grid; */
     margin: 10px;
 }
 h4{
@@ -115,6 +120,9 @@ h4{
 
  #idSubmit{
     text-align: center;
+ }
+ #idLowerPanel{
+     padding: 10px;
  }
 
  

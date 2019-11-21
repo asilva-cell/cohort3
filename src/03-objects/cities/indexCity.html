@@ -10,32 +10,33 @@
 <body>
     <h1>Welcome to Your Favourite Cities Site!</h1>
     <div class='container' id="idHome">
-       
         <!-- UPPER PANEL -->
         <div id="idUpperPanel" class="panel">
-            <div id="idCreateCityForm" class="panel groupInput" autocomplete="off">
+            <div id="idCreateCityForm" class="panel" autocomplete="off">
                 <h3>Enter Your City Information</h3>
-                <div class="cityInput">
-                    Name: <input id="idNewName" class="cityInput" type="text" defaultValue = 'Calgary' placeholder="Example: Calgary" required>
-                    Population: <input id="idNewPopulation" class="cityInput" type="number" defaultValue = '1267344' placeholder="00.0000" required>
-                    Latitude: <input id="idNewLatitude" class="cityInput" type="number" defaultValue = '51.0447' placeholder="00.0000" required>
-                    Longitude: <input id="idNewLongitude" class="cityInput" type="number" defaultValue = '-114.0719' placeholder="00.0000" required>
-                </div>  
+                <form id="idCityInfoForm" class="groupInput">
+                    <div>Name: <input id="idNewName" class="input" type="text" defaultValue = 'Calgary' placeholder="Example: Calgary" required></div>
+                    <div>Population: <input id="idNewPopulation" class="input" type="number" defaultValue = '1267344' placeholder="00.0000" required></div>
+                    <div>Latitude: <input id="idNewLatitude" class="input" type="number" defaultValue = '51.0447' placeholder="00.0000" required></div>
+                    <div>Longitude: <input id="idNewLongitude" class="input" type="number" defaultValue = '-114.0719' placeholder="00.0000" required></div>
+                </form>  
                 <input id="idAddCity" type="button" value="Add City">
-                <input id="idRightCancel" type="button" value="Cancel">
+                <input id="idRightCancel" type="button" value="Cancel"><br>
                 <p id=idRightInputError></p>
             </div>
             <div class="panel">
                 <h3>Update City</h3>
-                <div class="groupInput">Select City:
+                <form id="idUpdateForm" class="groupInput">Select City:
                     <select id="idCityNameSelect" class="input">
                         <option value="default">Select City</option>
                     </select>
-                    Amount: <input id="idAmountInp" class="input" type="number" placeholder ="0.00">
-                    <input id="idMoveIn" class="input" type="radio" value="MoveIn" name="moving" checked>Moving In?
-                    <input id="idMoveOut" class="input" type="radio" value="MoveOut" name="moving">Moving Out?
-                </div>
-                <input id="idLeftSubmit" type="button" value="Update">
+                    <div>Amount: <input id="idAmountInp" class="input" type="number" placeholder ="0.00"></div> 
+                    <div>
+                        <input id="idMoveIn" class="input" type="radio" value="MoveIn" name="moving" checked>Moving In?
+                        <input id="idMoveOut" class="input" type="radio" value="MoveOut" name="moving">Moving Out?
+                    </div> 
+                </form>
+                <input id="idUpdateCity" type="button" value="Update">
                 <p id=idLeftDisplay></p>
             </div>
             <div id="idSummary" class="panel">

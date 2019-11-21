@@ -55,7 +55,7 @@ class Community {
         this.byName = {};
         this.keyCount = 1;
     }
-    createCity(lastKey, name,latitude, longitude, population) {
+    createCity(lastKey, name, latitude, longitude, population) {
         this.keyCount = lastKey;
         const newCity = new City(this.keyCount, name, latitude, longitude, population);
         this.hemisphere = newCity.whichSphere();
@@ -65,23 +65,23 @@ class Community {
         this.message = `${name} has been added.`;
         return newCity;
     }
-    loadCitiesServer (serverData, lastKey) {
+    loadCitiesServer (serverData) {
         serverData.map(city => {
             this.createCity(city.key, city.name, city.latitude, city.longitude, city.population);
         });
         this.message =  `Cities below have been loaded from the server.`
         return this.cities;
     }
-    checkCityExists(cityToCheck) {
-        const checkingCity = this.cities
-            .map(city => {return city.name})
-            .filter(city => {return city === cityToCheck});
-    
-		if (checkingCity.length === 1) {
-            this.message = `${cityToCheck} is in your list already.`;
-			return true;
+    checkCityExists (latitude, longitude) {
+        let checkExist = false;
+        if (this.cities.length >= 1) {
+            this.cities.forEach(city => {
+                if (city.latitude === latitude && city.longitude === longitude) {
+                    checkExist = true;
+                };
+            });
         };
-		return false;
+        return checkExist;
     }
     deleteCity(name) {
         delete this.byName[name];
@@ -93,9 +93,12 @@ class Community {
         });
     }
     populationControl (cityObj, change, amount) {
+
         if (change === 'moveOut') {
+            this.message = 'City population has been updated.';
             return cityObj.movedOut(amount)
         }
+        this.message = 'City population has been updated.';
         return cityObj.movedIn(amount);
     }
     getPopulation() {
@@ -107,7 +110,7 @@ class Community {
 		this.cities.sort(
 			(city1, city2) => city2.latitude - city1.latitude
         );
-
+        
 		return this.cities[0];
 	}
 

@@ -38,25 +38,31 @@ const domCity = {
         parentCard.appendChild(newText);
         return newText;
     },
-    
-    addCard: (parent, cardCounter, name, latitude, longitude, population, hemisphere) => {
+     addBreak: (parentCard) => {
+        let br = document.createElement('br');
+        parentCard.appendChild(br);
+        return br;
+    },
+    addCard: (parent, cardCounter, name, latitude, longitude, population, hemisphere, type) => {
         let newChild = document.createElement('div');
         newChild.className = 'cards';
         newChild.id=`${name}`;
         newChild.setAttribute("key", cardCounter);
         domCity.addText(newChild, `${name}`);
+        domCity.addText(newChild, `Population: ${population}`);
         domCity.addText(newChild, `Latitude: ${latitude}`);
         domCity.addText(newChild, `Longitude: ${longitude}`);
-        domCity.addText(newChild, `Population: ${population}`);
         domCity.addButton(newChild, 'Delete');
-        domCity.addText(newChild,`This city is in the ${hemisphere}.`)
+        domCity.addBreak(newChild);
+        let cardDysplay = domCity.addText(newChild, 'cardDisplay');
+        cardDysplay.textContent = `This city is in the ${hemisphere} and it's considered a ${type}.`;
         parent.appendChild(newChild);
         return newChild;
     },
 
     loadCardsServer : (parent, arrCitiesServer) => {
         arrCitiesServer.map(city => {
-            domCity.addCard(parent, city.key, city.name, city.latitude, city.longitude, city.population); 
+            domCity.addCard(parent, city.key, city.name, city.latitude, city.longitude, city.population, city.hemisphere, city.type); 
         });
         return;
     },

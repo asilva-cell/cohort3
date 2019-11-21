@@ -32,42 +32,62 @@ test('check movedIn and movedOut', () => {
 test('check whichSphere', () => {
     let northernCity = new City (key++, 'Calgary', 51.0447, -114.0719, 1267344);
     northernCity.whichSphere();
-    expect(northernCity.hemisphere).toBe('Northern Hemisphere');
+    expect(northernCity.hemisphere).toBe('Northern hemisphere');
 
     let southernCity = new City (key++, 'Sydney', -33.870453, 151.208755 , 4741874);
     southernCity.whichSphere();
-    expect(southernCity.hemisphere).toBe('Southern Hemisphere');
+    expect(southernCity.hemisphere).toBe('Southern hemisphere');
  });
 
  //  CLASS COMMUNITY - CONTROLLER.
  test('check createCity, if it exists', () => {
     let cityController = new Community();
-    expect(cityController.cities.length).toBe(0);
-    expect(cityController.checkCityExists('Red Deer')).toBe(false);
-
+    expect(cityController.checkCityExists(52.2690, -113.8116)).toBe(false);
     cityController.createCity(key++, 'Red Deer', 52.2690, -113.8116, 100418);
-    expect(cityController.cities.length).toBe(1);
-    expect(cityController.checkCityExists('Red Deer')).toBe(true);
+    expect(cityController.checkCityExists(52.2690, -113.8116)).toBe(true);
 });
 test('check getPopulation, ', () => {
     let cityController = new Community();
-    cityController.createCity(key++, 'Red Deer', 52.2690, -113.8116, 100418);
-    cityController.createCity(key++, 'Red Deer', 52.2690, -113.8116, 100418);
-    cityController.createCity(key++, 'Red Deer', 52.2690, -113.8116, 100418);
+
     cityController.createCity(key++, 'Medicine Hat', 50.0421, -110.7197, 63260);
     cityController.createCity(key++, 'Yellowknife', 62.453972, -114.371788, 19569);
-    expect(cityController.getPopulation()).toBe(384083);
+    cityController.createCity(key++, 'Red Deer', 52.2690, -113.8116, 100418);
+    let sydneyObj = cityController.createCity(key++, 'Sydney', -33.870453, 151.208755 , 4741874);
+    expect(cityController.getPopulation()).toBe(4925121);
 
-    cityController.createCity(key++, 'Flagstaff County', 52.6531, -111.8823, 639);
-    cityController.createCity(key++, 'Tilt Cove', 49.88499646, -55.622830842, 6);
+    // CHECK DELETE CITY
+   
+    let mapCities = cityController.cities.map(city => {return city.name;});
+    expect(mapCities).toEqual([ 'Medicine Hat', 'Yellowknife', 'Red Deer', 'Sydney' ]);
+    cityController.deleteCity('Red Deer');
+    mapCities = cityController.cities.map(city => {return city.name;});
+    expect(mapCities).toEqual([ 'Medicine Hat', 'Yellowknife', 'Sydney' ]);
 
-    expect(cityController.getPopulation()).toBe(384728);
-
-    cityController.createCity(key++, 'Sydney', -33.870453, 151.208755 , 4741874);
-    
+    // CHECK NORTHERN AND SOUTHERN CITIES
     expect(cityController.getMostNorthern().name).toBe('Yellowknife');
     expect(cityController.getMostSouthern().name).toBe('Sydney');
+
+    // CHECK POPULATION CONTROL, MOVE IN AND OUT
+    expect(sydneyObj.population).toBe(4741874);
+    cityController.populationControl(sydneyObj, "moveOut", 1000000);
+    expect(sydneyObj.population).toBe(3741874);
+    cityController.populationControl(sydneyObj, "moveIn", 1000000);
+    expect(sydneyObj.population).toBe(4741874);
 });
+test('check card are loaded given an array', () => {
+    let cityController = new Community();
+    let serverData = [
+        {key: 1, name: 'Medicine Hat', latitude: 50.0421, longitude: -110.7197, population: 63260},
+        {key: 2, name: 'Yellowknife', latitude: 62.453972, longitude: -114.371788, population: 19569},
+        {key: 5, name: 'Red Deer', latitude: 52.269, longitude: -113.8116, population: 100418}];
+    let mapCities = cityController.cities.map(city => {return city.name;});
+    expect(mapCities).toEqual([]);
+
+    cityController.loadCitiesServer(serverData);
+    mapCities = cityController.cities.map(city => {return city.name;});
+    expect(mapCities).toEqual(["Medicine Hat", "Yellowknife", "Red Deer",]);
+});
+
 
 // // 130E PRACITCING REFERENCE
 
@@ -89,9 +109,3 @@ test('check referece', () => {
     expect(myCity.population).toBe(3267344);
 
  });
-
-
-// add some population to one of the references
-// check the population of both references
-// what happened and why
-// create a test to make sure it keeps working
