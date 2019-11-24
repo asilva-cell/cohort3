@@ -13,15 +13,14 @@ class App extends React.Component {
       myState: "TBD"
     };
   }
+
   onPushMe = () => {
     this.counter += 1;
-    console.log('You pushed me');
-    console.log(this.counter);
     this.setState({
       myState: "now " + this.counter
     });
-    console.log(this.state.myState);
   }
+
   typeOfCounter = () => {
     if (this.counter % 2 === 0) {
       return <EvenComponent/>;
@@ -39,9 +38,7 @@ class App extends React.Component {
             Push Me  
           </button>
           <MyComponent whatToSay='What Ever' onPushBtn={this.onPushMe}/>
-          
           {this.typeOfCounter()}
-          
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
