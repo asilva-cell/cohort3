@@ -1,48 +1,60 @@
 import React from 'react';
 import logo from './logo.svg';
-import contact from './icons/contact.svg';
-import history from './icons/history2.svg';
-import pay from './icons/payment.svg';
-import browser from './icons/browser.svg';
+import MyIcon from './components/icons';
+import TicTacToeComp from './components/ticTacToe';
 import './App.css';
 
 class App extends React.Component {
   constructor() {
     super();
     this.icon = "";
+    this.pages = {
+      mainPage : (
+        <div>
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Edit <code>src/App.js</code> and save to reload.
+            </p>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn React
+            </a>
+          </header>
+      </div>
+      ),
+      gamePage : (
+        <div>
+          <TicTacToeComp/>
+        </div>
+      )
+    }
+    this.state = {page : this.pages.mainPage};
   }
-  onPush = (id) => {
-    this.icon = id;
-    console.log(this.icon);
+  pageController = (e) => {
+    console.log("from func controller");
+   
+    if (e.target.alt === "main") {
+      this.setState({page : this.pages.mainPage})
+    }
+    if (e.target.alt === "tic") {
+      this.setState({page : this.pages.gamePage})
+    }
   }
+    
 
   render (){
     return (
       <div className="App">
-        <div className="All-Icons"
-        onClick={this.onPush}>
-          <img id="idBrowser" src={browser} className="Icons" alt="browser" 
-            onClick={(e) => this.onPush(e.target)}/>
-          <img id="idHistory" src={history} className="Icons" alt="history" 
-            onClick={(e) => this.onPush(e.target)}/>
-          <img id="idPayment" src={pay} className="Icons" alt="payment" 
-            onClick={(e) => this.onPush(e.target)}/>
-          <img id="idContact" src={contact} className="Icons" alt="contact" 
-            onClick={(e) => this.onPush(e.target)}/>
+        <div className="All-Icons">
+          <MyIcon onClick= {this.pageController}/>  
         </div>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          {this.state.page}
         </header>
       </div>
     );
