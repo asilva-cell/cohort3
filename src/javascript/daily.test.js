@@ -89,6 +89,11 @@ test('check sortingFunctions', () => {
     expect(numberAscending[0].num).toEqual(1);
     expect(numberAscending[4].num).toEqual(5);
     expect(numberAscending[8].num).toEqual(9);
+
+    const sortAlpha = functions.sortAlpha(myArray);
+    expect(sortAlpha[0].str).toEqual("apples");
+    expect(sortAlpha[1].str).toEqual("avocados");
+    expect(sortAlpha[8].str).toEqual("pineapple");
     
 });
 
