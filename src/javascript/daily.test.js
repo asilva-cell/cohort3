@@ -1,5 +1,18 @@
 import {functions} from './daily';
 
+let myArray = [
+	{num: 5,str: "apples", origin:"BC"},
+	{num: 7,str: "oranges", origin:"Florida"},
+	{num: 2,str: "lemons", origin:"Mexico"},
+	{num: 8,str: "bananas", origin:"Ecuador"},
+	{num: 6,str: "avocados", origin:"Mexico"},
+	{num: 4,str: "pineapple", origin:"Brazil"},
+	{num: 3,str: "blueberries", origin:"Chile"},
+	{num: 9,str: "pears", origin:"Oregon"},
+	{num: 1,str: "cantaloupe", origin:"California"}
+];
+
+
 const people = [
 	{fname:"Alex", lname:"Smith", province:"BC", age:33},
 	{fname:"Angela", lname:"Jones", province:"AB", age:61},
@@ -65,15 +78,26 @@ const data = {
     city: "Calgary",
     prov: "Alberta",
 };
+
+//2019/11/22 - three ways of functons
+// By number ascending, using anonymous function
+// By fruit alphabetic, using named function
+// By origin reverse alphabetic, using arrow function
+
+test('check sortingFunctions', () => {
+    const numberAscending = functions.nunAscending(myArray);
+    expect(numberAscending[0].num).toEqual(1);
+    expect(numberAscending[4].num).toEqual(5);
+    expect(numberAscending[8].num).toEqual(9);
+    
+});
+
 //2019/11/21 - callbacks part 2
 test('check peopleTotals from AB and BC', () => {
     const peopleTotals = functions.peopleABBC(people, functions.peopleTotals);
-    // let peopleTotals = functions.peopleTotals;
     expect(peopleTotals.numPeople).toBe(22);
     expect(peopleTotals.age).toBe(838);
     expect(peopleTotals.ageAvg).toBeCloseTo(38.09);
-
-
 });
 
 

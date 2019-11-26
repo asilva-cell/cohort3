@@ -1,7 +1,15 @@
 
 const functions = {
-    //2019/11/21 - callbacks part 2
+    //2019/11/22 - three ways of functons
+    nunAscending : (myArray) =>{
+        let sortedArray = myArray.sort(function (a,b) {
+            return a.num - b.num;
+        });
+        return sortedArray;
+    },
 
+
+    //2019/11/21 - callbacks part 2
     peopleTotals : (peopleArray) => {
         let totalAge = peopleArray.reduce((accumulator, person) => accumulator + person.age, 0);
         let totalPeople = peopleArray.length;
