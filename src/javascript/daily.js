@@ -1,4 +1,12 @@
 const functions = {
+	//2019/11/26 - Destructuring-assignment
+		//email examples to Larry and Roman
+	icons : [
+		{key : "1", src : "contact.svg", name : "main"},
+		{key : "2", src : "tic.svg", name : "tic"},
+		{key : "3", src : "accounts.svg", name : "accounts"},
+	],
+
     //2019/11/22 - three ways of functons
     sortStringReverse: myArray => {
         let sortedArray = myArray.sort((a, b) => {

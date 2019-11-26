@@ -74,10 +74,21 @@ const data = {
 	prov: "Alberta"
 };
 
+//2019/11/26 - destructing array and objects
+test("check destructing ", () => {
+	const [img1,img2,img3] = functions.icons;
+	expect(img1.key).toEqual("1");
+	expect(img2.src).toBe("tic.svg");
+	expect(img3.name).toBe("accounts");
+
+	const {key, src, name} = img1;
+	expect(key).toBe("1");
+	expect(src).toBe("contact.svg");
+	expect(name).toBe("main");
+});
+
+
 //2019/11/22 - three ways of functons
-// By number ascending, using anonymous function
-// By fruit alphabetic, using named function
-// By origin reverse alphabetic, using arrow function
 
 test("check sortingFunctions", () => {
 	const sortOriginReverse = functions.sortStringReverse(myArray);
