@@ -1,6 +1,13 @@
 
 const functions = {
+    //2019/11/21 - callbacks part 2
 
+    peopleTotals : (peopleArray) => {
+        let totalAge = peopleArray.reduce((accumulator, person) => accumulator + person.age, 0);
+        let totalPeople = peopleArray.length;
+        let ageAvg = totalAge/totalPeople;
+        return { numPeople : totalPeople, age : totalAge, ageAvg : ageAvg };
+    },
 
     //2019/11/8 - callbacks part 1
 

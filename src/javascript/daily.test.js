@@ -65,6 +65,17 @@ const data = {
     city: "Calgary",
     prov: "Alberta",
 };
+//2019/11/21 - callbacks part 2
+test('check peopleTotals from AB and BC', () => {
+    const peopleTotals = functions.peopleABBC(people, functions.peopleTotals);
+    // let peopleTotals = functions.peopleTotals;
+    expect(peopleTotals.numPeople).toBe(22);
+    expect(peopleTotals.age).toBe(838);
+    expect(peopleTotals.ageAvg).toBeCloseTo(38.09);
+
+
+});
+
 
  //2019/11/8 - callbacks part 1
  test('filter people from AB and BC', () => {
