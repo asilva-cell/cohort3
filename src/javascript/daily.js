@@ -1,12 +1,21 @@
 const functions = {
-	//2019/11/22 - three ways of functons
+    //2019/11/22 - three ways of functons
+    sortStringReverse: myArray => {
+        let sortedArray = myArray.sort((a, b) => {
+            if (a.origin > b.origin) {return -1;}
+            else if (a.origin < b.origin) {return 1;}
+            return 0;
+        });
+        return sortedArray;
+    },
+
+
+
 	sortAlpha: myArray => {
 		let sortedArray = myArray.sort(function sortAlpha(a, b) {
-			console.log(a.str, b.str);
-			if (a.str > b.str) {
-				return 1;
-			}
-			return -1;
+            if (a.str > b.str) {return 1;}
+            else if (a.str < b.str) {return -1;}
+            return 0;
 		});
 		return sortedArray;
 	},
@@ -58,8 +67,6 @@ const functions = {
 		let balanceGreater = staffArray.filter(function(person) {
 			return person.balance >= filterBalance;
 		});
-
-		console.log(balanceGreater);
 		return balanceGreater;
 	},
 
@@ -202,7 +209,6 @@ const functions = {
 		];
 
 		let under50 = userDatabase.filter(user => eval(user.fName === "Laura"));
-		// console.log(under50);
 		return under50; //returns an ARRAY of the users older that 50
 	},
 
@@ -255,7 +261,6 @@ const functions = {
 	//DAYLY 2
 	assertEquals: (p1, p2) => {
 		if (p1 !== p2) {
-			// console.log(`*** The two values are not the same: \n p1 --> ${p1} \n p2 --> ${p2}`);
 			return false;
 		} else {
 			return true;
