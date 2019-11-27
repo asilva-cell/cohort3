@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import MyIcon from './components/icons';
-import TicTacToeComp from './components/ticTacToe';
+import Game from './components/ticTacToe';
 import './App.css';
 
 class App extends React.Component {
@@ -29,7 +29,7 @@ class App extends React.Component {
       ),
       gamePage : (
         <div>
-          <TicTacToeComp/>
+          <Game/>
         </div>
       )
     }
