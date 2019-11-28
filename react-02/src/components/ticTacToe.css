@@ -22,8 +22,10 @@ body {
     background-size: cover;
     border: 3px solid #999;
     float: left;
-    font-size: 24px;
+    color: #999;
+    font-size: 300%;
     font-weight: bold;
+    text-shadow: 3px 3px #555050;
     line-height: 34px;
     height: 100px;
     margin-right: -1px;
@@ -45,8 +47,13 @@ body {
     display: flex;
     flex-direction: row;
   }
-  
+  .game-board{
+    box-shadow: 3px 3px 3px  #999;
+  }
   .game-info {
     margin-left: 20px;
+    color: #999;
+    font-weight: bold;
+    font-size: 120%;
   }
   
