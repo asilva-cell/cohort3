@@ -47,7 +47,7 @@ body {
     display: flex;
     flex-direction: row;
   }
-  .game-board{
+  .game-box{
     box-shadow: 3px 3px 3px  #999;
   }
   .game-info {
