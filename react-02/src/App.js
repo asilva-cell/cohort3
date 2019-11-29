@@ -36,8 +36,6 @@ class App extends React.Component {
     this.state = {page : this.pages.mainPage};
   }
   pageController = (e) => {
-    console.log("from func controller");
-   
     if (e.target.alt === "main") {
       this.setState({page : this.pages.mainPage})
     }
