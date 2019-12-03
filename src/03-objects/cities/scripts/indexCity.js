@@ -40,6 +40,8 @@ idHome.addEventListener('click', async (event) => {
         let population = Number(idNewPopulation.value);
         if (communityController.checkCityExists(latitude, longitude) === false){
             let newCity = communityController.createCity(lastKey, name, latitude, longitude, population);
+            console.log(newCity);
+            
             await addData(newCity);
             domCity.addCard(idCityTable, newCity.key, newCity.name, newCity.latitude, newCity.longitude, newCity.population, newCity.hemisphere, newCity.type);
             domCity.createSelectOption(idCityNameSelect, newCity.name);
