@@ -2,11 +2,14 @@ import React from "react";
 import "./accounts.css";
 import { Account, AccountController } from "./accountsLogic.js";
 
-function AddAccount(props) {
-	return console.log("click");
-}
-
 class AccountControllerComp extends React.Component {
+	constructor(props) {
+		super();
+		this.accountController = new AccountController();
+	}
+	addAccount = props => {
+		console.log("click");
+	};
 	render() {
 		return (
 			<div className="accountControllerComp">
@@ -15,6 +18,7 @@ class AccountControllerComp extends React.Component {
 					<div id="idLeftPanel" className="panel">
 						<h3>Quick Transactions</h3>
 						<div>
+							{console.log(this.accountController)}
 							Choose your account:
 							<select id="idAccNameSelect">
 								<option value="default">Select Account</option>
@@ -42,7 +46,6 @@ class AccountControllerComp extends React.Component {
 					</div>
 					{/* RIGHT PANEL */}
 					<div id="idRightPanel" className="panel">
-						<h3>Your Accounts</h3>
 						<div id="idAccTable">Your Accounts</div>
 						<h4 id="idRightDisplay"></h4>
 						<p id="idRightTotal"></p>
@@ -52,6 +55,7 @@ class AccountControllerComp extends React.Component {
 							id="idCreateBtn"
 							type="button"
 							value="Create Account"
+							onClick={this.addAccount}
 						/>
 						<form id="idCreateAccForm">
 							Account Name:{" "}
