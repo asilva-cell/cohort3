@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./ticTacToe.css";
-// import { tsThisType } from "@babel/types";
 
 function Square(props) {
 	return (
