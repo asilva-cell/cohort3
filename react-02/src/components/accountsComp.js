@@ -40,7 +40,7 @@ class AccountControllerComp extends React.Component {
 		let allAccounts = this.accountController.userAccounts;
 		let allCards = allAccounts.map(account => {
 			console.log(account);
-			return <AccountCardComp key={account.key} />;
+			return <AccountCardComp account={account} key={account.key} />;
 		});
 		console.log(allAccounts);
 
@@ -116,11 +116,12 @@ class AccountControllerComp extends React.Component {
 							</p>
 						</form>
 
-						<div className="cards">{allCards}</div>
+						{allCards}
 					</div>
 				</div>
 			</div>
 		);
 	}
 }
+
 export default AccountControllerComp;

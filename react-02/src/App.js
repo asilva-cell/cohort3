@@ -41,7 +41,8 @@ class App extends React.Component {
 				</div>
 			)
 		};
-		this.state = { page: this.pages.mainPage };
+		// this.state = { page: this.pages.mainPage };
+		this.state = { page: this.pages.accountPage };
 	}
 	pageController = e => {
 		if (e.target.alt === "main") {

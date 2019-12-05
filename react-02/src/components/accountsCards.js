@@ -3,9 +3,13 @@ import "./accounts.css";
 
 class AccountCardComp extends Component {
 	render() {
+		let account = this.props.account;
+		console.log(account);
 		return (
 			<div className="cards">
-				<h1>new account</h1>
+				<h4>{account.accountName}</h4>
+				<p>${account.balance}</p>
+				<button>Delete</button>
 			</div>
 		);
 	}
