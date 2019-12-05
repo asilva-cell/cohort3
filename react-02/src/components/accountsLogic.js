@@ -70,6 +70,7 @@ class AccountController {
 	}
 
 	operationControl(transaction, amount, accountIndex) {
+		console.log(transaction, amount, accountIndex);
 		let accountName = this.userAccounts[accountIndex].accountName;
 
 		if (transaction === "deposit") {

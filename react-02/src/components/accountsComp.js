@@ -1,6 +1,6 @@
 import React from "react";
 import "./accounts.css";
-import { Account, AccountController } from "./accountsLogic";
+import { AccountController } from "./accountsLogic";
 import AccountCardComp from "./accountsCards";
 import SelectComp from "./selectComp";
 
@@ -12,15 +12,22 @@ class AccountControllerComp extends React.Component {
 			accountName: "",
 			accountBal: 0,
 			accountExists: "",
-			counter: 0
+			counter: 0,
+			transaction: "deposit",
+			selectedAccount: "",
+			balanceInp: 0
 		};
 		this.addAccount = this.addAccount.bind(this);
 		this.onChange = this.onChange.bind(this);
+		this.operationControl = this.operationControl.bind(this);
 	}
 
-	onChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
-	};
+	async onChange(e) {
+		await this.setState({
+			[e.target.name]: e.target.value
+		});
+		console.log(this.state);
+	}
 
 	async addAccount(e) {
 		await this.setState({
@@ -41,11 +48,19 @@ class AccountControllerComp extends React.Component {
 		this.accountController.removeAccount(key);
 		this.setState({ counter: this.accountController.userAccounts.length });
 	};
+	operationControl(e) {
+		this.accountController.operationControl(
+			this.state.transaction,
+			Number(this.state.balanceInp),
+			this.accountController.getAccountIndex(this.state.selectedAccount)
+		);
+		this.setState({ balanceInp: 0 });
+		console.log(this.accountController.userAccounts);
+	}
 
 	render() {
 		let allAccounts = this.accountController.userAccounts;
 		let allCards = allAccounts.map(account => {
-			console.log(account);
 			return (
 				<AccountCardComp
 					key={account.key}
@@ -54,7 +69,9 @@ class AccountControllerComp extends React.Component {
 				/>
 			);
 		});
-		console.log(allAccounts);
+		let selectOptions = allAccounts.map(account => {
+			return <SelectComp key={account.key} account={account} />;
+		});
 
 		return (
 			<div className="accountControllerComp">
@@ -63,24 +80,41 @@ class AccountControllerComp extends React.Component {
 					<div id="idLeftPanel" className="panel">
 						<h3>Quick Transactions</h3>
 						<div>
-							<SelectComp />
+							Select Account
+							<select
+								name="selectedAccount"
+								onChange={this.onChange}
+							>
+								<option value="default">Select Account</option>
+								{selectOptions}
+							</select>
 						</div>
 						<div>
 							Type of Transactions:
-							<select required id="idTransactions">
-								<option value="deposit">Deposit</option>
-								<option value="withdraw">Withdraw</option>
+							<select
+								required
+								name="transaction"
+								onChange={this.onChange}
+							>
+								<option>Deposit</option>
+								<option>Withdraw</option>
 							</select>
 						</div>
 						<div>
 							$:
 							<input
-								id="idBalanceInp"
+								name="balanceInp"
 								type="number"
 								placeholder="0.00"
+								onChange={this.onChange}
 							/>
 						</div>
-						<input id="idLeftSubmit" type="button" value="Submit" />
+						<input
+							name="submitBtn"
+							type="button"
+							value="Submit"
+							onClick={this.operationControl}
+						/>
 						<p id="idLeftDisplay"></p>
 					</div>
 					{/* RIGHT PANEL */}
