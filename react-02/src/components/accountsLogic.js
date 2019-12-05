@@ -46,15 +46,17 @@ class AccountController {
 		return false;
 	}
 
-	removeAccount(accountName) {
+	removeAccount(accountKey) {
 		let accountToRemove;
-		this.userAccounts.forEach(key => {
-			if (key.accountName === accountName) {
-				accountToRemove = key;
+		console.log(this.userAccounts);
+		this.userAccounts.forEach(account => {
+			if (account.key === accountKey) {
+				accountToRemove = account;
 			}
 		});
 		this.userAccounts.splice(this.userAccounts.indexOf(accountToRemove), 1);
-		this.message = `The ${accountName} account was deleted.`;
+		this.message = `The ${accountToRemove.accountName} account was deleted.`;
+		console.log(this.userAccounts);
 	}
 
 	getAccountIndex(accountName) {

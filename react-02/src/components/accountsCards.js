@@ -3,13 +3,14 @@ import "./accounts.css";
 
 class AccountCardComp extends Component {
 	render() {
-		let account = this.props.account;
-		console.log(account);
+		const { key, accountName, balance } = this.props.account;
 		return (
 			<div className="cards">
-				<h4>{account.accountName}</h4>
-				<p>${account.balance}</p>
-				<button>Delete</button>
+				<h4>{accountName}</h4>
+				<p>${balance}</p>
+				<button onClick={this.props.delete.bind(this, key)}>
+					Delete
+				</button>
 			</div>
 		);
 	}

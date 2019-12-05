@@ -2,6 +2,7 @@ import React from "react";
 import "./accounts.css";
 import { Account, AccountController } from "./accountsLogic";
 import AccountCardComp from "./accountsCards";
+import SelectComp from "./selectComp";
 
 class AccountControllerComp extends React.Component {
 	constructor(props) {
@@ -10,7 +11,8 @@ class AccountControllerComp extends React.Component {
 		this.state = {
 			accountName: "",
 			accountBal: 0,
-			accountExists: ""
+			accountExists: "",
+			counter: 0
 		};
 		this.addAccount = this.addAccount.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -18,7 +20,6 @@ class AccountControllerComp extends React.Component {
 
 	onChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
-		console.log(this.state.accountName);
 	};
 
 	async addAccount(e) {
@@ -34,13 +35,24 @@ class AccountControllerComp extends React.Component {
 			);
 		}
 		this.setState({ accountName: "", accountBal: 0 });
+		this.setState({ counter: this.accountController.userAccounts.length });
 	}
+	deleteAccount = key => {
+		this.accountController.removeAccount(key);
+		this.setState({ counter: this.accountController.userAccounts.length });
+	};
 
 	render() {
 		let allAccounts = this.accountController.userAccounts;
 		let allCards = allAccounts.map(account => {
 			console.log(account);
-			return <AccountCardComp account={account} key={account.key} />;
+			return (
+				<AccountCardComp
+					key={account.key}
+					account={account}
+					delete={this.deleteAccount}
+				/>
+			);
 		});
 		console.log(allAccounts);
 
@@ -51,12 +63,7 @@ class AccountControllerComp extends React.Component {
 					<div id="idLeftPanel" className="panel">
 						<h3>Quick Transactions</h3>
 						<div>
-							{/* {console.log(this.accountController)} */}
-							Choose your account:
-							<select id="idAccNameSelect">
-								<option value="default">Select Account</option>
-							</select>
-							<br />
+							<SelectComp />
 						</div>
 						<div>
 							Type of Transactions:
