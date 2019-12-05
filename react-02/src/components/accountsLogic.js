@@ -1,6 +1,7 @@
 //  this file contain the classes to create and manade the accounts
 class Account {
-	constructor(accountName, balance) {
+	constructor(key, accountName, balance) {
+		this.key = Number(key);
 		this.accountName = accountName;
 		this.balance = balance;
 	}
@@ -25,17 +26,20 @@ class AccountController {
 	constructor() {
 		this.message = "";
 		this.userAccounts = [];
+		this.key = 0;
 	}
 
 	addAccount(accountName, balance) {
-		const newAccount = new Account(accountName, balance);
+		this.key++;
+		const newAccount = new Account(this.key, accountName, balance);
 		this.userAccounts.push(newAccount);
 		this.message = `A ${accountName} has been created.`;
 	}
 
-	checkAccountExists(accountToCheck) {
+	checkAccountExists(accountNameToCheck) {
 		for (let accountObj of this.userAccounts) {
-			if (accountObj.accountName === accountToCheck) {
+			if (accountObj.accountName === accountNameToCheck) {
+				this.message = `${accountNameToCheck} account already exists.`;
 				return true;
 			}
 		}

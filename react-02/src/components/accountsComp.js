@@ -1,16 +1,49 @@
 import React from "react";
 import "./accounts.css";
-import { Account, AccountController } from "./accountsLogic.js";
+import { Account, AccountController } from "./accountsLogic";
+import AccountCardComp from "./accountsCards";
 
 class AccountControllerComp extends React.Component {
 	constructor(props) {
 		super();
 		this.accountController = new AccountController();
+		this.state = {
+			accountName: "",
+			accountBal: 0,
+			accountExists: ""
+		};
+		this.addAccount = this.addAccount.bind(this);
+		this.onChange = this.onChange.bind(this);
 	}
-	addAccount = props => {
-		console.log("click");
+
+	onChange = e => {
+		this.setState({ [e.target.name]: e.target.value });
+		console.log(this.state.accountName);
 	};
+
+	async addAccount(e) {
+		await this.setState({
+			accountExists: this.accountController.checkAccountExists(
+				this.state.accountName
+			)
+		});
+		if (this.state.accountExists === false) {
+			this.accountController.addAccount(
+				this.state.accountName,
+				this.state.accountBal
+			);
+		}
+		this.setState({ accountName: "", accountBal: 0 });
+	}
+
 	render() {
+		let allAccounts = this.accountController.userAccounts;
+		let allCards = allAccounts.map(account => {
+			console.log(account);
+			return <AccountCardComp key={account.key} />;
+		});
+		console.log(allAccounts);
+
 		return (
 			<div className="accountControllerComp">
 				<div className="container" id="idHome">
@@ -18,7 +51,7 @@ class AccountControllerComp extends React.Component {
 					<div id="idLeftPanel" className="panel">
 						<h3>Quick Transactions</h3>
 						<div>
-							{console.log(this.accountController)}
+							{/* {console.log(this.accountController)} */}
 							Choose your account:
 							<select id="idAccNameSelect">
 								<option value="default">Select Account</option>
@@ -40,7 +73,6 @@ class AccountControllerComp extends React.Component {
 								placeholder="0.00"
 							/>
 						</div>
-
 						<input id="idLeftSubmit" type="button" value="Submit" />
 						<p id="idLeftDisplay"></p>
 					</div>
@@ -51,42 +83,40 @@ class AccountControllerComp extends React.Component {
 						<p id="idRightTotal"></p>
 						<p id="idRightMaxBalance"></p>
 						<p id="idRightMinBalance"></p>
-						<input
-							id="idCreateBtn"
-							type="button"
-							value="Create Account"
-							onClick={this.addAccount}
-						/>
+
+						{/* {this.state.HTML} */}
 						<form id="idCreateAccForm">
 							Account Name:{" "}
 							<input
-								id="idNewAccName"
+								name="accountName"
 								type="text"
 								placeholder="Example: Checking"
+								onChange={this.onChange}
 								required
 							/>
 							<br />
 							Opening Balance:{" "}
 							<input
-								id="idNewAccBal"
+								name="accountBal"
 								type="number"
 								defaultValue="0"
 								placeholder="0.00"
+								onChange={this.onChange}
 								required
 							/>
 							<br />
 							<input
-								id="idRightSubmit"
+								id="idCreateBtn"
 								type="button"
-								value="Submit"
+								value="Create Account"
+								onClick={this.addAccount}
 							/>
-							<input
-								id="idRightCancel"
-								type="button"
-								value="Cancel"
-							/>
-							<p id="idRightInputError"></p>
+							<p id="idRightInputError">
+								{this.accountController.message}
+							</p>
 						</form>
+
+						<div className="cards">{allCards}</div>
 					</div>
 				</div>
 			</div>

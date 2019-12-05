@@ -41,7 +41,7 @@ h6 {
 }
 
 #idCreateAccForm {
-	visibility: collapse;
+	/* visibility: collapse; */
 	padding: 5px;
 	border-style: solid;
 	border-radius: 20px;
