@@ -3,7 +3,7 @@ class Account {
 	constructor(key, accountName, balance) {
 		this.key = Number(key);
 		this.accountName = accountName;
-		this.balance = balance;
+		this.balance = Number(balance);
 	}
 
 	deposit(amount) {
@@ -97,22 +97,25 @@ class AccountController {
 			(accumulator, user) => accumulator + user.balance,
 			0
 		);
-		return totalBalance;
+		return `Your Total Balance is $${totalBalance}.`;
 	}
 
 	maxBalance() {
 		this.userAccounts.sort(
 			(account1, account2) => account2.balance - account1.balance
 		);
-		return this.userAccounts[0];
+		let maxAccount = this.userAccounts[0];
+		return `Your Maximum Balance is $${maxAccount.balance} 
+			in your ${maxAccount.accountName}.`;
 	}
 
-	minBalance(arrayBalance) {
+	minBalance() {
 		this.userAccounts.sort(
-			(account1, account2) => account2.balance - account1.balance
+			(account1, account2) => account1.balance - account2.balance
 		);
-		let lastItem = this.userAccounts.length - 1;
-		return this.userAccounts[lastItem];
+		let minAccount = this.userAccounts[0];
+		return `Your Maximum Balance is $${minAccount.balance} 
+			in your ${minAccount.accountName}.`;
 	}
 }
 
