@@ -35,13 +35,12 @@ class App extends React.Component {
 				</div>
 			),
 			accountPage: (
-				<div>
+				<div className="bigContainer">
 					<h1>Welcome to Your Bank!</h1>
 					<AccountControllerComp />
 				</div>
 			)
 		};
-		// this.state = { page: this.pages.mainPage };
 		this.state = { page: this.pages.accountPage };
 	}
 	pageController = e => {

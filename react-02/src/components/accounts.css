@@ -1,6 +1,7 @@
 body {
 	font: 14px "Century Gothic", Futura, sans-serif;
 	margin: 20px;
+	line-height: 1.5;
 }
 body,
 h1,
@@ -15,6 +16,10 @@ h6 {
 .accountControllerComp {
 	display: flex;
 	width: 100%;
+}
+
+.bigContainer {
+	width: 80%;
 }
 
 #idHome {
@@ -54,7 +59,9 @@ h6 {
 .cards {
 	display: grid;
 	grid-template-columns: 6fr 3fr 1fr;
-	width: auto;
+	/* width: auto; */
+	align-items: center;
+	justify-items: start;
 	padding: 5px;
 	border-radius: 20px;
 	border-style: solid;

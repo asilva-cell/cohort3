@@ -48,15 +48,13 @@ class AccountController {
 
 	removeAccount(accountKey) {
 		let accountToRemove;
-		console.log(this.userAccounts);
 		this.userAccounts.forEach(account => {
 			if (account.key === accountKey) {
 				accountToRemove = account;
 			}
 		});
-		this.userAccounts.splice(this.userAccounts.indexOf(accountToRemove), 1);
 		this.message = `The ${accountToRemove.accountName} account was deleted.`;
-		console.log(this.userAccounts);
+		this.userAccounts.splice(this.userAccounts.indexOf(accountToRemove), 1);
 	}
 
 	getAccountIndex(accountName) {
@@ -70,12 +68,9 @@ class AccountController {
 	}
 
 	operationControl(transaction, amount, accountIndex) {
-		console.log(transaction, amount, accountIndex);
 		let accountName = this.userAccounts[accountIndex].accountName;
-
 		if (transaction === "deposit") {
 			this.userAccounts[accountIndex].deposit(amount);
-
 			this.message = `$${amount} have been deposited to your ${accountName} account.`;
 			return this.userAccounts[accountIndex].balance;
 		} else {
@@ -105,8 +100,7 @@ class AccountController {
 			(account1, account2) => account2.balance - account1.balance
 		);
 		let maxAccount = this.userAccounts[0];
-		return `Your Maximum Balance is $${maxAccount.balance} 
-			in your ${maxAccount.accountName}.`;
+		return `Your Maximum Balance is $${maxAccount.balance} in your ${maxAccount.accountName}.`;
 	}
 
 	minBalance() {
@@ -114,8 +108,7 @@ class AccountController {
 			(account1, account2) => account1.balance - account2.balance
 		);
 		let minAccount = this.userAccounts[0];
-		return `Your Maximum Balance is $${minAccount.balance} 
-			in your ${minAccount.accountName}.`;
+		return `Your Minimum Balance is $${minAccount.balance} in your ${minAccount.accountName}.`;
 	}
 }
 
