@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import MyIcon from "./components/icons";
 import Game from "./components/ticTacToe";
 import AccountControllerComp from "./components/accountsComp";
+import CityComp from "./components/cities/cityComp";
 
 import "./App.css";
 
@@ -39,9 +40,15 @@ class App extends React.Component {
 					<h1>Welcome to Your Bank!</h1>
 					<AccountControllerComp />
 				</div>
+			),
+			cityPage: (
+				<div className="bigContainer">
+					<h1>Welcome to Your City!</h1>
+					<CityComp />
+				</div>
 			)
 		};
-		this.state = { page: this.pages.accountPage };
+		this.state = { page: this.pages.cityPage };
 	}
 	pageController = e => {
 		if (e.target.alt === "main") {
@@ -52,6 +59,9 @@ class App extends React.Component {
 		}
 		if (e.target.alt === "accounts") {
 			this.setState({ page: this.pages.accountPage });
+		}
+		if (e.target.alt === "cities") {
+			this.setState({ page: this.pages.cityPage });
 		}
 	};
 

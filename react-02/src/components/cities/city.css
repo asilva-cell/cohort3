@@ -1,0 +1,129 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato", sans-serif;
+    color: whitesmoke;
+    text-shadow: 1px 1px black;
+}
+body,
+html {
+    background-color: rgb(39, 16, 173);
+    width: auto;
+    height: 100%;
+    line-height: 1.5;
+    margin: 0;
+}
+#idHome {
+    background-color: rgb(39, 16, 173);
+    border-color: black;
+    border-style: solid 2px;
+    line-height: 1;
+    margin-bottom: 30px;
+    width: auto;
+    text-align: start;
+    padding: 15px;  
+}
+#idUpperPanel,
+#idLowerPanel{
+    background-image: url("skyline_LosAngeles.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+}
+/* .container {
+    display: flex;
+    flex-wrap: wrap;
+} */
+.panel {
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 15px;
+    border-color:  rgb(39, 16, 173);    
+}
+p {
+    margin: 5px;
+}
+
+#idAddCity,
+#idRightCancel {
+    margin:5px;
+}
+.groupInput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+    
+}
+.input {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* display: flex; */
+   
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color:  rgb(39, 16, 173);
+    border-width: 2px;
+    align-items: center;
+    text-align: start;
+} 
+.cardDisplay{
+    grid-column-start: 1;
+    grid-column-end: five;
+}
+.Delete{
+    grid-column: 5;
+    justify-self: end;
+    align-self: center;
+    margin: 5px;
+}
+
+
+
+
+h1{
+    margin: 0;
+    margin-top: 20px;
+    size: 50px;
+    text-align: center;
+    
+}
+
+h3{
+    /* display: grid; */
+    margin: 10px;
+}
+h4{
+    text-align: center;
+    margin: 10px;
+}
+
+ #idInput{
+    width: auto;
+    text-align: center;
+ }
+
+ #idSubmit{
+    text-align: center;
+ }
+ #idLowerPanel{
+     padding: 10px;
+ }
+
+ 
+
