@@ -24,7 +24,7 @@ class Account {
 
 class AccountController {
 	constructor() {
-		this.message = "";
+		this.message = "Please create a new account.";
 		this.userAccounts = [];
 		this.key = 0;
 	}
@@ -92,7 +92,7 @@ class AccountController {
 			(accumulator, user) => accumulator + user.balance,
 			0
 		);
-		return `Your Total Balance is $${totalBalance}.`;
+		return `$${totalBalance}.`;
 	}
 
 	maxBalance() {
@@ -100,7 +100,7 @@ class AccountController {
 			(account1, account2) => account2.balance - account1.balance
 		);
 		let maxAccount = this.userAccounts[0];
-		return `Your Maximum Balance is $${maxAccount.balance} in your ${maxAccount.accountName}.`;
+		return `$${maxAccount.balance} in your ${maxAccount.accountName} account.`;
 	}
 
 	minBalance() {
@@ -108,7 +108,7 @@ class AccountController {
 			(account1, account2) => account1.balance - account2.balance
 		);
 		let minAccount = this.userAccounts[0];
-		return `Your Minimum Balance is $${minAccount.balance} in your ${minAccount.accountName}.`;
+		return `$${minAccount.balance} in your ${minAccount.accountName} account.`;
 	}
 }
 

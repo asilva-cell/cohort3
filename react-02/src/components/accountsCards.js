@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./accounts.css";
+import "./main.css";
 
 class AccountCardComp extends Component {
 	render() {

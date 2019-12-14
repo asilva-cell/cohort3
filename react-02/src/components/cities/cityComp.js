@@ -1,92 +1,89 @@
 import React, { Component } from "react";
-import "../accounts.css";
+import "../main.css";
 import { Community } from "./citiesPojo";
 import CityCardComp from "./cityCards";
 import SelectComp from "./selectComp";
+let newCommunity = new Community();
 
 class CityComp extends Component {
 	constructor(props) {
 		super();
-		this.Community = new Community();
 		this.state = {
-			// cityName: "",
+			community: newCommunity,
+			changeMe: 0,
 			transaction: "moveIn",
 			selectedCity: "",
 			populationInp: 0,
-			totalPop: 0
+			totalPop: 0,
+			mostNorth: "N/A",
+			mostSouth: "N/A"
 		};
+		this.counter = 0;
 		this.createCity = this.createCity.bind(this);
-		this.onChange = this.onChange.bind(this);
 		this.populationControl = this.populationControl.bind(this);
 		this.updateDisplays = this.updateDisplays.bind(this);
 	}
 
-	onChange(e) {
-		console.log("from on change", e.target.value);
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	}
-
 	createCity(e) {
-		// if (this.state.cityName === "") {
-		// 	this.Community.message = "Please enter a valid city name.";
-		// 	this.setState({ cityName: "" });
-		// 	return;
-		// }
-		// let checkCityExists = this.Community.checkCityExists(
-		// 	this.state.cityName
-		// );
-		// if (checkCityExists === false) {
-		this.Community.createCity(
-			0,
-			this.cityName.value,
-			this.latitude.value,
-			this.longitude.value,
-			this.population.value
-		);
-		// }
-		this.updateDisplays();
-		this.setState({ cityName: "", population: 0 });
-	}
-	deleteCity = key => {
-		this.Community.deleteCity(key);
-		this.setState({ cityName: "" });
-		if (this.Community.cities.length === 1) {
-			this.setState({ totalPop: "", maxPop: "", minPop: "" });
+		let a = this.state.community;
+		if (this.cityName.value === "") {
+			a.message = "Please enter a valid city name.";
+			this.setState({ community: a });
 			return;
 		}
+		let checkCityExists = this.state.community.checkCityExists(
+			this.latitude.value,
+			this.longitude.value
+		);
+
+		if (checkCityExists === false) {
+			console.log(checkCityExists);
+			this.state.community.createCity(
+				this.counter++,
+				this.cityName.value,
+				this.latitude.value,
+				this.longitude.value,
+				this.population.value
+			);
+		}
+		console.log(this.selectedCity.value);
+		this.updateDisplays();
+	}
+	deleteCity = index => {
+		console.log(this.state.community.cities);
+		this.state.community.deleteCity(index);
 		this.updateDisplays();
 	};
 	populationControl(e) {
-		this.Community.populationControl(
-			this.state.transaction,
-			Number(this.state.populationInp),
-			this.Community.getAccountIndex(this.state.selectedCity)
+		let a = this.state.community;
+
+		a.populationControl(
+			this.state.community.byName[this.selectedCity.value],
+			this.typeOfMove.value,
+			Number(this.populationInp.value)
 		);
+		this.setState({ community: a });
 		this.updateDisplays();
 	}
 	updateDisplays() {
-		if (this.Community.cities.length >= 1) {
-			const totalPop = this.Community.getPopulation();
-			const mostNorth = this.Community.getMostNorthern();
-			const mostSouth = this.Community.getMostSouthern();
-			this.setState({
-				totalPop: totalPop,
-				mostNorth: mostNorth,
-				mostSouth: mostSouth
-			});
-
-			return;
-		}
+		const totalPop = this.state.community.totalPopulation();
+		const mostNorth = this.state.community.getMostNorthern();
+		const mostSouth = this.state.community.getMostSouthern();
+		this.setState({
+			totalPop: totalPop,
+			mostNorth: mostNorth,
+			mostSouth: mostSouth
+		});
+		return;
 	}
 
 	render() {
-		let allCities = this.Community.cities;
-		let allCards = allCities.map(city => {
+		let allCities = this.state.community.cities;
+		let allCards = allCities.map((city, index) => {
 			return (
 				<CityCardComp
 					key={city.key}
+					index={index}
 					city={city}
 					delete={this.deleteCity}
 				/>
@@ -97,35 +94,42 @@ class CityComp extends Component {
 			<div className="Community">
 				<div className="container" id="idHome">
 					{/* LEFT PANEL */}
-					<div id="idRightPanel" className="panel">
+					<div id="idLeftPanel" className="panel">
 						<h3>Your Cities</h3>
-						<form id="idCreateAccForm">
-							City Name:{" "}
-							<input
-								name="cityName"
-								type="text"
-								placeholder="Example: Calgary"
-								value={this.state.cityName}
-								ref={input => {
-									this.cityName = input;
-								}}
-								required
-							/>
-							<br />
-							Population:{" "}
-							<input
-								name="population"
-								type="number"
-								value={this.state.population}
-								placeholder="0.00"
-								ref={input => {
-									this.population = input;
-								}}
-								required
-							/>
-							<br />
+						<form className="form">
+							<div>
+								<div>
+									City Name:{" "}
+									<input
+										className="input"
+										name="cityName"
+										type="text"
+										placeholder="Example: Calgary"
+										value={this.state.cityName}
+										ref={input => {
+											this.cityName = input;
+										}}
+										required
+									/>
+								</div>
+								<div>
+									Population:{" "}
+									<input
+										className="input"
+										name="population"
+										type="number"
+										value={this.state.population}
+										placeholder="0.00"
+										ref={input => {
+											this.population = input;
+										}}
+										required
+									/>
+								</div>
+							</div>
 							Latitude:{" "}
 							<input
+								className="input"
 								name="latitude"
 								type="number"
 								value={this.state.latitude}
@@ -137,6 +141,7 @@ class CityComp extends Component {
 							/>
 							Longitude:{" "}
 							<input
+								className="input"
 								name="longitude"
 								type="number"
 								value={this.state.longitude}
@@ -146,6 +151,7 @@ class CityComp extends Component {
 								}}
 								required
 							/>
+							<br />
 							<input
 								id="idCreateBtn"
 								type="button"
@@ -154,61 +160,86 @@ class CityComp extends Component {
 									this.createCity(e);
 								}}
 							/>
-							<p name="rightDisplay">{this.Community.message}</p>
+							<p id="idLeftDisplay">
+								{this.state.community.message}
+							</p>
 						</form>
-						{allCards}
+						<div className="cardsContainer">{allCards}</div>
 					</div>
 
 					{/* RIGHT PANEL */}
-					{/* <div id="idLeftPanel" className="panel">
-						<h3>Quick Transactions</h3>
-						<div>
-							Select City
-							<select
-								name="selectedCity"
-								onChange={this.onChange}
-							>
-								<option value="default">Select City</option>
-								{allCities.map(city => (
-									<SelectComp key={city.key} city={city} />
-								))}
-							</select>
-						</div>
-						<div>
-							Type of Move:
-							<select
-								required
-								name="transaction"
-								onChange={this.onChange}
-							>
-								<option value="moveIn">Moving In</option>
-								<option value="moveOut">Moving Out</option>
-							</select>
-						</div>
-						<div>
-							$:
+					<div id="idRightPanel" className="panel">
+						<h3>City Updates</h3>
+						<div className="form" id="idRightUpperPanel">
+							<div>
+								Select City
+								<select
+									name="selectedCity"
+									ref={input => {
+										this.selectedCity = input;
+									}}
+								>
+									<option value="default">
+										Select City{" "}
+									</option>
+									{allCities.map(city => (
+										<SelectComp
+											key={city.key}
+											city={city}
+										/>
+									))}
+								</select>
+							</div>
+							<div>
+								Type of Move:
+								<select
+									required
+									name="transaction"
+									ref={input => {
+										this.typeOfMove = input;
+									}}
+								>
+									<option value="moveIn">Moving In</option>
+									<option value="moveOut">Moving Out</option>
+								</select>
+							</div>
+							<div>
+								People Moving:
+								<input
+									name="populationInp"
+									type="number"
+									placeholder="0.00"
+									ref={input => {
+										this.populationInp = input;
+									}}
+								/>
+							</div>
+
 							<input
-								name="populationInp"
-								type="number"
-								placeholder="0.00"
-								onChange={this.onChange}
+								name="submitBtn"
+								type="button"
+								value="Submit"
+								onClick={this.populationControl}
 							/>
+							<p id="idRightDisplay">
+								{this.state.community.message}
+							</p>
 						</div>
-						<input
-							name="submitBtn"
-							type="button"
-							value="Submit"
-							onClick={this.populationControl}
-						/>
-						<p id="idLeftDisplay"></p>
-						<p name="total">{this.state.totalPop}</p>
-						<p name="mostNorth">{this.state.mostNorth}</p>
-						<p name="mostSouth">{this.state.mostSouth}</p>
-					</div> */}
+						<div id="idRightLowerPanel" className="panel">
+							<p name="total">
+								Total Population: {this.state.totalPop}
+							</p>
+							<p name="mostNorth">
+								Most Northern City: {this.state.mostNorth}
+							</p>
+							<p name="mostSouth">
+								Most Sourthern City: {this.state.mostSouth}
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
 	}
 }
-
 export default CityComp;

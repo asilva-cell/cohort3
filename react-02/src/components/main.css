@@ -30,18 +30,21 @@ html {
 	/* text-align: start; */
 	padding: 15px;
 }
-#idUpperPanel,
+/* #idUpperPanel,
 #idLowerPanel {
 	background-image: url("skyline_LosAngeles.jpg");
 	background-size: cover;
 	background-position: center;
 	opacity: 0.8;
-}
-/* .container {
-    display: flex;
-    flex-wrap: wrap;
 } */
-.panel {
+
+.container {
+	display: grid;
+	grid-template-columns: 75% 25%;
+	grid-gap: 10px;
+	color: black;
+}
+/* .panel {
 	margin: 10px;
 	align-items: center;
 	text-align: center;
@@ -49,6 +52,18 @@ html {
 	border-width: 2px;
 	border-radius: 15px;
 	border-color: rgb(39, 16, 173);
+} */
+.panel {
+	background-color: rgb(228, 226, 238);
+	align-items: center;
+	padding: 10px;
+}
+.form {
+	padding: 5px;
+	border-style: solid;
+	border-radius: 20px;
+	border-color: rgb(39, 16, 173);
+	border-width: 2px;
 }
 p {
 	margin: 5px;
@@ -64,10 +79,11 @@ p {
 	justify-content: center;
 	margin: 10px;
 }
-.input {
+/* .input {
 	margin-left: 10px;
 	margin-right: 10px;
-}
+} */
+
 .cardsContainer {
 	display: flex;
 	flex-wrap: wrap;
