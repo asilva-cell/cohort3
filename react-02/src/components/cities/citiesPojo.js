@@ -1,6 +1,7 @@
 class City {
 	constructor(key, cityName, latitude, longitude, population) {
 		this.key = key;
+		this.id = key;
 		this.cityName = cityName;
 		this.latitude = latitude;
 		this.longitude = longitude;
@@ -60,9 +61,10 @@ class Community {
 		this.message = "Please enter a city.";
 	}
 	createCity(lastKey, cityName, latitude, longitude, population) {
+		console.log("from pojo file cretate city");
 		this.keyCount = lastKey;
 		const newCity = new City(
-			this.keyCount,
+			this.keyCount++,
 			cityName,
 			latitude,
 			longitude,
@@ -129,13 +131,19 @@ class Community {
 		return totalPopulation;
 	}
 	getMostNorthern() {
-		this.cities.sort((city1, city2) => city2.latitude - city1.latitude);
-		return this.cities[0].cityName;
+		if (this.cities.length >= 1) {
+			this.cities.sort((city1, city2) => city2.latitude - city1.latitude);
+			return this.cities[0].cityName;
+		}
+		return "N/A";
 	}
 
 	getMostSouthern() {
-		this.cities.sort((city1, city2) => city1.latitude - city2.latitude);
-		return this.cities[0].cityName;
+		if (this.cities.length >= 1) {
+			this.cities.sort((city1, city2) => city1.latitude - city2.latitude);
+			return this.cities[0].cityName;
+		}
+		return "N/A";
 	}
 }
 export { City, Community };

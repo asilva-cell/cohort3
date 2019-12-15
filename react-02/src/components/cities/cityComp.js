@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "../main.css";
 import { Community } from "./citiesPojo";
+import fetchFunctions from "./fetchFunc";
 import CityCardComp from "./cityCards";
 import SelectComp from "./selectComp";
+
 let newCommunity = new Community();
 
 class CityComp extends Component {
@@ -18,14 +20,37 @@ class CityComp extends Component {
 			mostNorth: "N/A",
 			mostSouth: "N/A"
 		};
-		this.counter = 0;
+		this.lastKey = this.state.community.keyCount;
 		this.createCity = this.createCity.bind(this);
-		this.populationControl = this.populationControl.bind(this);
 		this.updateDisplays = this.updateDisplays.bind(this);
 	}
+	componentDidMount = async () => {
+		let onLoad = await fetchFunctions.getData();
+		console.log(onLoad);
+		let a = this.state.community;
+		a.loadCitiesServer(onLoad);
+		// onLoad.map(city => {
+		// 	return a.createCity(
+		// 		city.key,
+		// 		city.cityName,
+		// 		city.latitude,
+		// 		city.longitude,
+		// 		city.population
+		// 	);
+		// });
+		console.log(a.keyCount);
+		this.lastKey = a.keyCount;
+		this.setState({ community: a });
+
+		console.log(this.state.community.keyCount);
+
+		this.updateDisplays();
+	};
 
 	createCity(e) {
 		let a = this.state.community;
+
+		let newCity;
 		if (this.cityName.value === "") {
 			a.message = "Please enter a valid city name.";
 			this.setState({ community: a });
@@ -37,34 +62,42 @@ class CityComp extends Component {
 		);
 
 		if (checkCityExists === false) {
-			console.log(checkCityExists);
-			this.state.community.createCity(
-				this.counter++,
+			console.log(this.lastKey);
+			let lastKey = this.lastKey;
+			console.log(this.lastKey);
+			newCity = this.state.community.createCity(
+				lastKey,
 				this.cityName.value,
 				this.latitude.value,
 				this.longitude.value,
 				this.population.value
 			);
 		}
-		console.log(this.selectedCity.value);
+		fetchFunctions.addData(newCity);
 		this.updateDisplays();
 	}
 	deleteCity = index => {
-		console.log(this.state.community.cities);
+		let cityId = this.state.community.cities[index].id;
+		console.log(cityId);
 		this.state.community.deleteCity(index);
+		fetchFunctions.deleteData(cityId);
 		this.updateDisplays();
 	};
-	populationControl(e) {
+	populationControl = () => {
 		let a = this.state.community;
-
+		let cityId = this.selectedCity.options[
+			this.selectedCity.selectedIndex
+		].getAttribute("id");
+		let cityObj = this.state.community.cities[cityId];
 		a.populationControl(
 			this.state.community.byName[this.selectedCity.value],
 			this.typeOfMove.value,
 			Number(this.populationInp.value)
 		);
+		fetchFunctions.updateData(cityObj);
 		this.setState({ community: a });
 		this.updateDisplays();
-	}
+	};
 	updateDisplays() {
 		const totalPop = this.state.community.totalPopulation();
 		const mostNorth = this.state.community.getMostNorthern();
@@ -96,7 +129,7 @@ class CityComp extends Component {
 					{/* LEFT PANEL */}
 					<div id="idLeftPanel" className="panel">
 						<h3>Your Cities</h3>
-						<form className="form">
+						<form className="form" id="idLeftForm">
 							<div>
 								<div>
 									City Name:{" "}
@@ -182,9 +215,10 @@ class CityComp extends Component {
 									<option value="default">
 										Select City{" "}
 									</option>
-									{allCities.map(city => (
+									{allCities.map((city, index) => (
 										<SelectComp
 											key={city.key}
+											index={index}
 											city={city}
 										/>
 									))}
@@ -225,7 +259,7 @@ class CityComp extends Component {
 								{this.state.community.message}
 							</p>
 						</div>
-						<div id="idRightLowerPanel" className="panel">
+						<div id="idRightLowerPanel" className="panel form">
 							<p name="total">
 								Total Population: {this.state.totalPop}
 							</p>
