@@ -20,36 +20,22 @@ class CityComp extends Component {
 			mostNorth: "N/A",
 			mostSouth: "N/A"
 		};
-		this.lastKey = this.state.community.keyCount;
+		// this.lastKey = this.state.community.keyCount;
 		this.createCity = this.createCity.bind(this);
 		this.updateDisplays = this.updateDisplays.bind(this);
 	}
 	componentDidMount = async () => {
 		let onLoad = await fetchFunctions.getData();
-		console.log(onLoad);
 		let a = this.state.community;
 		a.loadCitiesServer(onLoad);
-		// onLoad.map(city => {
-		// 	return a.createCity(
-		// 		city.key,
-		// 		city.cityName,
-		// 		city.latitude,
-		// 		city.longitude,
-		// 		city.population
-		// 	);
-		// });
-		console.log(a.keyCount);
 		this.lastKey = a.keyCount;
 		this.setState({ community: a });
-
-		console.log(this.state.community.keyCount);
-
 		this.updateDisplays();
 	};
 
 	createCity(e) {
 		let a = this.state.community;
-
+		let lastKey = a.keyCount;
 		let newCity;
 		if (this.cityName.value === "") {
 			a.message = "Please enter a valid city name.";
@@ -62,9 +48,6 @@ class CityComp extends Component {
 		);
 
 		if (checkCityExists === false) {
-			console.log(this.lastKey);
-			let lastKey = this.lastKey;
-			console.log(this.lastKey);
 			newCity = this.state.community.createCity(
 				lastKey,
 				this.cityName.value,
@@ -73,28 +56,31 @@ class CityComp extends Component {
 				this.population.value
 			);
 		}
+		this.setState({ community: a });
 		fetchFunctions.addData(newCity);
 		this.updateDisplays();
 	}
 	deleteCity = index => {
 		let cityId = this.state.community.cities[index].id;
-		console.log(cityId);
 		this.state.community.deleteCity(index);
 		fetchFunctions.deleteData(cityId);
 		this.updateDisplays();
 	};
 	populationControl = () => {
 		let a = this.state.community;
-		let cityId = this.selectedCity.options[
-			this.selectedCity.selectedIndex
-		].getAttribute("id");
-		let cityObj = this.state.community.cities[cityId];
-		a.populationControl(
-			this.state.community.byName[this.selectedCity.value],
+		let cityId = Number(
+			this.selectedCity.options[
+				this.selectedCity.selectedIndex
+			].getAttribute("id")
+		);
+		let updatedCity = a.populationControl(
+			a.getCityById(cityId),
 			this.typeOfMove.value,
 			Number(this.populationInp.value)
 		);
-		fetchFunctions.updateData(cityObj);
+		if (updatedCity !== "not enough") {
+			fetchFunctions.updateData(updatedCity);
+		}
 		this.setState({ community: a });
 		this.updateDisplays();
 	};

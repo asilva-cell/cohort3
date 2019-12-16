@@ -61,7 +61,6 @@ class Community {
 		this.message = "Please enter a city.";
 	}
 	createCity(lastKey, cityName, latitude, longitude, population) {
-		console.log("from pojo file cretate city");
 		this.keyCount = lastKey;
 		const newCity = new City(
 			this.keyCount++,
@@ -110,6 +109,15 @@ class Community {
 		this.cities.splice(cityIndex, 1);
 		this.message = `${cityName} has been deteled from your list.`;
 	}
+	getCityById(id) {
+		let cityToUpdate = "";
+		for (let b of this.cities) {
+			if (b.id === Number(id)) {
+				cityToUpdate = b;
+			}
+		}
+		return cityToUpdate;
+	}
 	populationControl(cityObj, change, peopleMoving) {
 		if (change === "moveOut") {
 			if (cityObj.population < peopleMoving) {
@@ -118,10 +126,13 @@ class Community {
 				return "not enough";
 			}
 			this.message = "City population has been updated.";
-			return cityObj.movedOut(peopleMoving);
+			cityObj.movedOut(peopleMoving);
+			return cityObj;
+		} else {
+			this.message = "City population has been updated.";
+			cityObj.movedIn(peopleMoving);
 		}
-		this.message = "City population has been updated.";
-		return cityObj.movedIn(peopleMoving);
+		return cityObj;
 	}
 	totalPopulation() {
 		let totalPopulation = this.cities.reduce(
