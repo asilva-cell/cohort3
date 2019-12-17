@@ -20,9 +20,6 @@ class CityComp extends Component {
 			mostNorth: "N/A",
 			mostSouth: "N/A"
 		};
-		// this.lastKey = this.state.community.keyCount;
-		this.createCity = this.createCity.bind(this);
-		this.updateDisplays = this.updateDisplays.bind(this);
 	}
 	componentDidMount = async () => {
 		let onLoad = await fetchFunctions.getData();
@@ -33,7 +30,7 @@ class CityComp extends Component {
 		this.updateDisplays();
 	};
 
-	createCity(e) {
+	createCity = e => {
 		let a = this.state.community;
 		let lastKey = a.keyCount;
 		let newCity;
@@ -59,7 +56,7 @@ class CityComp extends Component {
 		this.setState({ community: a });
 		fetchFunctions.addData(newCity);
 		this.updateDisplays();
-	}
+	};
 	deleteCity = index => {
 		let cityId = this.state.community.cities[index].id;
 		this.state.community.deleteCity(index);
@@ -84,7 +81,7 @@ class CityComp extends Component {
 		this.setState({ community: a });
 		this.updateDisplays();
 	};
-	updateDisplays() {
+	updateDisplays = () => {
 		const totalPop = this.state.community.totalPopulation();
 		const mostNorth = this.state.community.getMostNorthern();
 		const mostSouth = this.state.community.getMostSouthern();
@@ -94,7 +91,7 @@ class CityComp extends Component {
 			mostSouth: mostSouth
 		});
 		return;
-	}
+	};
 
 	render() {
 		let allCities = this.state.community.cities;

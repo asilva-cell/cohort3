@@ -77,16 +77,18 @@ class Community {
 		return newCity;
 	}
 	loadCitiesServer(serverData) {
-		serverData.map(city => {
-			return this.createCity(
-				city.key,
-				city.cityName,
-				city.latitude,
-				city.longitude,
-				city.population
-			);
-		});
-		this.message = `Cities below have been loaded from the server.`;
+		if (serverData.length !== 0) {
+			serverData.map(city => {
+				return this.createCity(
+					city.key,
+					city.cityName,
+					city.latitude,
+					city.longitude,
+					city.population
+				);
+			});
+			this.message = `Cities below have been loaded from the server.`;
+		}
 		return this.cities;
 	}
 	checkCityExists(latitude, longitude) {
