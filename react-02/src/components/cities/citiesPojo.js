@@ -62,9 +62,15 @@ class Community {
 	}
 	createCity(lastKey, cityName, latitude, longitude, population) {
 		this.keyCount = lastKey;
+		let capName = cityName;
+		capName = capName
+			.toLowerCase()
+			.split(" ")
+			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
+			.join(" ");
 		const newCity = new City(
 			this.keyCount++,
-			cityName,
+			capName,
 			latitude,
 			longitude,
 			population

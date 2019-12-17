@@ -16,10 +16,196 @@ html {
 	line-height: 1.5;
 	margin: 0;
 }
+
+.App-header {
+	font-size-adjust: inherit;
+}
 .bigContainer {
 	width: 100%;
 	min-width: 740px;
 }
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Lato", sans-serif;
+	color: whitesmoke;
+}
+body,
+html {
+	background-color: rgb(39, 16, 173);
+	width: auto;
+	height: 100%;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.App-header {
+	font-size-adjust: inherit;
+}
+.bigContainer {
+	width: 100%;
+	min-width: 740px;
+}
+.container {
+	display: grid;
+	grid-template-columns: 75% 25%;
+	grid-gap: 10px;
+	color: black;
+}
+#idHome {
+	background-color: rgb(39, 16, 173);
+	border-color: black;
+	border-style: solid 2px;
+	/* line-height: 1; */
+	margin-bottom: 30px;
+	width: auto;
+	/* text-align: start; */
+	padding: 15px;
+}
+#idUpperPanel,
+#idLowerPanel {
+	background-image: url("skyline_LosAngeles.jpg");
+	background-size: cover;
+	background-position: center;
+	opacity: 0.8;
+}
+/* .container {
+    display: flex;
+    flex-wrap: wrap;
+} */
+.panel {
+	background-color: rgb(228, 226, 238);
+	align-items: center;
+	padding: 10px;
+	margin: 10px;
+	align-items: center;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 15px;
+	border-color: rgb(39, 16, 173);
+}
+p {
+	margin: 5px;
+}
+
+.groupInput {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 10px;
+}
+.form {
+	margin: 0;
+}
+.card-deck {
+	display: flex;
+	flex-wrap: wrap;
+	/* justify-content: space-evenly; */
+}
+.card {
+	/* min-height: 100%;
+	max-width: 128px;
+	padding-left: 8px;
+	padding-right: 8px; */
+	/* display: flex;
+	flex-wrap: wrap; */
+	/* display: grid; */
+	/* display: flex;
+	flex-wrap: wrap; */
+	/* grid-template-columns: repeat(5, 1fr); */
+	max-width: 15rem;
+	margin: 10px;
+	border-style: solid;
+	border-color: rgb(39, 16, 173);
+	border-width: 2px;
+	border-radius: 15px;
+}
+.card:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+		0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.button {
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	margin: 5px;
+	border-radius: 10px;
+}
+
+.button:hover {
+	background-color: rgb(39, 16, 173);
+	color: white;
+}
+.text-dark {
+	font-weight: bolder;
+}
+/* .Delete {
+	grid-column: 5;
+	justify-self: end;
+	align-self: center;
+	margin: 5px;
+} */
+
+h1 {
+	text-shadow: 1px 1px black;
+	margin: 10;
+	/* margin-top: 10px; */
+	size: 50px;
+	text-align: center;
+}
+
+h3 {
+	text-shadow: 1px 1px black;
+	margin: 10px;
+}
+h2 {
+	text-shadow: 1px 1px black;
+	text-align: center;
+	margin: 5px;
+}
+
+.input {
+	width: 120px;
+	text-align: center;
+	/* -webkit-writing-mode: horizontal-tb !important; */
+	/* text-rendering: auto; */
+	/* color: black; */
+	/* letter-spacing: normal; */
+	/* word-spacing: normal; */
+	/* text-transform: none; */
+	/* text-indent: 0px; */
+	/* text-shadow: none; */
+	/* display: inline-block; */
+
+	/* box-sizing: border-box; */
+	/* align-items: center; */
+	/* white-space: pre; */
+	/* -webkit-rtl-ordering: logical; */
+	/* background-color: rgb(248, 248, 248); */
+	/* cursor: default; */
+
+	/* margin: 0em; */
+	font-size-adjust: inherit;
+	/* font: 400 11px system-ui; */
+	border-radius: 5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(166, 166, 166);
+	/* border-image: initial; */
+}
+
+#idSubmit {
+	text-align: center;
+}
+
+#idRightLowerPanel {
+	margin-top: 10px;
+}
+
 #idHome {
 	background-color: rgb(39, 16, 173);
 	border-color: black;
@@ -54,89 +240,134 @@ p {
 	margin: 5px;
 }
 
-#idAddCity,
-#idRightCancel {
-	margin: 5px;
-}
 .groupInput {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: 10px;
 }
-.input {
-	margin-left: 10px;
-	margin-right: 10px;
+.form {
+	margin: 0;
+	padding: 5px;
+	border-style: solid;
+	border-radius: 20px;
+	border-color: rgb(39, 16, 173);
+	border-width: 2px;
 }
-.cardsContainer {
+.card-deck {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	/* justify-content: space-evenly; */
 }
-.cards {
-	min-height: 100%;
+.card {
+	/* min-height: 100%;
 	max-width: 128px;
 	padding-left: 8px;
-	padding-right: 8px;
-
+	padding-right: 8px; */
+	/* display: flex;
+	flex-wrap: wrap; */
 	/* display: grid; */
-	display: flex;
-	flex-wrap: wrap;
+	/* display: flex;
+	flex-wrap: wrap; */
 	/* grid-template-columns: repeat(5, 1fr); */
-
+	max-width: 15rem;
 	margin: 10px;
-	/* margin-right: 10px; */
-	padding: 5px;
-	border-radius: 15px;
 	border-style: solid;
 	border-color: rgb(39, 16, 173);
 	border-width: 2px;
-	align-items: center;
-	text-align: center;
+	border-radius: 15px;
 }
-.card :hover {
-	transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-		transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-		-webkit-box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-		-webkit-transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+.card:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+		0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-/* .cardDisplay {
-	grid-column-start: 1;
-	grid-column-end: five;
-} */
 .Delete {
 	grid-column: 5;
 	justify-self: end;
 	align-self: center;
 	margin: 5px;
 }
+.button {
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	margin: 5px;
+	border-radius: 10px;
+}
+
+.button:hover {
+	background-color: rgb(39, 16, 173);
+	color: white;
+}
+.text-dark {
+	font-weight: bolder;
+}
 
 h1 {
 	text-shadow: 1px 1px black;
-	margin: 0;
-	margin-top: 20px;
+	margin: 10;
+	/* margin-top: 10px; */
 	size: 50px;
 	text-align: center;
 }
 
 h3 {
-	/* display: grid; */
 	text-shadow: 1px 1px black;
 	margin: 10px;
 }
-h4 {
+h2 {
+	text-shadow: 1px 1px black;
 	text-align: center;
-	margin: 10px;
+	margin: 5px;
 }
 
+.input {
+	width: 120px;
+	text-align: center;
+	/* -webkit-writing-mode: horizontal-tb !important; */
+	/* text-rendering: auto; */
+	/* color: black; */
+	/* letter-spacing: normal; */
+	/* word-spacing: normal; */
+	/* text-transform: none; */
+	/* text-indent: 0px; */
+	/* text-shadow: none; */
+	/* display: inline-block; */
+
+	/* box-sizing: border-box; */
+	/* align-items: center; */
+	/* white-space: pre; */
+	/* -webkit-rtl-ordering: logical; */
+	/* background-color: rgb(248, 248, 248); */
+	/* cursor: default; */
+
+	/* margin: 0em; */
+	font-size-adjust: inherit;
+	/* font: 400 11px system-ui; */
+	border-radius: 5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(166, 166, 166);
+	/* border-image: initial; */
+}
 #idInput {
 	width: auto;
 	text-align: center;
 }
-
 #idSubmit {
 	text-align: center;
 }
 #idLowerPanel {
 	padding: 10px;
+}
+
+#idRightLowerPanel {
+	margin-top: 10px;
+}
+#idAddCity,
+#idRightCancel {
+	margin: 5px;
+}
+#idLeftForm {
+	margin-left: 15px;
+	margin-right: 15px;
 }

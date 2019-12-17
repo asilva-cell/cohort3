@@ -1,4 +1,4 @@
-body,
+/* body,
 h1,
 h2,
 h3,
@@ -15,61 +15,33 @@ html {
 	height: 100%;
 	line-height: 1.5;
 	margin: 0;
-}
-.bigContainer {
-	width: 100%;
-	min-width: 740px;
-}
-#idHome {
-	background-color: rgb(39, 16, 173);
-	border-color: black;
-	border-style: solid 2px;
-	/* line-height: 1; */
-	margin-bottom: 30px;
-	width: auto;
-	/* text-align: start; */
-	padding: 15px;
-}
-/* #idUpperPanel,
-#idLowerPanel {
-	background-image: url("skyline_LosAngeles.jpg");
-	background-size: cover;
-	background-position: center;
-	opacity: 0.8;
 } */
 
-.container {
+/* .container {
 	display: grid;
 	grid-template-columns: 75% 25%;
 	grid-gap: 10px;
 	color: black;
-}
-/* .panel {
-	margin: 10px;
-	align-items: center;
-	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-radius: 15px;
-	border-color: rgb(39, 16, 173);
 } */
-.panel {
+
+/* .panel {
 	background-color: rgb(228, 226, 238);
 	align-items: center;
 	padding: 10px;
-}
-.form {
+} */
+/* .form {
 	padding: 5px;
 	border-style: solid;
-	border-radius: 20px;
-	border-color: rgb(39, 16, 173);
+	/* border-radius: 20px; */
+/* border-color: rgb(39, 16, 173);
 	border-width: 2px;
-}
-p {
+} */
+/* */
+/* p {
 	margin: 5px;
-}
+} */
 
-#idAddCity,
+/* #idAddCity,
 #idRightCancel {
 	margin: 5px;
 }
@@ -78,58 +50,23 @@ p {
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: 10px;
-}
-/* .input {
-	margin-left: 10px;
-	margin-right: 10px;
 } */
-.input {
-	margin-left: 10px;
-	margin-right: 10px;
-	/* -writing-mode: horizontal-tb !important; */
-	/* text-rendering: auto; */
-	color: black;
-	letter-spacing: normal;
-	word-spacing: normal;
-	text-transform: none;
-	text-indent: 0px;
-	text-shadow: none;
-	display: inline-block;
-	text-align: start;
-	/* -webkit-appearance: menulist; */
-	box-sizing: border-box;
-	align-items: center;
-	white-space: pre;
-	/* -webkit-rtl-ordering: logical; */
-	/* background-color: rgb(248, 248, 248); */
-	cursor: default;
-	margin: 0em;
-	font: 400 11px system-ui;
-	border-radius: 5px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: rgb(166, 166, 166);
-	border-image: initial;
-}
 
-.cardsContainer {
+/* .cardsContainer {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
-}
-.cards {
+} */
+/* .cards {
 	min-height: 100%;
 	max-width: 128px;
 	padding-left: 8px;
 	padding-right: 8px;
 
-	/* display: grid; */
 	display: flex;
 	flex-wrap: wrap;
-	/* grid-template-columns: repeat(5, 1fr); */
 
 	margin: 10px;
-	/* margin-right: 10px; */
 	padding: 5px;
 	border-radius: 15px;
 	border-style: solid;
@@ -137,47 +74,43 @@ p {
 	border-width: 2px;
 	align-items: center;
 	text-align: center;
-}
-.card :hover {
+} */
+/* .card :hover {
 	transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
 		transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
 		-webkit-box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
 		-webkit-transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-/* .cardDisplay {
-	grid-column-start: 1;
-	grid-column-end: five;
 } */
-.Delete {
+
+/* .Delete {
 	grid-column: 5;
 	justify-self: end;
 	align-self: center;
 	margin: 5px;
-}
-
+} */
+/* 
 h1 {
 	text-shadow: 1px 1px black;
 	margin: 0;
 	margin-top: 20px;
 	size: 50px;
 	text-align: center;
-}
+} */
 
-h3 {
-	/* display: grid; */
+/* h3 {
 	text-shadow: 1px 1px black;
 	margin: 10px;
 }
 h4 {
 	text-align: center;
 	margin: 10px;
-}
+} */
 
-#idInput {
+/* #idInput {
 	width: auto;
 	text-align: center;
-}
-
+} */
+/* 
 #idSubmit {
 	text-align: center;
 }
@@ -187,4 +120,4 @@ h4 {
 #idLeftForm {
 	margin-left: 15px;
 	margin-right: 15px;
-}
+} */

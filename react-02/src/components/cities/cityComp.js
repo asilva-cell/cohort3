@@ -111,10 +111,10 @@ class CityComp extends Component {
 				<div className="container" id="idHome">
 					{/* LEFT PANEL */}
 					<div id="idLeftPanel" className="panel">
-						<h3>Your Cities</h3>
+						<h2>Your Cities</h2>
 						<form className="form" id="idLeftForm">
 							<div>
-								<div>
+								<form autoComplete="off">
 									City Name:{" "}
 									<input
 										className="input"
@@ -127,7 +127,7 @@ class CityComp extends Component {
 										}}
 										required
 									/>
-								</div>
+								</form>
 								<div>
 									Population:{" "}
 									<input
@@ -180,12 +180,12 @@ class CityComp extends Component {
 								{this.state.community.message}
 							</p>
 						</form>
-						<div className="cardsContainer">{allCards}</div>
+						<div className="card-deck">{allCards}</div>
 					</div>
 
 					{/* RIGHT PANEL */}
 					<div id="idRightPanel" className="panel">
-						<h3>City Updates</h3>
+						<h2>City Updates</h2>
 						<div className="form" id="idRightUpperPanel">
 							<div>
 								Select City
@@ -223,6 +223,7 @@ class CityComp extends Component {
 							<div>
 								People Moving:
 								<input
+									className="input"
 									name="populationInp"
 									type="number"
 									placeholder="0.00"
@@ -242,7 +243,7 @@ class CityComp extends Component {
 								{this.state.community.message}
 							</p>
 						</div>
-						<div id="idRightLowerPanel" className="panel form">
+						<div id="idRightLowerPanel" className="form">
 							<p name="total">
 								Total Population: {this.state.totalPop}
 							</p>
