@@ -22,34 +22,9 @@ html {
 }
 .bigContainer {
 	width: 100%;
-	min-width: 740px;
-}
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: "Lato", sans-serif;
-	color: whitesmoke;
-}
-body,
-html {
-	background-color: rgb(39, 16, 173);
-	width: auto;
-	height: 100%;
-	line-height: 1.5;
-	margin: 0;
+	/* min-width: 740px; */
 }
 
-.App-header {
-	font-size-adjust: inherit;
-}
-.bigContainer {
-	width: 100%;
-	min-width: 740px;
-}
 .container {
 	display: grid;
 	grid-template-columns: 75% 25%;
@@ -227,15 +202,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
 } */
-.panel {
-	margin: 10px;
-	align-items: center;
-	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-radius: 15px;
-	border-color: rgb(39, 16, 173);
-}
+
 p {
 	margin: 5px;
 }

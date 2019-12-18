@@ -14,31 +14,52 @@ export class LinkedList {
 	constructor() {
 		this.head = null;
 	}
-
-	first = (subject, amount, index) => {
-		console.log("before", this.head);
+	insert = (subject, amount, current) => {
+		let tail = current;
+		console.log(current);
 		let newNode = new ListNode(subject, amount);
-		newNode.forwardNode = this.head;
-		this.head = newNode;
-		console.log("after", this.head);
+
+		// insert at the begining
+		if (tail === null) {
+			console.log("first node");
+			tail = newNode;
+			this.head = tail;
+			return tail;
+		} else if (tail.forwardNode === null) {
+			//move the tail to last node
+			console.log("at last");
+			tail.forwardNode = newNode;
+			tail = tail.forwardNode;
+		} else {
+			//insert after given current position
+			newNode.forwardNode = tail.forwardNode;
+			tail.forwardNode = newNode;
+		}
 		return this.head;
 	};
-	last = (subject, amount) => {
-		let newNode = new ListNode(subject, amount);
-		if (this.head === null) {
-			this.head = newNode;
-			return this.head;
-		}
 
+	first = () => {
+		return this.head;
+	};
+	last = () => {
 		let tail = this.head;
 		while (tail.forwardNode !== null) {
 			tail = tail.forwardNode;
 		}
-		tail.forwardNode = newNode;
-
-		return this.head;
+		return tail;
 	};
-	next = (subject, amount) => {
-		return "next";
+	next = current => {
+		return current.forwardNode;
+	};
+	prevous = current => {
+		let tail = this.head;
+		if (tail.forwardNode === null) return;
+
+		console.log(tail.forwardNode);
+		console.log(current);
+		while (tail.forwardNode !== current.forwardNode) {
+			tail = tail.forwardNode;
+		}
+		return tail;
 	};
 }
