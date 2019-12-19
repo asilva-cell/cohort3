@@ -1,8 +1,8 @@
 export class ListNode {
-	constructor(subject, amount, forwardNode = null) {
+	constructor(subject, amount) {
 		(this.subject = subject),
 			(this.amount = amount),
-			(this.forwardNode = forwardNode),
+			(this.forwardNode = null),
 			(this.index = 0);
 	}
 	show = () => {
@@ -13,28 +13,36 @@ export class ListNode {
 export class LinkedList {
 	constructor() {
 		this.head = null;
+		this.tail = null;
 	}
 	insert = (subject, amount, current) => {
-		let tail = current;
-		console.log(current);
+		// this.tail = this.head;
+
 		let newNode = new ListNode(subject, amount);
 
-		// insert at the begining
-		if (tail === null) {
-			console.log("first node");
-			tail = newNode;
-			this.head = tail;
-			return tail;
-		} else if (tail.forwardNode === null) {
-			//move the tail to last node
-			console.log("at last");
-			tail.forwardNode = newNode;
-			tail = tail.forwardNode;
+		// when list is empty
+		if (this.tail === null) {
+			this.tail = newNode;
+			this.head = this.tail;
+			console.log("head when tail was null", this.head);
+			return this.tail;
 		} else {
-			//insert after given current position
-			newNode.forwardNode = tail.forwardNode;
-			tail.forwardNode = newNode;
+			if (this.tail.forwardNode === null) {
+				console.log("curretNode", current, "tail", this.tail);
+				// newNode.forwardNode = null;
+				current.forwardNode = newNode;
+				this.tail = newNode;
+				console.log("curretNode", current);
+				console.log("tail", this.tail);
+			} else {
+				console.log("if forward node is not null", current);
+				// // 	//insert after given current position
+				// 	console.log("from else", current);
+				// 	newNode.forwardNode = tail;
+				// 	tail.forwardNode = newNode;
+			}
 		}
+
 		return this.head;
 	};
 
@@ -51,15 +59,13 @@ export class LinkedList {
 	next = current => {
 		return current.forwardNode;
 	};
-	prevous = current => {
-		let tail = this.head;
-		if (tail.forwardNode === null) return;
+	// 	prevous = current => {
+	// 		let tail = this.head;
+	// 		if (tail.forwardNode === null) return;
 
-		console.log(tail.forwardNode);
-		console.log(current);
-		while (tail.forwardNode !== current.forwardNode) {
-			tail = tail.forwardNode;
-		}
-		return tail;
-	};
+	// 		while (tail.forwardNode !== current.forwardNode) {
+	// 			tail = tail.forwardNode;
+	// 		}
+	// 		return tail;
+	// 	};
 }
