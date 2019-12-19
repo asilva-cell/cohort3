@@ -6,45 +6,34 @@ test("show", () => {
 });
 
 const linkedList = new LinkedList();
-// test("first", () => {
-// 	expect(linkedList.head).toBe(null);
-// 	// let first = linkedList.first("Housing", 5);
-// 	// expect(first.subject).toBe("Housing");
-// 	// expect(first.forwardNode).toBe(null);
-// });
+
 test("insert", () => {
-	// console.log(linkedList);
+	// testin when list is empty
 	expect(linkedList.head).toBe(null);
 	let nodeA = linkedList.insert("A", 10, linkedList.head);
 	expect(linkedList.head).toBe(nodeA);
 
 	//only one none => first=last
-	// expect(linkedList.first()).toBe(node1);
-	// expect(linkedList.last()).toBe(node1);
+	expect(linkedList.first()).toBe(nodeA);
+	expect(linkedList.last()).toBe(nodeA);
 
 	//only one none => next=previous=null
-	// expect(linkedList.next(node1)).toBe(null);
-	// expect(linkedList.prevous(node1)).toBe(undefined);
+	expect(linkedList.next(nodeA)).toBe(null);
+	expect(linkedList.prevous(nodeA)).toBe(undefined);
 
+	//Testing adding a second node after A
 	let nodeB = linkedList.insert("B", 20, nodeA);
-	// expect(linkedList.first()).toBe(node1);
-	// expect(linkedList.last()).toBe(node1.forwardNode);
+	expect(linkedList.first()).toBe(nodeA);
+	expect(linkedList.last()).toBe(nodeB);
+	expect(linkedList.prevous(nodeB)).toBe(nodeA);
 
-	// expect(linkedList.next(node1)).toBe(node1.forwardNode);
+	//testing new node between 2 nodes
+	let nodeC = linkedList.insert("C", 20, nodeA);
+	expect(linkedList.next(nodeC)).toBe(nodeB);
+	expect(linkedList.prevous(nodeC)).toBe(nodeA);
 
-	// expect(linkedList.prevous(node2)).toBe(node1);
+	let nodeD = linkedList.insert("D", 20, nodeB);
 
-	let nodeC = linkedList.insert("C", 20, nodeB);
-	// expect(linkedList.prevous(node3)).toBe(node2);
-	// let node4 = linkedList.insert("D", 20, node3);
-	// expect(linkedList.prevous(node4)).toBe(node3);
-	// console.log(node3);
+	expect(linkedList.prevous(nodeD)).toBe(nodeB);
+	expect(linkedList.tail.subject).toBe(nodeD.subject);
 });
-// test("next", () => {
-// 	// expect(linkedList.forwardNode.subject).toBe("Cars");
-
-// 	// last funtion returns the head
-// 	let next = linkedList.next("Pets", 2);
-
-// 	expect(next.forwardNode.subject).toBe("Cars");
-// });
