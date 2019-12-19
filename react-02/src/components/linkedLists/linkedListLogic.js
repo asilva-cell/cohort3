@@ -41,4 +41,10 @@ export class LinkedList {
 	first = () => {
 		return this.head;
 	};
+	last = () => {
+		return this.tail;
+	};
+	next = current => {
+		return current.forwardNode;
+	};
 }
