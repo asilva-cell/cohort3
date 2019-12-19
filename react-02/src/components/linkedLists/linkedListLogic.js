@@ -47,4 +47,12 @@ export class LinkedList {
 	next = current => {
 		return current.forwardNode;
 	};
+	prevous = current => {
+		if (this.head.forwardNode === null) return;
+		let previous = this.head;
+		while (previous.forwardNode !== current) {
+			previous = previous.forwardNode;
+		}
+		return previous;
+	};
 }
