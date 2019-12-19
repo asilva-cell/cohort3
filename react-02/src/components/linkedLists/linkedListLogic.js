@@ -38,4 +38,7 @@ export class LinkedList {
 			return newNode;
 		}
 	};
+	first = () => {
+		return this.head;
+	};
 }
