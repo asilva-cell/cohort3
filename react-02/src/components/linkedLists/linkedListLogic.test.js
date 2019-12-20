@@ -5,35 +5,58 @@ test("show", () => {
 	expect(listNode.show()).toBe("Travel, 20");
 });
 
-const linkedList = new LinkedList();
-
-test("insert", () => {
-	// testin when list is empty
+test("insert, first, last, next, previous", () => {
+	const linkedList = new LinkedList();
+	// testing when list is empty
 	expect(linkedList.head).toBe(null);
-	let nodeA = linkedList.insert("A", 10, linkedList.head);
-	expect(linkedList.head).toBe(nodeA);
+	linkedList.previous();
+	linkedList.delete();
 
 	//only one none => first=last
-	expect(linkedList.first()).toBe(nodeA);
-	expect(linkedList.last()).toBe(nodeA);
+	linkedList.insert("A", 1);
+	expect(linkedList.head.subject).toBe("A");
+	expect(linkedList.current.subject).toBe("A");
+	expect(linkedList.first().subject).toBe("A");
+	expect(linkedList.last().subject).toBe("A");
+	expect(linkedList.next()).toBe(null);
 
-	//only one none => next=previous=null
-	expect(linkedList.next(nodeA)).toBe(null);
-	expect(linkedList.prevous(nodeA)).toBe(undefined);
+	//Testing adding a node (D) between 2 nodes (B and C)
+	linkedList.previous();
+	linkedList.insert("B", 2);
+	console.log(linkedList.current);
+	linkedList.insert("C", 3);
 
-	//Testing adding a second node after A
-	let nodeB = linkedList.insert("B", 20, nodeA);
-	expect(linkedList.first()).toBe(nodeA);
-	expect(linkedList.last()).toBe(nodeB);
-	expect(linkedList.prevous(nodeB)).toBe(nodeA);
+	expect(linkedList.current.subject).toBe("C");
+	linkedList.previous();
+	linkedList.insert("D", 4);
+	expect(linkedList.current.subject).toBe("D");
+	expect(linkedList.current.forwardNode.subject).toBe("C");
+	expect(linkedList.last().subject).toBe("C");
+});
+test("delete", () => {
+	const linkedList = new LinkedList();
 
-	//testing new node between 2 nodes
-	let nodeC = linkedList.insert("C", 20, nodeA);
-	expect(linkedList.next(nodeC)).toBe(nodeB);
-	expect(linkedList.prevous(nodeC)).toBe(nodeA);
+	linkedList.insert("A", 1);
+	linkedList.insert("B", 2);
+	linkedList.insert("C", 3);
+	linkedList.insert("D", 3);
 
-	let nodeD = linkedList.insert("D", 20, nodeB);
+	//delete last node (D)
+	expect(linkedList.current.subject).toBe("D");
+	linkedList.last();
+	linkedList.delete();
+	expect(linkedList.current.subject).toBe("C");
+	expect(linkedList.current.forwardNode).toBe(null);
 
-	expect(linkedList.prevous(nodeD)).toBe(nodeB);
-	expect(linkedList.tail.subject).toBe(nodeD.subject);
+	//delete a node (B) between 2 nodes (A and C)
+	linkedList.previous();
+	linkedList.delete();
+	expect(linkedList.current.subject).toBe("A");
+	expect(linkedList.current.forwardNode.subject).toBe("C");
+
+	//delete first node of list (A)
+	linkedList.first();
+	linkedList.delete();
+	expect(linkedList.head.subject).toBe("C");
+	expect(linkedList.current.subject).toBe("C");
 });
