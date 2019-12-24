@@ -13,6 +13,7 @@ export class LinkedList {
 	constructor() {
 		this.head = null;
 		this.current = null;
+		this.message = "Please enter a valid item name.";
 	}
 	insert = (subject, amount) => {
 		let newNode = new ListNode(subject, amount);
@@ -41,13 +42,14 @@ export class LinkedList {
 		return this.current;
 	};
 	last = () => {
-		if (this.current.forwardNode === null) return this.current;
-		while (this.current.forwardNode !== null) {
+		if (this.current === null) return this.current;
+		while (this.current !== null) {
 			this.current = this.current.forwardNode;
 		}
 		return this.current;
 	};
 	next = () => {
+		if (this.current === null) return this.current;
 		this.current = this.current.forwardNode;
 		return this.current;
 	};
@@ -76,5 +78,16 @@ export class LinkedList {
 				this.current.forwardNode = nodeToDel.forwardNode;
 			}
 		}
+	};
+	total = () => {
+		let total = 0;
+		let current = this.current;
+		this.first();
+		while (this.current !== null) {
+			total = total + this.current.amount;
+			this.next();
+		}
+		this.current = current;
+		return total;
 	};
 }

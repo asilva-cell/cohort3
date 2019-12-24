@@ -108,88 +108,97 @@ class CityComp extends Component {
 
 		return (
 			<div className="Community">
-				<div className="container" id="idHome">
-					{/* LEFT PANEL */}
-					<div id="idLeftPanel" className="panel">
+				<div className="card-deck">{allCards}</div>
+				<div className="container">
+					{/* REPORT PANEL */}
+					<div className="panel report">
+						<p name="total">
+							Total Population: {this.state.totalPop}
+						</p>
+						<p name="mostNorth">
+							Most Northern City: {this.state.mostNorth}
+						</p>
+						<p name="mostSouth">
+							Most Sourthern City: {this.state.mostSouth}
+						</p>
+					</div>
+
+					{/* CITY PANEL */}
+					<div className="panel">
 						<h2>Your Cities</h2>
-						<form className="form" id="idLeftForm">
-							<div>
-								<form autoComplete="off">
-									City Name:{" "}
-									<input
-										className="input"
-										name="cityName"
-										type="text"
-										placeholder="Example: Calgary"
-										value={this.state.cityName}
-										ref={input => {
-											this.cityName = input;
-										}}
-										required
-									/>
-								</form>
-								<div>
-									Population:{" "}
-									<input
-										className="input"
-										name="population"
-										type="number"
-										value={this.state.population}
-										placeholder="0.00"
-										ref={input => {
-											this.population = input;
-										}}
-										required
-									/>
-								</div>
+						<div className="form">
+							City Name:{""}
+							<input
+								className="input"
+								name="cityName"
+								type="text"
+								placeholder="Example: Calgary"
+								value={this.state.cityName}
+								ref={input => {
+									this.cityName = input;
+								}}
+								required
+							/>
+							Population:{""}
+							<input
+								className="input"
+								name="population"
+								type="number"
+								value={this.state.population}
+								placeholder="0.00"
+								ref={input => {
+									this.population = input;
+								}}
+								required
+							/>
+							<div className="form">
+								Latitud:{""}
+								<input
+									className="input"
+									name="latitude"
+									type="number"
+									value={this.state.latitude}
+									placeholder="0.00"
+									ref={input => {
+										this.latitude = input;
+									}}
+									required
+								/>
+								Longitude:{""}
+								<input
+									className="input"
+									name="longitude"
+									type="number"
+									value={this.state.longitude}
+									placeholder="0.00"
+									ref={input => {
+										this.longitude = input;
+									}}
+									required
+								/>
 							</div>
-							Latitude:{" "}
-							<input
-								className="input"
-								name="latitude"
-								type="number"
-								value={this.state.latitude}
-								placeholder="0.00"
-								ref={input => {
-									this.latitude = input;
-								}}
-								required
-							/>
-							Longitude:{" "}
-							<input
-								className="input"
-								name="longitude"
-								type="number"
-								value={this.state.longitude}
-								placeholder="0.00"
-								ref={input => {
-									this.longitude = input;
-								}}
-								required
-							/>
 							<br />
-							<input
-								id="idCreateBtn"
+							<button
 								type="button"
-								value="Create City"
+								className="btn btn-primary btn-sm"
 								onClick={e => {
 									this.createCity(e);
 								}}
-							/>
-							<p id="idLeftDisplay">
-								{this.state.community.message}
-							</p>
-						</form>
-						<div className="card-deck">{allCards}</div>
+							>
+								Create City
+							</button>
+							<p>{this.state.community.message}</p>
+						</div>
 					</div>
 
-					{/* RIGHT PANEL */}
-					<div id="idRightPanel" className="panel">
+					{/* TRASACTIONS PANEL */}
+					<div className="panel">
 						<h2>City Updates</h2>
-						<div className="form" id="idRightUpperPanel">
+						<div className="form">
 							<div>
 								Select City
 								<select
+									className="input"
 									name="selectedCity"
 									ref={input => {
 										this.selectedCity = input;
@@ -210,6 +219,7 @@ class CityComp extends Component {
 							<div>
 								Type of Move:
 								<select
+									className="input"
 									required
 									name="transaction"
 									ref={input => {
@@ -232,27 +242,15 @@ class CityComp extends Component {
 									}}
 								/>
 							</div>
-
-							<input
-								name="submitBtn"
+							<button
 								type="button"
-								value="Submit"
+								className="btn btn-primary btn-sm"
 								onClick={this.populationControl}
-							/>
-							<p id="idRightDisplay">
-								{this.state.community.message}
-							</p>
-						</div>
-						<div id="idRightLowerPanel" className="form">
-							<p name="total">
-								Total Population: {this.state.totalPop}
-							</p>
-							<p name="mostNorth">
-								Most Northern City: {this.state.mostNorth}
-							</p>
-							<p name="mostSouth">
-								Most Sourthern City: {this.state.mostSouth}
-							</p>
+							>
+								Submit
+							</button>
+
+							<p>{this.state.community.message}</p>
 						</div>
 					</div>
 				</div>

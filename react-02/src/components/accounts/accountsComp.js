@@ -1,8 +1,8 @@
 import React from "react";
-import "./main.css";
+import "../main.css";
 import { AccountController } from "./accountsLogic";
 import AccountCardComp from "./accountsCards";
-import SelectComp from "./selectComp";
+import SelectComp from "../selectComp";
 
 class AccountControllerComp extends React.Component {
 	constructor(props) {
@@ -93,14 +93,28 @@ class AccountControllerComp extends React.Component {
 
 		return (
 			<div className="accountControllerComp">
-				<div className="container" id="idHome">
-					{/* LEFT PANEL */}
-					<div id="idRightPanel" className="panel">
+				<div className="card-deck">{allCards}</div>
+				<div className="container">
+					{/* REPORT PANEL */}
+					<div className="panel report">
+						<p name="total">
+							Your Total Balance: {this.state.totalBal}
+						</p>
+						<p name="maxBalance">
+							Your Maximum Balance: {this.state.maxBal}
+						</p>
+						<p name="minBalance">
+							Your Minimum Balance: {this.state.minBal}
+						</p>
+					</div>
+					{/* ACCOUNT PANEL */}
+					<div className="panel">
 						<h3>Your Accounts</h3>
-						<form id="idCreateAccForm">
+						<div className="form">
 							<div>
 								Account Name:{" "}
 								<input
+									className="input"
 									name="accountName"
 									type="text"
 									placeholder="Example: Checking"
@@ -112,6 +126,7 @@ class AccountControllerComp extends React.Component {
 							<div>
 								Opening Balance:{" "}
 								<input
+									className="input"
 									name="accountBal"
 									type="number"
 									value={this.state.accountBal}
@@ -122,7 +137,7 @@ class AccountControllerComp extends React.Component {
 							</div>
 							<div>
 								<input
-									id="idCreateBtn"
+									className="btn btn-primary btn-sm"
 									type="button"
 									value="Create Account"
 									onClick={e => {
@@ -131,68 +146,59 @@ class AccountControllerComp extends React.Component {
 								/>
 							</div>
 
-							<p name="rightDisplay">
-								{this.accountController.message}
-							</p>
-						</form>
-						{allCards}
-					</div>
+							<p>{this.accountController.message}</p>
+							<div></div>
 
-					{/* RIGHT PANEL */}
-					<div id="idRightPanel" className="panel">
-						<div id="idRightUpperPanel">
-							<h3>Quick Transactions</h3>
-							Select Account
-							<select
-								name="selectedAccount"
-								onChange={this.onChange}
-							>
-								<option value="default">Select Account</option>
-								{allAccounts.map(account => (
-									<SelectComp
-										key={account.key}
-										account={account}
+							{/* TRANSACTION PANEL */}
+							<div className="panel">
+								<div>
+									<h3>Quick Transactions</h3>
+									Select Account
+									<select
+										name="selectedAccount"
+										onChange={this.onChange}
+									>
+										<option value="default">
+											Select Account
+										</option>
+										{allAccounts.map(account => (
+											<SelectComp
+												key={account.key}
+												account={account}
+											/>
+										))}
+									</select>
+									<br />
+									Type of Transactions:
+									<select
+										required
+										name="transaction"
+										onChange={this.onChange}
+									>
+										<option value="deposit">Deposit</option>
+										<option value="withdraw">
+											Withdraw
+										</option>
+									</select>
+									<br />
+									$:
+									<input
+										className="input"
+										name="balanceInp"
+										type="number"
+										placeholder="0.00"
+										onChange={this.onChange}
 									/>
-								))}
-							</select>
-							<br />
-							Type of Transactions:
-							<select
-								required
-								name="transaction"
-								onChange={this.onChange}
-							>
-								<option value="deposit">Deposit</option>
-								<option value="withdraw">Withdraw</option>
-							</select>
-							<br />
-							$:
-							<input
-								name="balanceInp"
-								type="number"
-								placeholder="0.00"
-								onChange={this.onChange}
-							/>
-							<input
-								name="submitBtn"
-								type="button"
-								value="Submit"
-								onClick={this.operationControl}
-							/>
-							<p id="idLeftDisplay">
-								{this.accountController.message}
-							</p>
-						</div>
-						<div id="idLeftLowerPanel" className="panel">
-							<p name="total">
-								Your Total Balance: {this.state.totalBal}
-							</p>
-							<p name="maxBalance">
-								Your Maximum Balance: {this.state.maxBal}
-							</p>
-							<p name="minBalance">
-								Your Minimum Balance: {this.state.minBal}
-							</p>
+									<br />
+									<input
+										className="btn btn-primary btn-sm"
+										type="button"
+										value="Submit"
+										onClick={this.operationControl}
+									/>
+									<p>{this.accountController.message}</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -16,6 +16,7 @@
 	animation: Icons 3s infinite;
 	transform: rotateZ(45deg);
 	animation-direction: alternate;
+	fill: yellowgreen;
 }
 .Icons:hover {
 	width: 20%;

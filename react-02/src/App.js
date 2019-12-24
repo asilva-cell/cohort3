@@ -2,8 +2,9 @@ import React from "react";
 import logo from "./logo.svg";
 import MyIcon from "./components/icons";
 import Game from "./components/ticTacToe";
-import AccountControllerComp from "./components/accountsComp";
+import AccountControllerComp from "./components/accounts/accountsComp";
 import CityComp from "./components/cities/cityComp";
+import ListDisplay from "./components/linkedLists/linkedListComp";
 
 import "./App.css";
 
@@ -37,18 +38,21 @@ class App extends React.Component {
 			),
 			accountPage: (
 				<div className="bigContainer">
-					<h1>Welcome to Your Bank!</h1>
 					<AccountControllerComp />
 				</div>
 			),
 			cityPage: (
 				<div className="bigContainer">
-					<h1>Welcome to Your City!</h1>
 					<CityComp />
+				</div>
+			),
+			listPage: (
+				<div className="bigContainer">
+					<ListDisplay />
 				</div>
 			)
 		};
-		this.state = { page: this.pages.cityPage };
+		this.state = { page: this.pages.listPage };
 	}
 	pageController = e => {
 		if (e.target.alt === "main") {
@@ -62,6 +66,9 @@ class App extends React.Component {
 		}
 		if (e.target.alt === "cities") {
 			this.setState({ page: this.pages.cityPage });
+		}
+		if (e.target.alt === "link") {
+			this.setState({ page: this.pages.listPage });
 		}
 	};
 

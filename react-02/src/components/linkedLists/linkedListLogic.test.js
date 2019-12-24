@@ -22,8 +22,9 @@ test("insert, first, last, next, previous", () => {
 
 	//Testing adding a node (D) between 2 nodes (B and C)
 	linkedList.previous();
+	//test CURRENT
+
 	linkedList.insert("B", 2);
-	console.log(linkedList.current);
 	linkedList.insert("C", 3);
 
 	expect(linkedList.current.subject).toBe("C");
@@ -39,7 +40,7 @@ test("delete", () => {
 	linkedList.insert("A", 1);
 	linkedList.insert("B", 2);
 	linkedList.insert("C", 3);
-	linkedList.insert("D", 3);
+	linkedList.insert("D", 4);
 
 	//delete last node (D)
 	expect(linkedList.current.subject).toBe("D");
@@ -59,4 +60,16 @@ test("delete", () => {
 	linkedList.delete();
 	expect(linkedList.head.subject).toBe("C");
 	expect(linkedList.current.subject).toBe("C");
+});
+test("total", () => {
+	const linkedList = new LinkedList();
+
+	linkedList.insert("A", 1);
+	linkedList.insert("B", 2);
+	linkedList.insert("C", 3);
+	linkedList.insert("D", 4);
+
+	linkedList.total();
+
+	expect(linkedList.total()).toBe(10);
 });

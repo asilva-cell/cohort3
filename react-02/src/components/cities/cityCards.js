@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./city.css";
 
 class CityCardComp extends Component {
 	render() {
@@ -12,18 +11,18 @@ class CityCardComp extends Component {
 			type
 		} = this.props.city;
 		return (
-			<div class="card">
-				<h3 class="card-header">{cityName}</h3>
-				<div class="card-body">
-					<p class="card-text text-dark">
+			<div className="card">
+				<h3 className="card-header">{cityName}</h3>
+				<div className="card-body">
+					<p className="card-text text-dark">
 						Latitude: {latitude} Longitude: {longitude}
 					</p>
-
-					<p class="card-text">
+					<p className="card-text">
 						{`${cityName} is located on the ${hemisphere}, has a population of ${population} people and is considered a ${type}`}
 					</p>
 					<button
-						class="button"
+						type="button"
+						className="btn btn-primary btn-sm"
 						onClick={this.props.delete.bind(this, this.props.index)}
 					>
 						Delete
