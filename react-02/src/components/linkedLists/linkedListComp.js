@@ -16,7 +16,7 @@ const icons = [
 
 const ListDisplay = () => {
 	let [subject, setSubject] = useState("");
-	let [amount, setAmount] = useState(0);
+	let [amount, setAmount] = useState("");
 	let [counter, setCounter] = useState(0);
 	let [card, setCard] = useState("");
 
@@ -26,12 +26,12 @@ const ListDisplay = () => {
 			.split(" ")
 			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
 			.join(" ");
-
 		setSubject((subject = firstCap));
 	};
 
 	const createCard = e => {
 		if (subject === "") {
+			list.message = "Please enter a valid name";
 			return;
 		}
 		capName();
@@ -42,7 +42,7 @@ const ListDisplay = () => {
 				<CardComp
 					key={counter}
 					node={list.current}
-					onClick={list.delete}
+					onClick={deleteCard}
 				/>
 			))
 		);
@@ -51,8 +51,8 @@ const ListDisplay = () => {
 	};
 	const deleteCard = e => {
 		list.delete();
-		if (list.current === null) {
-			list.message = "Add a new item to your list";
+		if (!list.current) {
+			setCard((card = ""));
 			return;
 		}
 		setCard(
@@ -66,6 +66,8 @@ const ListDisplay = () => {
 		);
 	};
 	const cardController = e => {
+		list.message = "";
+		if (!list.current) return;
 		if (e.target.alt === "First") {
 			list.first();
 		}
@@ -98,6 +100,7 @@ const ListDisplay = () => {
 				<IconComp icon={icons[2]} onClick={cardController} />
 				<IconComp icon={icons[3]} onClick={cardController} />
 			</div>
+			<h5>{list.message}</h5>
 			<div className="container">
 				<div className="panel">
 					<div className="form">
@@ -117,6 +120,7 @@ const ListDisplay = () => {
 								className="input"
 								name="amount"
 								type="number"
+								min="0"
 								value={amount}
 								placeholder="0.00"
 								onChange={e => setAmount(e.target.value)}
@@ -130,7 +134,6 @@ const ListDisplay = () => {
 						>
 							Add Item
 						</button>
-						<p>{list.message}</p>
 					</div>
 				</div>
 			</div>

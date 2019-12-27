@@ -13,7 +13,7 @@ export class LinkedList {
 	constructor() {
 		this.head = null;
 		this.current = this.head;
-		this.message = "Please enter a valid item name.";
+		this.message = "Your list in empty. Please enter an item below.";
 	}
 
 	insert = (subject, amount) => {
@@ -22,11 +22,9 @@ export class LinkedList {
 		if (this.head === null) {
 			this.head = newNode;
 			this.current = newNode;
-			return this.current;
 		} else {
 			//insert node on last
 			if (this.current.forwardNode === null) {
-				// newNode.forwardNode = null;
 				this.current.forwardNode = newNode;
 				this.current = newNode;
 			} else {
@@ -35,11 +33,13 @@ export class LinkedList {
 				this.current.forwardNode = newNode;
 				this.current = newNode;
 			}
-			return this.current;
 		}
+		this.message = `${this.current.subject} added.`;
+		return this.current;
 	};
 	first = () => {
 		this.current = this.head;
+
 		return this.current ? this.current : null;
 	};
 	last = () => {
@@ -68,24 +68,27 @@ export class LinkedList {
 		return this.current ? this.current : null;
 	};
 	delete = () => {
+		if (this.current === this.head && this.current.forwardNode === null) {
+			this.head = null;
+			this.current = this.head;
+			this.message = "Your list in empty. Please enter an item below.";
+			return;
+		}
+		if (this.current === this.head) {
+			this.head = this.current.forwardNode;
+			this.current = this.head;
+			return;
+		}
 		if (this.current.forwardNode === null) {
 			this.previous();
-			console.log(this);
-			this.current === this.head
-				? (this.current = null)
-				: (this.current.forwardNode = null);
+			this.current.forwardNode = null;
 			return;
 		} else {
-			if (this.current === this.head) {
-				this.head = this.current.forwardNode;
-				this.current = this.head;
-			} else {
-				let nodeToDel = this.current;
-				this.previous();
-				this.current.forwardNode = nodeToDel.forwardNode;
-			}
+			let nodeToDel = this.current;
+			this.previous();
+			this.current.forwardNode = nodeToDel.forwardNode;
+			return;
 		}
-		return null;
 	};
 	total = () => {
 		let totalAmount = 0;
