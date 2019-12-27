@@ -53,6 +53,10 @@ class CityComp extends Component {
 				this.population.value
 			);
 		}
+		this.cityName.value = "";
+		this.latitude.value = "";
+		this.longitude.value = "";
+		this.population.value = "";
 		this.setState({ community: a });
 		fetchFunctions.addData(newCity);
 		this.updateDisplays();
@@ -78,6 +82,7 @@ class CityComp extends Component {
 		if (updatedCity !== "not enough") {
 			fetchFunctions.updateData(updatedCity);
 		}
+		this.populationInp.value = "";
 		this.setState({ community: a });
 		this.updateDisplays();
 	};
@@ -129,7 +134,8 @@ class CityComp extends Component {
 					</div>
 				</div>
 
-				{/* CITY PANEL */}
+				{/* CREATE CITY PANEL */}
+				<h5>{this.state.community.message}</h5>
 				<div className="container">
 					<div className="panel">
 						<h2>Your Cities</h2>
@@ -140,7 +146,6 @@ class CityComp extends Component {
 								name="cityName"
 								type="text"
 								placeholder="Example: Calgary"
-								value={this.state.cityName}
 								ref={input => {
 									this.cityName = input;
 								}}
@@ -151,7 +156,7 @@ class CityComp extends Component {
 								className="input"
 								name="population"
 								type="number"
-								value={this.state.population}
+								min="0"
 								placeholder="0.00"
 								ref={input => {
 									this.population = input;
@@ -165,7 +170,6 @@ class CityComp extends Component {
 								className="input"
 								name="latitude"
 								type="number"
-								value={this.state.latitude}
 								placeholder="0.00"
 								ref={input => {
 									this.latitude = input;
@@ -177,7 +181,6 @@ class CityComp extends Component {
 								className="input"
 								name="longitude"
 								type="number"
-								value={this.state.longitude}
 								placeholder="0.00"
 								ref={input => {
 									this.longitude = input;
@@ -195,11 +198,9 @@ class CityComp extends Component {
 						>
 							Create City
 						</button>
-						<h5>{this.state.community.message}</h5>
 					</div>
 
 					{/* TRASACTIONS PANEL */}
-
 					<div className="panel">
 						<h2>City Updates</h2>
 						<div className="form">
@@ -244,6 +245,7 @@ class CityComp extends Component {
 									className="input"
 									name="populationInp"
 									type="number"
+									min="0"
 									placeholder="0.00"
 									ref={input => {
 										this.populationInp = input;
@@ -257,8 +259,6 @@ class CityComp extends Component {
 							>
 								Submit
 							</button>
-
-							<h5>{this.state.community.message}</h5>
 						</div>
 					</div>
 				</div>
