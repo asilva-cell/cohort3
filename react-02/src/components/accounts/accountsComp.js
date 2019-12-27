@@ -94,20 +94,27 @@ class AccountControllerComp extends React.Component {
 		return (
 			<div className="accountControllerComp">
 				<div className="card-deck">{allCards}</div>
-				<div className="container">
-					{/* REPORT PANEL */}
-					<div className="panel report">
-						<p name="total">
-							Your Total Balance: {this.state.totalBal}
-						</p>
-						<p name="maxBalance">
-							Your Maximum Balance: {this.state.maxBal}
-						</p>
-						<p name="minBalance">
-							Your Minimum Balance: {this.state.minBal}
-						</p>
+
+				{/* REPORT PANEL */}
+				<div className="report">
+					<div className="panel-report">
+						<h5 name="total">
+							Total Balance: {this.state.totalBal}
+						</h5>
 					</div>
-					{/* ACCOUNT PANEL */}
+					<div className="panel-report">
+						<h5 name="maxBalance">
+							Maximum Balance: {this.state.maxBal}
+						</h5>
+					</div>
+					<div className="panel-report">
+						<h5 name="minBalance">
+							Minimum Balance: {this.state.minBal}
+						</h5>
+					</div>
+				</div>
+				{/* ACCOUNT PANEL */}
+				<div className="container">
 					<div className="panel">
 						<h3>Your Accounts</h3>
 						<div className="form">
@@ -129,7 +136,7 @@ class AccountControllerComp extends React.Component {
 									className="input"
 									name="accountBal"
 									type="number"
-									value={this.state.accountBal}
+									min="0"
 									placeholder="0.00"
 									onChange={this.onChange}
 									required
@@ -146,59 +153,54 @@ class AccountControllerComp extends React.Component {
 								/>
 							</div>
 
-							<p>{this.accountController.message}</p>
-							<div></div>
-
-							{/* TRANSACTION PANEL */}
-							<div className="panel">
-								<div>
-									<h3>Quick Transactions</h3>
-									Select Account
-									<select
-										name="selectedAccount"
-										onChange={this.onChange}
-									>
-										<option value="default">
-											Select Account
-										</option>
-										{allAccounts.map(account => (
-											<SelectComp
-												key={account.key}
-												account={account}
-											/>
-										))}
-									</select>
-									<br />
-									Type of Transactions:
-									<select
-										required
-										name="transaction"
-										onChange={this.onChange}
-									>
-										<option value="deposit">Deposit</option>
-										<option value="withdraw">
-											Withdraw
-										</option>
-									</select>
-									<br />
-									$:
-									<input
-										className="input"
-										name="balanceInp"
-										type="number"
-										placeholder="0.00"
-										onChange={this.onChange}
+							<h5>{this.accountController.message}</h5>
+						</div>
+					</div>
+					{/* TRANSACTION PANEL */}
+					<div className="panel">
+						<div>
+							<h3>Quick Transactions</h3>
+							Select Account
+							<select
+								name="selectedAccount"
+								onChange={this.onChange}
+							>
+								<option value="default">Select Account</option>
+								{allAccounts.map(account => (
+									<SelectComp
+										key={account.key}
+										account={account}
 									/>
-									<br />
-									<input
-										className="btn btn-primary btn-sm"
-										type="button"
-										value="Submit"
-										onClick={this.operationControl}
-									/>
-									<p>{this.accountController.message}</p>
-								</div>
-							</div>
+								))}
+							</select>
+							<br />
+							Type of Transactions:
+							<select
+								required
+								name="transaction"
+								onChange={this.onChange}
+							>
+								<option value="deposit">Deposit</option>
+								<option value="withdraw">Withdraw</option>
+							</select>
+							<br />
+							$:
+							<input
+								className="input"
+								name="balanceInp"
+								type="number"
+								min="0"
+								placeholder="0.00"
+								onChange={this.onChange}
+							/>
+							<br />
+							<input
+								className="btn btn-primary btn-sm"
+								type="button"
+								value="Submit"
+								onClick={this.operationControl}
+							/>
+							<h5>{this.accountController.message}</h5>
 						</div>
 					</div>
 				</div>

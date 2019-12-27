@@ -1,16 +1,32 @@
 import React, { Component } from "react";
-// import "./main.css";
 
 class AccountCardComp extends Component {
+	capName = nameToCap => {
+		nameToCap = nameToCap
+			.toLowerCase()
+			.split(" ")
+			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
+			.join(" ");
+		return nameToCap;
+	};
 	render() {
-		const { key, accountName, balance } = this.props.account;
+		let { key, accountName, balance } = this.props.account;
+		accountName = this.capName(accountName);
+
 		return (
 			<div className="card">
-				<h3>{accountName}</h3>
-				<p>${balance}</p>
-				<button onClick={this.props.delete.bind(this, key)}>
-					Delete
-				</button>
+				<h3 className="card-header">{accountName}</h3>
+				<div className="card-body">
+					<p className="card-text text-dark">${balance}</p>
+				</div>
+				<div className="card-footer">
+					<button
+						className="btn btn-primary btn-sm"
+						onClick={this.props.delete.bind(this, key)}
+					>
+						Delete
+					</button>
+				</div>
 			</div>
 		);
 	}

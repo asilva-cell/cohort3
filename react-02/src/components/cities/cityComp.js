@@ -109,21 +109,28 @@ class CityComp extends Component {
 		return (
 			<div className="Community">
 				<div className="card-deck">{allCards}</div>
-				<div className="container">
-					{/* REPORT PANEL */}
-					<div className="panel report">
-						<p name="total">
-							Total Population: {this.state.totalPop}
-						</p>
-						<p name="mostNorth">
-							Most Northern City: {this.state.mostNorth}
-						</p>
-						<p name="mostSouth">
-							Most Sourthern City: {this.state.mostSouth}
-						</p>
-					</div>
 
-					{/* CITY PANEL */}
+				{/* REPORT PANEL */}
+				<div className="report">
+					<div className="panel-report">
+						<h5 name="total">
+							Total Population: {this.state.totalPop}
+						</h5>
+					</div>
+					<div className="panel-report">
+						<h5 name="maxBalance">
+							Most Northern City: {this.state.mostNorth}
+						</h5>
+					</div>
+					<div className="panel-report">
+						<h5 name="minBalance">
+							Most Sourthern City: {this.state.mostSouth}
+						</h5>
+					</div>
+				</div>
+
+				{/* CITY PANEL */}
+				<div className="container">
 					<div className="panel">
 						<h2>Your Cities</h2>
 						<div className="form">
@@ -151,47 +158,48 @@ class CityComp extends Component {
 								}}
 								required
 							/>
-							<div className="form">
-								Latitud:{""}
-								<input
-									className="input"
-									name="latitude"
-									type="number"
-									value={this.state.latitude}
-									placeholder="0.00"
-									ref={input => {
-										this.latitude = input;
-									}}
-									required
-								/>
-								Longitude:{""}
-								<input
-									className="input"
-									name="longitude"
-									type="number"
-									value={this.state.longitude}
-									placeholder="0.00"
-									ref={input => {
-										this.longitude = input;
-									}}
-									required
-								/>
-							</div>
-							<br />
-							<button
-								type="button"
-								className="btn btn-primary btn-sm"
-								onClick={e => {
-									this.createCity(e);
-								}}
-							>
-								Create City
-							</button>
-							<p>{this.state.community.message}</p>
 						</div>
+						<div className="form">
+							Latitud:{""}
+							<input
+								className="input"
+								name="latitude"
+								type="number"
+								value={this.state.latitude}
+								placeholder="0.00"
+								ref={input => {
+									this.latitude = input;
+								}}
+								required
+							/>
+							Longitude:{""}
+							<input
+								className="input"
+								name="longitude"
+								type="number"
+								value={this.state.longitude}
+								placeholder="0.00"
+								ref={input => {
+									this.longitude = input;
+								}}
+								required
+							/>
+						</div>
+						<br />
+						<button
+							type="button"
+							className="btn btn-primary btn-sm"
+							onClick={e => {
+								this.createCity(e);
+							}}
+						>
+							Create City
+						</button>
+						<h5>{this.state.community.message}</h5>
 					</div>
 
 					{/* TRASACTIONS PANEL */}
+
 					<div className="panel">
 						<h2>City Updates</h2>
 						<div className="form">
@@ -250,7 +258,7 @@ class CityComp extends Component {
 								Submit
 							</button>
 
-							<p>{this.state.community.message}</p>
+							<h5>{this.state.community.message}</h5>
 						</div>
 					</div>
 				</div>

@@ -42,7 +42,7 @@ h3 {
 .panel {
 	align-items: center;
 	padding: 10px;
-	margin: 10px;
+	margin: 1rem;
 	text-align: center;
 	border-style: solid;
 	border-width: 2px;
@@ -99,11 +99,9 @@ select {
 	flex-direction: inherit;
 }
 .card {
-	max-width: 15rem;
-	margin: 10px;
-	border-style: solid;
-	border-color: rgb(39, 16, 173);
-	border-width: 2px;
+	flex: none !important;
+	width: 15rem;
+	margin: 0.5rem;
 	border-radius: 0.2rem;
 }
 .card:hover {
@@ -117,6 +115,11 @@ select {
 .card-text {
 	color: black;
 	margin: 5px;
+}
+.report {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin: 1rem;
 }
 
 .icon {

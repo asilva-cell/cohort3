@@ -6,7 +6,7 @@ import IconComp from "./iconComp";
 import arrowDouble from "../icons/arrowDouble.svg";
 import arrowSingle from "../icons/arrowSingle.svg";
 
-const newList = new LinkedList();
+const list = new LinkedList();
 const icons = [
 	{ key: "leftDouble", src: arrowDouble, name: "First" },
 	{ key: "leftSingle", src: arrowSingle, name: "Previous" },
@@ -20,44 +20,83 @@ const ListDisplay = () => {
 	let [counter, setCounter] = useState(0);
 	let [card, setCard] = useState("");
 
+	const capName = () => {
+		let firstCap = subject
+			.toLowerCase()
+			.split(" ")
+			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
+			.join(" ");
+
+		setSubject((subject = firstCap));
+	};
+
 	const createCard = e => {
 		if (subject === "") {
 			return;
 		}
-		newList.insert(subject, amount);
+		capName();
+		list.insert(subject, amount);
 		setCounter(counter++);
-		setCard((card = <CardComp key={counter} node={newList.current} />));
+		setCard(
+			(card = (
+				<CardComp
+					key={counter}
+					node={list.current}
+					onClick={list.delete}
+				/>
+			))
+		);
 		setSubject((subject = ""));
 		setAmount((amount = ""));
 	};
-	const currentController = e => {
+	const deleteCard = e => {
+		list.delete();
+		if (list.current === null) {
+			list.message = "Add a new item to your list";
+			return;
+		}
+		setCard(
+			(card = (
+				<CardComp
+					key={counter}
+					node={list.current}
+					onClick={deleteCard}
+				/>
+			))
+		);
+	};
+	const cardController = e => {
 		if (e.target.alt === "First") {
-			console.log("arrow clicked");
-			newList.first();
+			list.first();
 		}
 		if (e.target.alt === "Previous") {
-			console.log("arrow clicked");
-			newList.previous();
+			list.previous();
 		}
 		if (e.target.alt === "Next") {
-			console.log("arrow clicked");
-			newList.next();
+			list.next();
 		}
 		if (e.target.alt === "Last") {
-			console.log("arrow clicked");
-			newList.last();
+			list.last();
 		}
-		setCard((card = <CardComp key={counter} node={newList.current} />));
+		setCard(
+			(card = (
+				<CardComp
+					key={counter}
+					node={list.current}
+					onClick={deleteCard}
+				/>
+			))
+		);
 	};
 
 	return (
 		<div>
+			<div className="container">{card}</div>
 			<div className="container">
-				<IconComp icon={icons[0]} onClick={currentController} />
-				<IconComp icon={icons[1]} onClick={currentController} />
-				{card}
-				<IconComp icon={icons[2]} onClick={currentController} />
-				<IconComp icon={icons[3]} onClick={currentController} />
+				<IconComp icon={icons[0]} onClick={cardController} />
+				<IconComp icon={icons[1]} onClick={cardController} />
+				<IconComp icon={icons[2]} onClick={cardController} />
+				<IconComp icon={icons[3]} onClick={cardController} />
 			</div>
 			<div className="container">
 				<div className="panel">
@@ -91,7 +130,7 @@ const ListDisplay = () => {
 						>
 							Add Item
 						</button>
-						<p>{newList.message}</p>
+						<p>{list.message}</p>
 					</div>
 				</div>
 			</div>
