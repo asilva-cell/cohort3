@@ -13,10 +13,10 @@ class AccountControllerComp extends React.Component {
 			totalBal: 0,
 			maxBal: "N/A",
 			minBal: "N/A",
-			accountBal: 0,
+			openingBal: "",
 			transaction: "deposit",
 			selectedAccount: "",
-			balanceInp: 0
+			updateBal: ""
 		};
 		this.addAccount = this.addAccount.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -43,11 +43,11 @@ class AccountControllerComp extends React.Component {
 		if (checkAccount === false) {
 			this.accountController.addAccount(
 				this.state.accountName,
-				this.state.accountBal
+				this.state.openingBal
 			);
 		}
 		this.updateDisplays();
-		this.setState({ accountName: "", accountBal: 0 });
+		this.setState({ accountName: "", openingBal: "" });
 	}
 	deleteAccount = key => {
 		this.accountController.removeAccount(key);
@@ -61,9 +61,10 @@ class AccountControllerComp extends React.Component {
 	operationControl(e) {
 		this.accountController.operationControl(
 			this.state.transaction,
-			Number(this.state.balanceInp),
+			Number(this.state.updateBal),
 			this.accountController.getAccountIndex(this.state.selectedAccount)
 		);
+		this.setState({ accountName: "", updateBal: "" });
 		this.updateDisplays();
 	}
 	updateDisplays() {
@@ -113,7 +114,8 @@ class AccountControllerComp extends React.Component {
 						</h5>
 					</div>
 				</div>
-				{/* ACCOUNT PANEL */}
+				{/* CREATE ACCOUNT PANEL */}
+				<h5>{this.accountController.message}</h5>
 				<div className="container">
 					<div className="panel">
 						<h3>Your Accounts</h3>
@@ -134,9 +136,10 @@ class AccountControllerComp extends React.Component {
 								Opening Balance:{" "}
 								<input
 									className="input"
-									name="accountBal"
+									name="openingBal"
 									type="number"
 									min="0"
+									value={this.state.openingBal}
 									placeholder="0.00"
 									onChange={this.onChange}
 									required
@@ -152,8 +155,6 @@ class AccountControllerComp extends React.Component {
 									}}
 								/>
 							</div>
-
-							<h5>{this.accountController.message}</h5>
 						</div>
 					</div>
 					{/* TRANSACTION PANEL */}
@@ -187,10 +188,11 @@ class AccountControllerComp extends React.Component {
 							$:
 							<input
 								className="input"
-								name="balanceInp"
+								name="updateBal"
 								type="number"
 								min="0"
 								placeholder="0.00"
+								value={this.state.updateBal}
 								onChange={this.onChange}
 							/>
 							<br />
@@ -200,7 +202,6 @@ class AccountControllerComp extends React.Component {
 								value="Submit"
 								onClick={this.operationControl}
 							/>
-							<h5>{this.accountController.message}</h5>
 						</div>
 					</div>
 				</div>

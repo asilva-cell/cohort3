@@ -33,7 +33,7 @@ class AccountController {
 		this.key++;
 		const newAccount = new Account(this.key, accountName, balance);
 		this.userAccounts.push(newAccount);
-		this.message = `A ${accountName} account has been created.`;
+		this.message = `${accountName} account has been created.`;
 	}
 
 	checkAccountExists(accountNameToCheck) {
