@@ -119,11 +119,14 @@ select {
 	grid-template-columns: 1fr 1fr 1fr;
 	margin: 1rem;
 }
-
+.icon-group {
+	display: grid;
+}
 .icon {
 	height: 2rem;
 	align-self: center;
-	margin: 10px;
+	margin: 1rem;
+	margin-bottom: 0;
 	opacity: 1;
 	fill: #cccbca;
 }

@@ -95,10 +95,22 @@ const ListDisplay = () => {
 		<div>
 			<div className="container">{card}</div>
 			<div className="container">
-				<IconComp icon={icons[0]} onClick={cardController} />
-				<IconComp icon={icons[1]} onClick={cardController} />
-				<IconComp icon={icons[2]} onClick={cardController} />
-				<IconComp icon={icons[3]} onClick={cardController} />
+				<div className="icon-group">
+					<IconComp icon={icons[0]} onClick={cardController} />
+					<label>First</label>
+				</div>
+				<div className="icon-group">
+					<IconComp icon={icons[1]} onClick={cardController} />
+					<label>Previous</label>
+				</div>
+				<div className="icon-group">
+					<IconComp icon={icons[2]} onClick={cardController} />
+					<label>Next</label>
+				</div>
+				<div className="icon-group">
+					<IconComp icon={icons[3]} onClick={cardController} />
+					<label>Last</label>
+				</div>
 			</div>
 			<h5>{list.message}</h5>
 			<div className="container">
