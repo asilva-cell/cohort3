@@ -15,7 +15,7 @@ class AccountCardComp extends Component {
 
 		return (
 			<div className="card">
-				<h3 className="card-header">{accountName}</h3>
+				<h3 className="card-header text-dark">{accountName}</h3>
 				<div className="card-body">
 					<p className="card-text text-dark">${balance}</p>
 				</div>
