@@ -4,73 +4,63 @@ import { AccountController } from "./accountsLogic";
 import AccountCardComp from "./accountsCards";
 import SelectComp from "../selectComp";
 
+let newAccController = new AccountController();
 class AccountControllerComp extends React.Component {
 	constructor(props) {
 		super();
-		this.accountController = new AccountController();
 		this.state = {
-			accountName: "",
+			accountController: newAccController,
 			totalBal: 0,
 			maxBal: "N/A",
-			minBal: "N/A",
-			openingBal: "",
-			transaction: "deposit",
-			selectedAccount: "",
-			updateBal: ""
+			minBal: "N/A"
 		};
-		this.addAccount = this.addAccount.bind(this);
-		this.onChange = this.onChange.bind(this);
-		this.operationControl = this.operationControl.bind(this);
-		this.updateDisplays = this.updateDisplays.bind(this);
 	}
 
-	onChange(e) {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	}
-
-	addAccount(e) {
-		if (this.state.accountName === "") {
-			this.accountController.message =
-				"Please enter a valid account name.";
-			this.setState({ accountName: "" });
+	addAccount = e => {
+		let a = this.state.accountController;
+		if (this.accountName.value === "") {
+			a.message = "Please enter a valid account name";
+			this.setState({ accountController: a });
 			return;
 		}
-		let checkAccount = this.accountController.checkAccountExists(
-			this.state.accountName
-		);
+		let checkAccount = a.checkAccountExists(this.accountName.value);
 		if (checkAccount === false) {
-			this.accountController.addAccount(
-				this.state.accountName,
-				this.state.openingBal
-			);
+			a.addAccount(this.accountName.value, this.accountBal.value);
 		}
+		this.setState({ accountController: a });
 		this.updateDisplays();
-		this.setState({ accountName: "", openingBal: "" });
-	}
+	};
 	deleteAccount = key => {
-		this.accountController.removeAccount(key);
-		this.setState({ accountName: "" });
-		if (this.accountController.userAccounts.length === 1) {
+		let a = this.state.accountController;
+		a.removeAccount(key);
+		if (a.userAccounts.length === 1) {
 			this.setState({ totalBal: "", maxBal: "", minBal: "" });
 			return;
 		}
+		this.setState({ accountController: a });
 		this.updateDisplays();
 	};
-	operationControl(e) {
-		this.accountController.operationControl(
-			this.state.transaction,
-			Number(this.state.updateBal),
-			this.accountController.getAccountIndex(this.state.selectedAccount)
+	operationControl = e => {
+		let a = this.state.accountController;
+		if (this.selectedAccount.value === "default") {
+			a.message = "Please select a valid account name";
+			this.setState({ accountController: a });
+			return;
+		}
+		a.operationControl(
+			this.transaction.value,
+			Number(this.balanceInp.value),
+			a.getAccountIndex(this.selectedAccount.value)
 		);
-		this.setState({ accountName: "", updateBal: "" });
+		this.setState({ accountController: a });
 		this.updateDisplays();
-	}
-	updateDisplays() {
-		const totalBal = this.accountController.totalBalance();
-		const maxBal = this.accountController.maxBalance();
-		const minBal = this.accountController.minBalance();
+	};
+	updateDisplays = e => {
+		let a = this.state.accountController;
+		const totalBal = a.totalBalance();
+		const maxBal = a.maxBalance();
+		const minBal = a.minBalance();
+		this.setState({ accountController: a });
 		this.setState({
 			totalBal: totalBal,
 			maxBal: maxBal,
@@ -78,11 +68,11 @@ class AccountControllerComp extends React.Component {
 		});
 
 		return;
-	}
+	};
 
 	render() {
-		let allAccounts = this.accountController.userAccounts;
-		let allCards = allAccounts.map(account => {
+		let a = this.state.accountController;
+		let allCards = a.userAccounts.map(account => {
 			return (
 				<AccountCardComp
 					key={account.key}
@@ -95,7 +85,7 @@ class AccountControllerComp extends React.Component {
 		return (
 			<div className="accountControllerComp">
 				<div className="card-deck">{allCards}</div>
-				<h5>{this.accountController.message}</h5>
+				<h5>{this.state.accountController.message}</h5>
 				<div className="container report">
 					{/* REPORT PANEL */}
 					<div className="panel ">
@@ -103,17 +93,17 @@ class AccountControllerComp extends React.Component {
 							Your Total Balance: {this.state.totalBal}
 						</p>
 						<p name="maxBalance">
-							Your Maximum Balance: {this.state.maxBal}
+							Your Max Balance: {this.state.maxBal}
 						</p>
 						<p name="minBalance">
-							Your Minimum Balance: {this.state.minBal}
+							Your Min Balance: {this.state.minBal}
 						</p>
 					</div>
 					{/* ACCOUNT PANEL */}
 					<div className="panel">
 						<h3>Your Accounts</h3>
-						<div className="form">
-							<div>
+						<div>
+							<div className="form">
 								Account Name:{" "}
 								<input
 									className="input"
@@ -121,20 +111,24 @@ class AccountControllerComp extends React.Component {
 									type="text"
 									placeholder="Example: Checking"
 									value={this.state.accountName}
-									onChange={this.onChange}
+									ref={input => {
+										this.accountName = input;
+									}}
 									required
 								/>
 							</div>
-							<div>
+							<div className="form">
 								Opening Balance:{" "}
 								<input
 									className="input"
 									name="accountBal"
 									type="number"
 									min="0"
-									value={this.state.accountBal}
 									placeholder="0.00"
-									onChange={this.onChange}
+									value={this.state.accountBal}
+									ref={input => {
+										this.accountBal = input;
+									}}
 									required
 								/>
 							</div>
@@ -157,10 +151,14 @@ class AccountControllerComp extends React.Component {
 							Select Account
 							<select
 								name="selectedAccount"
-								onChange={this.onChange}
+								value={this.state.selectedAccount}
+								ref={input => {
+									this.selectedAccount = input;
+								}}
+								required
 							>
 								<option value="default">Select Account</option>
-								{allAccounts.map(account => (
+								{a.userAccounts.map(account => (
 									<SelectComp
 										key={account.key}
 										account={account}
@@ -168,11 +166,14 @@ class AccountControllerComp extends React.Component {
 								))}
 							</select>
 							<br />
-							Type of Transactions:
+							Transactions:
 							<select
 								required
 								name="transaction"
-								onChange={this.onChange}
+								ref={input => {
+									this.transaction = input;
+								}}
+								required
 							>
 								<option value="deposit">Deposit</option>
 								<option value="withdraw">Withdraw</option>
@@ -185,7 +186,11 @@ class AccountControllerComp extends React.Component {
 								type="number"
 								min="0"
 								placeholder="0.00"
-								onChange={this.onChange}
+								value={this.state.balanceInp}
+								ref={input => {
+									this.balanceInp = input;
+								}}
+								required
 							/>
 							<br />
 							<input
@@ -201,5 +206,4 @@ class AccountControllerComp extends React.Component {
 		);
 	}
 }
-
 export default AccountControllerComp;

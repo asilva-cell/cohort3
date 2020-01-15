@@ -24,22 +24,31 @@ class Account {
 
 class AccountController {
 	constructor() {
-		this.message = "Please create a new account.";
+		this.message = "Please create a new account";
 		this.userAccounts = [];
 		this.key = 0;
 	}
 
+	capName(nameToCap) {
+		return nameToCap
+			.toLowerCase()
+			.split(" ")
+			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
+			.join(" ");
+	}
+
 	addAccount(accountName, balance) {
 		this.key++;
-		const newAccount = new Account(this.key, accountName, balance);
+		let capAccName = this.capName(accountName);
+		const newAccount = new Account(this.key, capAccName, balance);
 		this.userAccounts.push(newAccount);
-		this.message = `${accountName} account has been created.`;
+		this.message = `${newAccount.accountName} account has been created`;
 	}
 
 	checkAccountExists(accountNameToCheck) {
 		for (let accountObj of this.userAccounts) {
 			if (accountObj.accountName === accountNameToCheck) {
-				this.message = `${accountNameToCheck} account already exists.`;
+				this.message = `${accountNameToCheck} account already exists`;
 				return true;
 			}
 		}
@@ -53,7 +62,7 @@ class AccountController {
 				accountToRemove = account;
 			}
 		});
-		this.message = `The ${accountToRemove.accountName} account was deleted.`;
+		this.message = `${accountToRemove.accountName} account was deleted`;
 		this.userAccounts.splice(this.userAccounts.indexOf(accountToRemove), 1);
 	}
 
@@ -71,17 +80,17 @@ class AccountController {
 		let accountName = this.userAccounts[accountIndex].accountName;
 		if (transaction === "deposit") {
 			this.userAccounts[accountIndex].deposit(amount);
-			this.message = `$${amount} have been deposited to your ${accountName} account.`;
+			this.message = `$${amount} have been deposited to your ${accountName} account`;
 			return this.userAccounts[accountIndex].balance;
 		} else {
 			let withdraw = this.userAccounts[accountIndex].withdraw(amount);
 			if (withdraw === false) {
 				this.message =
-					"There is not enough fund in the selected account.";
+					"There is not enough fund in the selected account";
 				return;
 			} else {
 				this.balance = withdraw;
-				this.message = `$${amount} have been withdrawed from your ${accountName} account.`;
+				this.message = `$${amount} have been withdrawed from your ${accountName} account`;
 				return this.userAccounts[accountIndex].balance;
 			}
 		}
