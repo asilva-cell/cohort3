@@ -42,7 +42,7 @@ h3 {
 .panel {
 	align-items: center;
 	padding: 10px;
-	margin: 1rem;
+	margin: 10px;
 	text-align: center;
 	border-style: solid;
 	border-width: 2px;
@@ -99,14 +99,18 @@ select {
 	flex-direction: inherit;
 }
 .card {
-	flex: none !important;
-	width: 15rem;
-	margin: 0.5rem;
+	max-width: 15rem;
+	margin: 10px;
+	border-style: solid;
+	border-color: rgb(39, 16, 173);
+	border-width: 2px;
 	border-radius: 0.2rem;
 }
 .card:hover {
-	box-shadow: 5px 5px 15px rgb(125, 122, 138);
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+		0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
 .text-dark {
 	font-weight: bolder;
 }
@@ -114,19 +118,11 @@ select {
 	color: black;
 	margin: 5px;
 }
-.report {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	margin: 1rem;
-}
-.icon-group {
-	display: grid;
-}
+
 .icon {
-	height: 2rem;
+	height: 10vmin;
 	align-self: center;
-	margin: 1rem;
-	margin-bottom: 0;
+	margin: 10px;
 	opacity: 1;
 	fill: #cccbca;
 }

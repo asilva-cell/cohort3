@@ -13,18 +13,19 @@ export class LinkedList {
 	constructor() {
 		this.head = null;
 		this.current = this.head;
-		this.message = "Your list in empty. Please enter an item below.";
+		this.message = "Please enter a valid item name.";
 	}
-
 	insert = (subject, amount) => {
 		let newNode = new ListNode(subject, amount);
 		// when list is empty
 		if (this.head === null) {
 			this.head = newNode;
 			this.current = newNode;
+			return this.current;
 		} else {
 			//insert node on last
 			if (this.current.forwardNode === null) {
+				// newNode.forwardNode = null;
 				this.current.forwardNode = newNode;
 				this.current = newNode;
 			} else {
@@ -33,19 +34,19 @@ export class LinkedList {
 				this.current.forwardNode = newNode;
 				this.current = newNode;
 			}
+			return this.current;
 		}
-		this.message = `${this.current.subject} added.`;
-		return this.current;
 	};
 	first = () => {
 		this.current = this.head;
-
 		return this.current ? this.current : null;
 	};
 	last = () => {
-		while (this.current.forwardNode !== null) {
-			this.current = this.current.forwardNode;
+		if (this.current === null) return this.current;
+		if (this.current.forwardNode === null) {
+			return this.current;
 		}
+		this.current = this.current.forwardNode;
 		return this.current;
 	};
 	next = () => {
@@ -68,26 +69,22 @@ export class LinkedList {
 		return this.current ? this.current : null;
 	};
 	delete = () => {
-		if (this.current === this.head && this.current.forwardNode === null) {
-			this.head = null;
-			this.current = this.head;
-			this.message = "Your list in empty. Please enter an item below.";
-			return;
-		}
-		if (this.current === this.head) {
-			this.head = this.current.forwardNode;
-			this.current = this.head;
-			return;
-		}
+		if (this.current === null) return null;
 		if (this.current.forwardNode === null) {
 			this.previous();
-			this.current.forwardNode = null;
+			this.current === this.head
+				? (this.current = null)
+				: (this.current.forwardNode = null);
 			return;
 		} else {
-			let nodeToDel = this.current;
-			this.previous();
-			this.current.forwardNode = nodeToDel.forwardNode;
-			return;
+			if (this.current === this.head) {
+				this.head = this.current.forwardNode;
+				this.current = this.head;
+			} else {
+				let nodeToDel = this.current;
+				this.previous();
+				this.current.forwardNode = nodeToDel.forwardNode;
+			}
 		}
 	};
 	total = () => {

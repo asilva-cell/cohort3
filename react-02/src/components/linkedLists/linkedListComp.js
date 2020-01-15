@@ -6,7 +6,7 @@ import IconComp from "./iconComp";
 import arrowDouble from "../icons/arrowDouble.svg";
 import arrowSingle from "../icons/arrowSingle.svg";
 
-const list = new LinkedList();
+const newList = new LinkedList();
 const icons = [
 	{ key: "leftDouble", src: arrowDouble, name: "First" },
 	{ key: "leftSingle", src: arrowSingle, name: "Previous" },
@@ -16,103 +16,45 @@ const icons = [
 
 const ListDisplay = () => {
 	let [subject, setSubject] = useState("");
-	let [amount, setAmount] = useState("");
+	let [amount, setAmount] = useState(0);
 	let [counter, setCounter] = useState(0);
 	let [card, setCard] = useState("");
 
-	const capName = () => {
-		let firstCap = subject
-			.toLowerCase()
-			.split(" ")
-			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
-			.join(" ");
-		setSubject((subject = firstCap));
-	};
-
 	const createCard = e => {
 		if (subject === "") {
-			list.message = "Please enter a valid name";
 			return;
 		}
-		capName();
-		list.insert(subject, amount);
+		newList.insert(subject, amount);
 		setCounter(counter++);
-		setCard(
-			(card = (
-				<CardComp
-					key={counter}
-					node={list.current}
-					onClick={deleteCard}
-				/>
-			))
-		);
+		setCard((card = <CardComp key={counter} node={newList.current} />));
 		setSubject((subject = ""));
 		setAmount((amount = ""));
 	};
-	const deleteCard = e => {
-		list.delete();
-		if (!list.current) {
-			setCard((card = ""));
-			return;
-		}
-		setCard(
-			(card = (
-				<CardComp
-					key={counter}
-					node={list.current}
-					onClick={deleteCard}
-				/>
-			))
-		);
-	};
-	const cardController = e => {
-		list.message = "";
-		if (!list.current) return;
+	const currentController = e => {
 		if (e.target.alt === "First") {
-			list.first();
+			newList.first();
 		}
 		if (e.target.alt === "Previous") {
-			list.previous();
+			newList.previous();
 		}
 		if (e.target.alt === "Next") {
-			list.next();
+			newList.next();
 		}
 		if (e.target.alt === "Last") {
-			list.last();
+			newList.last();
 		}
-		setCard(
-			(card = (
-				<CardComp
-					key={counter}
-					node={list.current}
-					onClick={deleteCard}
-				/>
-			))
-		);
+		setCard((card = <CardComp key={counter} node={newList.current} />));
 	};
 
 	return (
 		<div>
-			<div className="container">{card}</div>
 			<div className="container">
-				<div className="icon-group">
-					<IconComp icon={icons[0]} onClick={cardController} />
-					<label>First</label>
-				</div>
-				<div className="icon-group">
-					<IconComp icon={icons[1]} onClick={cardController} />
-					<label>Previous</label>
-				</div>
-				<div className="icon-group">
-					<IconComp icon={icons[2]} onClick={cardController} />
-					<label>Next</label>
-				</div>
-				<div className="icon-group">
-					<IconComp icon={icons[3]} onClick={cardController} />
-					<label>Last</label>
-				</div>
+				<IconComp icon={icons[0]} onClick={currentController} />
+				<IconComp icon={icons[1]} onClick={currentController} />
+				{card}
+				<IconComp icon={icons[2]} onClick={currentController} />
+				<IconComp icon={icons[3]} onClick={currentController} />
 			</div>
-			<h5>{list.message}</h5>
 			<div className="container">
 				<div className="panel">
 					<div className="form">
@@ -132,7 +74,6 @@ const ListDisplay = () => {
 								className="input"
 								name="amount"
 								type="number"
-								min="0"
 								value={amount}
 								placeholder="0.00"
 								onChange={e => setAmount(e.target.value)}
@@ -146,6 +87,7 @@ const ListDisplay = () => {
 						>
 							Add Item
 						</button>
+						<p>{newList.message}</p>
 					</div>
 				</div>
 			</div>

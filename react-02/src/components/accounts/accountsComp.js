@@ -13,10 +13,10 @@ class AccountControllerComp extends React.Component {
 			totalBal: 0,
 			maxBal: "N/A",
 			minBal: "N/A",
-			openingBal: "",
+			accountBal: 0,
 			transaction: "deposit",
 			selectedAccount: "",
-			updateBal: ""
+			balanceInp: 0
 		};
 		this.addAccount = this.addAccount.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -43,11 +43,11 @@ class AccountControllerComp extends React.Component {
 		if (checkAccount === false) {
 			this.accountController.addAccount(
 				this.state.accountName,
-				this.state.openingBal
+				this.state.accountBal
 			);
 		}
 		this.updateDisplays();
-		this.setState({ accountName: "", openingBal: "" });
+		this.setState({ accountName: "", accountBal: 0 });
 	}
 	deleteAccount = key => {
 		this.accountController.removeAccount(key);
@@ -61,10 +61,9 @@ class AccountControllerComp extends React.Component {
 	operationControl(e) {
 		this.accountController.operationControl(
 			this.state.transaction,
-			Number(this.state.updateBal),
+			Number(this.state.balanceInp),
 			this.accountController.getAccountIndex(this.state.selectedAccount)
 		);
-		this.setState({ accountName: "", updateBal: "" });
 		this.updateDisplays();
 	}
 	updateDisplays() {
@@ -95,28 +94,20 @@ class AccountControllerComp extends React.Component {
 		return (
 			<div className="accountControllerComp">
 				<div className="card-deck">{allCards}</div>
-
-				{/* REPORT PANEL */}
-				<div className="report">
-					<div className="panel-report">
-						<h5 name="total">
-							Total Balance: {this.state.totalBal}
-						</h5>
-					</div>
-					<div className="panel-report">
-						<h5 name="maxBalance">
-							Maximum Balance: {this.state.maxBal}
-						</h5>
-					</div>
-					<div className="panel-report">
-						<h5 name="minBalance">
-							Minimum Balance: {this.state.minBal}
-						</h5>
-					</div>
-				</div>
-				{/* CREATE ACCOUNT PANEL */}
-				<h5>{this.accountController.message}</h5>
 				<div className="container">
+					{/* REPORT PANEL */}
+					<div className="panel report">
+						<p name="total">
+							Your Total Balance: {this.state.totalBal}
+						</p>
+						<p name="maxBalance">
+							Your Maximum Balance: {this.state.maxBal}
+						</p>
+						<p name="minBalance">
+							Your Minimum Balance: {this.state.minBal}
+						</p>
+					</div>
+					{/* ACCOUNT PANEL */}
 					<div className="panel">
 						<h3>Your Accounts</h3>
 						<div className="form">
@@ -136,10 +127,10 @@ class AccountControllerComp extends React.Component {
 								Opening Balance:{" "}
 								<input
 									className="input"
-									name="openingBal"
+									name="accountBal"
 									type="number"
 									min="0"
-									value={this.state.openingBal}
+									value={this.state.accountBal}
 									placeholder="0.00"
 									onChange={this.onChange}
 									required
@@ -155,6 +146,8 @@ class AccountControllerComp extends React.Component {
 									}}
 								/>
 							</div>
+
+							<p>{this.accountController.message}</p>
 						</div>
 					</div>
 					{/* TRANSACTION PANEL */}
@@ -188,11 +181,10 @@ class AccountControllerComp extends React.Component {
 							$:
 							<input
 								className="input"
-								name="updateBal"
+								name="balanceInp"
 								type="number"
 								min="0"
 								placeholder="0.00"
-								value={this.state.updateBal}
 								onChange={this.onChange}
 							/>
 							<br />
@@ -202,6 +194,7 @@ class AccountControllerComp extends React.Component {
 								value="Submit"
 								onClick={this.operationControl}
 							/>
+							<p>{this.accountController.message}</p>
 						</div>
 					</div>
 				</div>
