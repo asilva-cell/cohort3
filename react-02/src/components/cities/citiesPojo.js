@@ -58,16 +58,18 @@ class Community {
 		this.cities = [];
 		this.byName = {};
 		this.keyCount = 1;
-		this.message = "Please enter a city.";
+		this.message = "Please enter a city";
 	}
-	createCity(lastKey, cityName, latitude, longitude, population) {
-		this.keyCount = lastKey;
-		let capName = cityName;
-		capName = capName
+	capName(nameToCap) {
+		return nameToCap
 			.toLowerCase()
 			.split(" ")
 			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
 			.join(" ");
+	}
+	createCity(lastKey, cityName, latitude, longitude, population) {
+		this.keyCount = lastKey;
+		let capName = this.capName(cityName);
 		const newCity = new City(
 			this.keyCount++,
 			capName,
@@ -79,7 +81,7 @@ class Community {
 		this.type = newCity.howBig();
 		this.cities.push(newCity);
 		this.byName[cityName] = newCity;
-		this.message = `${cityName} has been added.`;
+		this.message = `${cityName} has been added`;
 		return newCity;
 	}
 	loadCitiesServer(serverData) {
@@ -93,7 +95,7 @@ class Community {
 					city.population
 				);
 			});
-			this.message = `Cities below have been loaded from the server.`;
+			this.message = `Cities below have been loaded from the server`;
 		}
 		return this.cities;
 	}
@@ -106,7 +108,7 @@ class Community {
 					city.longitude === longitude
 				) {
 					checkExist = true;
-					this.message = `${city.cityName} already exists.`;
+					this.message = `${city.cityName} already exists`;
 				}
 			});
 		}
@@ -115,7 +117,7 @@ class Community {
 	deleteCity(cityIndex) {
 		let cityName = this.cities[cityIndex].cityName;
 		this.cities.splice(cityIndex, 1);
-		this.message = `${cityName} has been deteled from your list.`;
+		this.message = `${cityName} has been deteled from your list`;
 	}
 	getCityById(id) {
 		let cityToUpdate = "";
@@ -130,14 +132,14 @@ class Community {
 		if (change === "moveOut") {
 			if (cityObj.population < peopleMoving) {
 				this.message =
-					"Population moving out must be greater than current population.";
+					"Population moving out must be greater than current population";
 				return "not enough";
 			}
-			this.message = "City population has been updated.";
+			this.message = "City population has been updated";
 			cityObj.movedOut(peopleMoving);
 			return cityObj;
 		} else {
-			this.message = "City population has been updated.";
+			this.message = "City population has been updated";
 			cityObj.movedIn(peopleMoving);
 		}
 		return cityObj;

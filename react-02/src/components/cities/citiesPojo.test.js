@@ -48,95 +48,84 @@ test("check whichSphere", () => {
 
 //  CLASS COMMUNITY - CONTROLLER.
 test("check createCity, if it exists", () => {
-	let cityController = new Community();
-	expect(cityController.checkCityExists(52.269, -113.8116)).toBe(false);
-	cityController.createCity(key++, "Red Deer", 52.269, -113.8116, 100418);
-	expect(cityController.checkCityExists(52.269, -113.8116)).toBe(true);
+	let a = new Community();
+	expect(a.checkCityExists(52.269, -113.8116)).toBe(false);
+	a.createCity(key++, "Red Deer", 52.269, -113.8116, 100418);
+	expect(a.checkCityExists(52.269, -113.8116)).toBe(true);
 });
-test("check getPopulation, ", () => {
-	let cityController = new Community();
-
-	cityController.createCity(key++, "Medicine Hat", 50.0421, -110.7197, 63260);
-	cityController.createCity(
-		key++,
-		"Yellowknife",
-		62.453972,
-		-114.371788,
-		19569
-	);
-	cityController.createCity(key++, "Red Deer", 52.269, -113.8116, 100418);
-	let sydneyObj = cityController.createCity(
-		key++,
-		"Sydney",
-		-33.870453,
-		151.208755,
-		4741874
-	);
-	expect(cityController.getPopulation()).toBe(4925121);
+test("check totalPopulation, ", () => {
+	let a = new Community();
+	a.createCity(key++, "Medicine Hat", 50.0421, -110.7197, 60000);
+	a.createCity(key++, "Yellowknife", 62.453972, -114.371788, 10000);
+	a.createCity(key++, "Red Deer", 52.269, -113.8116, 100000);
+	a.createCity(key++, "Sydney", -33.870453, 151.208755, 5000000);
+	expect(a.totalPopulation()).toBe(5170000);
 
 	// CHECK DELETE CITY
 
-	let mapCities = cityController.cities.map(city => {
-		return city.name;
+	let cityMap = a.cities.map(city => {
+		return city.cityName;
 	});
-	expect(mapCities).toEqual([
+	expect(cityMap).toEqual([
 		"Medicine Hat",
 		"Yellowknife",
 		"Red Deer",
 		"Sydney"
 	]);
-	cityController.deleteCity("Red Deer");
-	mapCities = cityController.cities.map(city => {
-		return city.name;
+	a.deleteCity(2);
+	cityMap = a.cities.map(city => {
+		return city.cityName;
 	});
-	expect(mapCities).toEqual(["Medicine Hat", "Yellowknife", "Sydney"]);
+	expect(cityMap).toEqual(["Medicine Hat", "Yellowknife", "Sydney"]);
 
 	// CHECK NORTHERN AND SOUTHERN CITIES
-	expect(cityController.getMostNorthern().name).toBe("Yellowknife");
-	expect(cityController.getMostSouthern().name).toBe("Sydney");
+	expect(a.getMostNorthern()).toBe("Yellowknife");
+	expect(a.getMostSouthern()).toBe("Sydney");
 
 	// CHECK POPULATION CONTROL, MOVE IN AND OUT
-	expect(sydneyObj.population).toBe(4741874);
-	cityController.populationControl(sydneyObj, "moveOut", 1000000);
-	expect(sydneyObj.population).toBe(3741874);
-	cityController.populationControl(sydneyObj, "moveIn", 1000000);
-	expect(sydneyObj.population).toBe(4741874);
+	let city = a.cities[0];
+	expect(city.cityName).toBe("Sydney");
+	expect(city.population).toBe(5000000);
+	a.populationControl(city, "moveOut", 1000000);
+	expect(city.population).toBe(4000000);
+	a.populationControl(city, "moveIn", 500000);
+	expect(city.population).toBe(4500000);
 });
 test("check card are loaded given an array", () => {
-	let cityController = new Community();
+	let a = new Community();
 	let serverData = [
 		{
 			key: 1,
-			name: "Medicine Hat",
+			cityName: "Sydney",
 			latitude: 50.0421,
 			longitude: -110.7197,
-			population: 63260
+			population: 60000
 		},
 		{
 			key: 2,
-			name: "Yellowknife",
+			cityName: "Regina",
 			latitude: 62.453972,
 			longitude: -114.371788,
-			population: 19569
+			population: 20000
 		},
 		{
 			key: 5,
-			name: "Red Deer",
+			cityName: "Brooks",
 			latitude: 52.269,
 			longitude: -113.8116,
-			population: 100418
+			population: 1000
 		}
 	];
-	let mapCities = cityController.cities.map(city => {
-		return city.name;
+	let cityMap = a.cities.map(city => {
+		return city.cityName;
 	});
-	expect(mapCities).toEqual([]);
+	expect(cityMap).toEqual([]);
 
-	cityController.loadCitiesServer(serverData);
-	mapCities = cityController.cities.map(city => {
-		return city.name;
+	a.loadCitiesServer(serverData);
+	cityMap = a.cities.map(city => {
+		return city.cityName;
 	});
-	expect(mapCities).toEqual(["Medicine Hat", "Yellowknife", "Red Deer"]);
+	expect(cityMap).toEqual(["Sydney", "Regina", "Brooks"]);
 });
 
 // // 130E PRACITCING REFERENCE
