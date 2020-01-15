@@ -1,18 +1,8 @@
 import React, { Component } from "react";
 
 class AccountCardComp extends Component {
-	capName = nameToCap => {
-		nameToCap = nameToCap
-			.toLowerCase()
-			.split(" ")
-			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
-			.join(" ");
-		return nameToCap;
-	};
 	render() {
 		let { key, accountName, balance } = this.props.account;
-		accountName = this.capName(accountName);
-
 		return (
 			<div className="card">
 				<h3 className="card-header text-dark">{accountName}</h3>
