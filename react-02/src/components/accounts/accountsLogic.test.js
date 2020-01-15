@@ -77,11 +77,7 @@ test("check total balance", () => {
 		{ key: 2, accountName: "saving", balance: 150 },
 		{ key: 3, accountName: "line of credict", balance: 100 }
 	]);
-	expect(controller1.totalBalance()).toEqual("Your Total Balance is $250.");
-	expect(controller1.maxBalance()).toEqual(
-		"Your Maximum Balance is $150 in your saving."
-	);
-	expect(controller1.minBalance()).toEqual(
-		"Your Minimum Balance is $100 in your line of credict."
-	);
+	expect(controller1.totalBalance()).toEqual("$250");
+	expect(controller1.maxBalance()).toEqual("$150 in saving account");
+	expect(controller1.minBalance()).toEqual("$100 in line of credict account");
 });
