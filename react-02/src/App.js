@@ -5,6 +5,7 @@ import Game from "./components/ticTacToe";
 import AccountControllerComp from "./components/accounts/accountsComp";
 import CityComp from "./components/cities/cityComp";
 import ListDisplay from "./components/linkedLists/linkedListComp";
+import StackDisplay from "./components/stackQueue/stackComp";
 
 import "./App.css";
 
@@ -50,9 +51,14 @@ class App extends React.Component {
 				<div className="bigContainer">
 					<ListDisplay />
 				</div>
+			),
+			StackQueuePage: (
+				<div className="bigContainer">
+					<StackDisplay />
+				</div>
 			)
 		};
-		this.state = { page: this.pages.listPage };
+		this.state = { page: this.pages.StackQueuePage };
 	}
 	pageController = e => {
 		if (e.target.alt === "main") {
@@ -69,6 +75,9 @@ class App extends React.Component {
 		}
 		if (e.target.alt === "link") {
 			this.setState({ page: this.pages.listPage });
+		}
+		if (e.target.alt === "stack") {
+			this.setState({ page: this.pages.StackQueuePage });
 		}
 	};
 
