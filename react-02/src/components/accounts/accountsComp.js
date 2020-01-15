@@ -27,6 +27,8 @@ class AccountControllerComp extends React.Component {
 		if (checkAccount === false) {
 			a.addAccount(this.accountName.value, this.accountBal.value);
 		}
+		this.accountName.value = "";
+		this.accountBal.value = "";
 		this.setState({ accountController: a });
 		this.updateDisplays();
 	};
@@ -52,6 +54,9 @@ class AccountControllerComp extends React.Component {
 			Number(this.balanceInp.value),
 			a.getAccountIndex(this.selectedAccount.value)
 		);
+		this.selectedAccount.value = "default";
+		this.balanceInp.value = "";
+
 		this.setState({ accountController: a });
 		this.updateDisplays();
 	};
