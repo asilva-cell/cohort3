@@ -33,7 +33,7 @@ test("check how big a city is", () => {
 test("check whichSphere", () => {
 	let northernCity = new City(key++, "Calgary", 51.0447, -114.0719, 1267344);
 	northernCity.whichSphere();
-	expect(northernCity.hemisphere).toBe("Northern hemisphere");
+	expect(northernCity.hemisphere).toBe("northern hemisphere");
 
 	let southernCity = new City(
 		key++,
@@ -43,7 +43,7 @@ test("check whichSphere", () => {
 		4741874
 	);
 	southernCity.whichSphere();
-	expect(southernCity.hemisphere).toBe("Southern hemisphere");
+	expect(southernCity.hemisphere).toBe("southern hemisphere");
 });
 
 //  CLASS COMMUNITY - CONTROLLER.

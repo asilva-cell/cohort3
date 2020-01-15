@@ -46,9 +46,9 @@ class City {
 	whichSphere() {
 		let latitude = this.latitude;
 		if (latitude > 0) {
-			return (this.hemisphere = "Northern hemisphere");
+			return (this.hemisphere = "northern hemisphere");
 		} else {
-			return (this.hemisphere = "Southern hemisphere");
+			return (this.hemisphere = "southern hemisphere");
 		}
 	}
 }
