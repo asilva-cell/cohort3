@@ -39,13 +39,13 @@ class CityComp extends Component {
 			this.setState({ community: a });
 			return;
 		}
-		let checkCityExists = this.state.community.checkCityExists(
+		let checkCityExists = a.checkCityExists(
 			this.latitude.value,
 			this.longitude.value
 		);
 
 		if (checkCityExists === false) {
-			newCity = this.state.community.createCity(
+			newCity = a.createCity(
 				lastKey,
 				this.cityName.value,
 				this.latitude.value,
@@ -69,17 +69,27 @@ class CityComp extends Component {
 	};
 	populationControl = () => {
 		let a = this.state.community;
+		let selectOptions = this.selectedCity.options;
+
+		if (selectOptions.length === 1) {
+			a.message = "Please create a city";
+			this.setState({ community: a });
+			return;
+		}
+		if (selectOptions.selectedIndex === 0) {
+			a.message = "Please select a city";
+			this.setState({ community: a });
+			return;
+		}
 		let cityId = Number(
-			this.selectedCity.options[
-				this.selectedCity.selectedIndex
-			].getAttribute("id")
+			selectOptions[this.selectedCity.selectedIndex].getAttribute("id")
 		);
 		let updatedCity = a.populationControl(
 			a.getCityById(cityId),
 			this.typeOfMove.value,
 			Number(this.populationInp.value)
 		);
-		if (updatedCity !== "not enough") {
+		if (updatedCity !== false) {
 			fetchFunctions.updateData(updatedCity);
 		}
 		this.populationInp.value = "";
@@ -87,20 +97,17 @@ class CityComp extends Component {
 		this.updateDisplays();
 	};
 	updateDisplays = () => {
-		const totalPop = this.state.community.totalPopulation();
-		const mostNorth = this.state.community.getMostNorthern();
-		const mostSouth = this.state.community.getMostSouthern();
+		let a = this.state.community;
 		this.setState({
-			totalPop: totalPop,
-			mostNorth: mostNorth,
-			mostSouth: mostSouth
+			totalPop: a.totalPopulation(),
+			mostNorth: a.getMostNorthern(),
+			mostSouth: a.getMostSouthern()
 		});
-		return;
 	};
 
 	render() {
-		let allCities = this.state.community.cities;
-		let allCards = allCities.map((city, index) => {
+		let a = this.state.community.cities;
+		let allCards = a.map((city, index) => {
 			return (
 				<CityCardComp
 					key={city.key}
@@ -114,31 +121,25 @@ class CityComp extends Component {
 		return (
 			<div className="Community">
 				<div className="card-deck">{allCards}</div>
-
-				{/* REPORT PANEL */}
-				<div className="report">
-					<div className="panel-report">
-						<h5 name="total">
-							Total Population: {this.state.totalPop}
-						</h5>
-					</div>
-					<div className="panel-report">
-						<h5 name="maxBalance">
-							Most Northern City: {this.state.mostNorth}
-						</h5>
-					</div>
-					<div className="panel-report">
-						<h5 name="minBalance">
-							Most Sourthern City: {this.state.mostSouth}
-						</h5>
-					</div>
-				</div>
-
-				{/* CREATE CITY PANEL */}
 				<h5>{this.state.community.message}</h5>
 				<div className="container">
+					{/* REPORT PANEL */}
 					<div className="panel">
-						<h2>Your Cities</h2>
+						<p name="total">
+							Total Population: {this.state.totalPop}
+						</p>
+						<p name="maxBalance">
+							Most Northern City: {this.state.mostNorth}
+						</p>
+						<p name="minBalance">
+							Most Sourthern City: {this.state.mostSouth}
+						</p>
+					</div>
+
+					{/* CREATE CITY PANEL */}
+
+					<div className="panel">
+						<h3>Your Cities</h3>
 						<div className="form">
 							City Name:{""}
 							<input
@@ -151,44 +152,45 @@ class CityComp extends Component {
 								}}
 								required
 							/>
+							<br />
 							Population:{""}
 							<input
 								className="input"
 								name="population"
 								type="number"
 								min="0"
-								placeholder="0.00"
+								placeholder="0"
 								ref={input => {
 									this.population = input;
 								}}
 								required
 							/>
-						</div>
-						<div className="form">
+							<br />
 							Latitud:{""}
 							<input
 								className="input"
 								name="latitude"
 								type="number"
-								placeholder="0.00"
+								placeholder="+/- 00.000000"
 								ref={input => {
 									this.latitude = input;
 								}}
 								required
 							/>
+							<br />
 							Longitude:{""}
 							<input
 								className="input"
 								name="longitude"
 								type="number"
-								placeholder="0.00"
+								placeholder="+/- 00.000000"
 								ref={input => {
 									this.longitude = input;
 								}}
 								required
 							/>
 						</div>
-						<br />
+
 						<button
 							type="button"
 							className="btn btn-primary btn-sm"
@@ -216,7 +218,7 @@ class CityComp extends Component {
 									<option value="default">
 										Select City{" "}
 									</option>
-									{allCities.map((city, index) => (
+									{a.map((city, index) => (
 										<SelectComp
 											key={city.key}
 											index={index}
@@ -229,7 +231,6 @@ class CityComp extends Component {
 								Type of Move:
 								<select
 									className="input"
-									required
 									name="transaction"
 									ref={input => {
 										this.typeOfMove = input;
@@ -246,7 +247,7 @@ class CityComp extends Component {
 									name="populationInp"
 									type="number"
 									min="0"
-									placeholder="0.00"
+									placeholder="0"
 									ref={input => {
 										this.populationInp = input;
 									}}

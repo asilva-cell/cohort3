@@ -95,7 +95,7 @@ class Community {
 					city.population
 				);
 			});
-			this.message = `Cities below have been loaded from the server`;
+			this.message = `Current cities have been loaded from the server`;
 		}
 		return this.cities;
 	}
@@ -129,19 +129,18 @@ class Community {
 		return cityToUpdate;
 	}
 	populationControl(cityObj, change, peopleMoving) {
+		console.log(cityObj);
 		if (change === "moveOut") {
 			if (cityObj.population < peopleMoving) {
 				this.message =
-					"Population moving out must be greater than current population";
-				return "not enough";
+					"Population moving out must be less than current population";
+				return false;
 			}
-			this.message = "City population has been updated";
 			cityObj.movedOut(peopleMoving);
-			return cityObj;
 		} else {
-			this.message = "City population has been updated";
 			cityObj.movedIn(peopleMoving);
 		}
+		this.message = `${cityObj.cityName} population has been updated`;
 		return cityObj;
 	}
 	totalPopulation() {
@@ -158,7 +157,6 @@ class Community {
 		}
 		return "N/A";
 	}
-
 	getMostSouthern() {
 		if (this.cities.length >= 1) {
 			this.cities.sort((city1, city2) => city1.latitude - city2.latitude);
