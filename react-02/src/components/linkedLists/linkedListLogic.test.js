@@ -7,15 +7,6 @@ test("show", () => {
 
 test("insert, first, last, next, previous", () => {
 	const linkedList = new LinkedList();
-	// testing when list is empty
-	expect(linkedList.first()).toBeNull();
-	expect(linkedList.last()).toBeNull();
-	expect(linkedList.previous()).toBeNull();
-	expect(linkedList.next()).toBeNull();
-	expect(linkedList.delete()).toBeNull();
-	// linkedList.previous();
-	// linkedList.delete();
-
 	//only one none => first=last
 	linkedList.insert("A", 1);
 	expect(linkedList.current.subject).toBe("A");
@@ -75,6 +66,4 @@ test("total", () => {
 	linkedList.insert("C", 3);
 	linkedList.insert("D", 4);
 	expect(linkedList.total()).toBe(10);
-
-	// 	linkedList.total();
 });

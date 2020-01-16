@@ -13,7 +13,7 @@ export class LinkedList {
 	constructor() {
 		this.head = null;
 		this.current = this.head;
-		this.message = "Your list in empty. Please enter an item below.";
+		this.message = "Your list in empty.";
 	}
 
 	insert = (subject, amount) => {
@@ -34,7 +34,7 @@ export class LinkedList {
 				this.current = newNode;
 			}
 		}
-		this.message = `${this.current.subject} added.`;
+		this.message = `${this.current.subject} added to list`;
 		return this.current;
 	};
 	first = () => {
@@ -49,7 +49,6 @@ export class LinkedList {
 		return this.current;
 	};
 	next = () => {
-		if (this.current === null) return this.current;
 		if (this.current.forwardNode === null) {
 			return this.current;
 		}
@@ -68,23 +67,27 @@ export class LinkedList {
 		return this.current ? this.current : null;
 	};
 	delete = () => {
+		if (this.current === null) return null;
 		if (this.current === this.head && this.current.forwardNode === null) {
 			this.head = null;
 			this.current = this.head;
-			this.message = "Your list in empty. Please enter an item below.";
+			this.message = "Your list in empty.";
 			return;
 		}
 		if (this.current === this.head) {
+			this.message = `${this.current.subject} has been deleted`;
 			this.head = this.current.forwardNode;
 			this.current = this.head;
 			return;
 		}
 		if (this.current.forwardNode === null) {
+			this.message = `${this.current.subject} has been deleted`;
 			this.previous();
 			this.current.forwardNode = null;
 			return;
 		} else {
 			let nodeToDel = this.current;
+			this.message = `${nodeToDel.subject} has been deleted`;
 			this.previous();
 			this.current.forwardNode = nodeToDel.forwardNode;
 			return;

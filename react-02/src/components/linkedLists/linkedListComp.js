@@ -19,6 +19,7 @@ const ListDisplay = () => {
 	let [amount, setAmount] = useState("");
 	let [counter, setCounter] = useState(0);
 	let [card, setCard] = useState("");
+	let [message, setMessage] = useState("Your list is empty");
 
 	const capName = () => {
 		let firstCap = subject
@@ -30,8 +31,9 @@ const ListDisplay = () => {
 	};
 
 	const createCard = e => {
-		if (subject === "") {
-			list.message = "Please enter a valid name";
+		if (subject === "" || amount === "") {
+			console.log("from if");
+			setMessage("Please enter a valid name/amount");
 			return;
 		}
 		capName();
@@ -46,13 +48,14 @@ const ListDisplay = () => {
 				/>
 			))
 		);
-		setSubject((subject = ""));
-		setAmount((amount = ""));
+		setMessage(list.message);
+		setSubject("");
+		setAmount("");
 	};
 	const deleteCard = e => {
 		list.delete();
 		if (!list.current) {
-			setCard((card = ""));
+			setCard("");
 			return;
 		}
 		setCard(
@@ -64,9 +67,10 @@ const ListDisplay = () => {
 				/>
 			))
 		);
+		setMessage(list.message);
 	};
 	const cardController = e => {
-		list.message = "";
+		console.log(list.current);
 		if (!list.current) return;
 		if (e.target.alt === "First") {
 			list.first();
@@ -96,27 +100,24 @@ const ListDisplay = () => {
 			<div className="container">
 				<div className="icon-group">
 					<IconComp icon={icons[0]} onClick={cardController} />
-					<br />
 					<label>First</label>
 				</div>
 				<div className="icon-group">
 					<IconComp icon={icons[1]} onClick={cardController} />
-					<br />
 					<label>Previous</label>
 				</div>
-				<div className="container">{card}</div>
+				<div>{card}</div>
 				<div className="icon-group">
 					<IconComp icon={icons[2]} onClick={cardController} />
-					<br />
 					<label>Next</label>
 				</div>
 				<div className="icon-group">
 					<IconComp icon={icons[3]} onClick={cardController} />
-					<br />
 					<label>Last</label>
 				</div>
 			</div>
-			<h5>{list.message}</h5>
+			<h5>{message}</h5>
+
 			<div className="container">
 				<div className="panel">
 					<div className="form">
@@ -137,8 +138,8 @@ const ListDisplay = () => {
 								name="amount"
 								type="number"
 								min="0"
-								value={amount}
 								placeholder="0.00"
+								value={amount}
 								onChange={e => setAmount(e.target.value)}
 								required
 							/>
@@ -150,6 +151,7 @@ const ListDisplay = () => {
 						>
 							Add Item
 						</button>
+						<p>{`Your total amount of items is ${list.total()}`}</p>
 					</div>
 				</div>
 			</div>
