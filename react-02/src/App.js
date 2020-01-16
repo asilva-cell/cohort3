@@ -6,6 +6,7 @@ import AccountControllerComp from "./components/accounts/accountsComp";
 import CityComp from "./components/cities/cityComp";
 import ListDisplay from "./components/linkedLists/linkedListComp";
 import StackDisplay from "./components/stackQueue/stackComp";
+import ThemeSetting from "./components/settings/settingComp";
 
 import "./App.css";
 
@@ -52,13 +53,18 @@ class App extends React.Component {
 					<ListDisplay />
 				</div>
 			),
-			StackQueuePage: (
+			stackQueuePage: (
 				<div className="bigContainer">
 					<StackDisplay />
 				</div>
+			),
+			settingsPage: (
+				<div className="bigContainer">
+					<ThemeSetting />
+				</div>
 			)
 		};
-		this.state = { page: this.pages.StackQueuePage };
+		this.state = { page: this.pages.settingsPage, theme: "dark" };
 	}
 	pageController = e => {
 		if (e.target.alt === "main") {
@@ -77,7 +83,10 @@ class App extends React.Component {
 			this.setState({ page: this.pages.listPage });
 		}
 		if (e.target.alt === "stack") {
-			this.setState({ page: this.pages.StackQueuePage });
+			this.setState({ page: this.pages.stackQueuePage });
+		}
+		if (e.target.alt === "settings") {
+			this.setState({ page: this.pages.settingsPage });
 		}
 	};
 
