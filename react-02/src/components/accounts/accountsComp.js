@@ -91,17 +91,15 @@ class AccountControllerComp extends React.Component {
 			<div className="accountControllerComp">
 				<div className="card-deck">{allCards}</div>
 				<h5>{this.state.accountController.message}</h5>
-				<div className="container report">
+				<div className="container">
 					{/* REPORT PANEL */}
 					<div className="panel ">
-						<p name="total">
-							Your Total Balance: {this.state.totalBal}
-						</p>
+						<p name="total">Total Balance: {this.state.totalBal}</p>
 						<p name="maxBalance">
-							Your Max Balance: {this.state.maxBal}
+							Max Balance: {this.state.maxBal}
 						</p>
 						<p name="minBalance">
-							Your Min Balance: {this.state.minBal}
+							Min Balance: {this.state.minBal}
 						</p>
 					</div>
 					{/* ACCOUNT PANEL */}
@@ -153,7 +151,7 @@ class AccountControllerComp extends React.Component {
 					<div className="panel">
 						<div>
 							<h3>Quick Transactions</h3>
-							Select Account
+							Select Account:
 							<select
 								name="selectedAccount"
 								value={this.state.selectedAccount}

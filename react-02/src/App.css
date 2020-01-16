@@ -10,7 +10,7 @@
 	justify-content: center;
 }
 .Icons {
-	height: 10vmin;
+	height: 7.5vmin;
 	margin: 10px;
 	opacity: 0.5;
 	animation: Icons 3s infinite;
@@ -24,6 +24,7 @@
 	animation: Icons;
 	transform: rotateZ(0deg);
 }
+
 @keyframes Icons {
 	0% {
 		transform: rotateZ(0);

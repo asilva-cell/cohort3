@@ -141,7 +141,7 @@ class CityComp extends Component {
 					<div className="panel">
 						<h3>Your Cities</h3>
 						<div className="form">
-							City Name:{""}
+							<label>City Name:</label>
 							<input
 								className="input"
 								name="cityName"
@@ -153,7 +153,7 @@ class CityComp extends Component {
 								required
 							/>
 							<br />
-							Population:{""}
+							<label>Population:</label>
 							<input
 								className="input"
 								name="population"
@@ -166,7 +166,7 @@ class CityComp extends Component {
 								required
 							/>
 							<br />
-							Latitud:{""}
+							<label>Latitude:</label>
 							<input
 								className="input"
 								name="latitude"
@@ -178,7 +178,7 @@ class CityComp extends Component {
 								required
 							/>
 							<br />
-							Longitude:{""}
+							<label>Longitude:</label>
 							<input
 								className="input"
 								name="longitude"
@@ -207,7 +207,7 @@ class CityComp extends Component {
 						<h2>City Updates</h2>
 						<div className="form">
 							<div>
-								Select City
+								<label>City:</label>
 								<select
 									className="input"
 									name="selectedCity"
@@ -228,7 +228,7 @@ class CityComp extends Component {
 								</select>
 							</div>
 							<div>
-								Type of Move:
+								<label>Type of Move:</label>
 								<select
 									className="input"
 									name="transaction"
@@ -241,7 +241,7 @@ class CityComp extends Component {
 								</select>
 							</div>
 							<div>
-								People Moving:
+								<label>People Moving:</label>
 								<input
 									className="input"
 									name="populationInp"
