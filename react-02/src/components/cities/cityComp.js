@@ -53,10 +53,6 @@ class CityComp extends Component {
 				this.population.value
 			);
 		}
-		this.cityName.value = "";
-		this.latitude.value = "";
-		this.longitude.value = "";
-		this.population.value = "";
 		this.setState({ community: a });
 		fetchFunctions.addData(newCity);
 		this.updateDisplays();
@@ -92,7 +88,6 @@ class CityComp extends Component {
 		if (updatedCity !== false) {
 			fetchFunctions.updateData(updatedCity);
 		}
-		this.populationInp.value = "";
 		this.setState({ community: a });
 		this.updateDisplays();
 	};
@@ -137,7 +132,6 @@ class CityComp extends Component {
 					</div>
 
 					{/* CREATE CITY PANEL */}
-
 					<div className="panel">
 						<h3>Your Cities</h3>
 						<div className="form">
@@ -147,6 +141,7 @@ class CityComp extends Component {
 								name="cityName"
 								type="text"
 								placeholder="Example: Calgary"
+								value={this.state.cityName}
 								ref={input => {
 									this.cityName = input;
 								}}
@@ -187,8 +182,10 @@ class CityComp extends Component {
 								ref={input => {
 									this.longitude = input;
 								}}
-								required
-							/>
+							>
+								Create City
+							</button>
+							<p>{this.state.community.message}</p>
 						</div>
 
 						<button
@@ -260,6 +257,8 @@ class CityComp extends Component {
 							>
 								Submit
 							</button>
+
+							<p>{this.state.community.message}</p>
 						</div>
 					</div>
 				</div>

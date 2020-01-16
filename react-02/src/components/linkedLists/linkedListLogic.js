@@ -15,16 +15,17 @@ export class LinkedList {
 		this.current = this.head;
 		this.message = "Your list in empty.";
 	}
-
 	insert = (subject, amount) => {
 		let newNode = new ListNode(subject, amount);
 		// when list is empty
 		if (this.head === null) {
 			this.head = newNode;
 			this.current = newNode;
+			return this.current;
 		} else {
 			//insert node on last
 			if (this.current.forwardNode === null) {
+				// newNode.forwardNode = null;
 				this.current.forwardNode = newNode;
 				this.current = newNode;
 			} else {
@@ -33,19 +34,21 @@ export class LinkedList {
 				this.current.forwardNode = newNode;
 				this.current = newNode;
 			}
+			return this.current;
 		}
 		this.message = `${this.current.subject} added to list`;
 		return this.current;
 	};
 	first = () => {
 		this.current = this.head;
-
 		return this.current ? this.current : null;
 	};
 	last = () => {
-		while (this.current.forwardNode !== null) {
-			this.current = this.current.forwardNode;
+		if (this.current === null) return this.current;
+		if (this.current.forwardNode === null) {
+			return this.current;
 		}
+		this.current = this.current.forwardNode;
 		return this.current;
 	};
 	next = () => {
@@ -83,7 +86,9 @@ export class LinkedList {
 		if (this.current.forwardNode === null) {
 			this.message = `${this.current.subject} has been deleted`;
 			this.previous();
-			this.current.forwardNode = null;
+			this.current === this.head
+				? (this.current = null)
+				: (this.current.forwardNode = null);
 			return;
 		} else {
 			let nodeToDel = this.current;

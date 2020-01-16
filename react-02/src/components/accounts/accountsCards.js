@@ -8,9 +8,8 @@ class AccountCardComp extends Component {
 				<h3 className="card-header text-dark">{accountName}</h3>
 				<div className="card-body">
 					<p className="card-text text-dark">${balance}</p>
-				</div>
-				<div className="card-footer">
 					<button
+						type="button"
 						className="btn btn-primary btn-sm"
 						onClick={this.props.delete.bind(this, key)}
 					>

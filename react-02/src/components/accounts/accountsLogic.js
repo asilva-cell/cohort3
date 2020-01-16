@@ -101,29 +101,23 @@ class AccountController {
 			(accumulator, user) => accumulator + user.balance,
 			0
 		);
-		return `$${totalBalance}`;
+		return `$${totalBalance}.`;
 	}
 
 	maxBalance() {
-		if (this.userAccounts.length !== 0) {
-			this.userAccounts.sort(
-				(account1, account2) => account2.balance - account1.balance
-			);
-			let maxAccount = this.userAccounts[0];
-			return `$${maxAccount.balance} in ${maxAccount.accountName} account`;
-		}
-		return "N/A";
+		this.userAccounts.sort(
+			(account1, account2) => account2.balance - account1.balance
+		);
+		let maxAccount = this.userAccounts[0];
+		return `$${maxAccount.balance} in your ${maxAccount.accountName} account.`;
 	}
 
 	minBalance() {
-		if (this.userAccounts.length !== 0) {
-			this.userAccounts.sort(
-				(account1, account2) => account1.balance - account2.balance
-			);
-			let minAccount = this.userAccounts[0];
-			return `$${minAccount.balance} in ${minAccount.accountName} account`;
-		}
-		return "N/A";
+		this.userAccounts.sort(
+			(account1, account2) => account1.balance - account2.balance
+		);
+		let minAccount = this.userAccounts[0];
+		return `$${minAccount.balance} in your ${minAccount.accountName} account.`;
 	}
 }
 

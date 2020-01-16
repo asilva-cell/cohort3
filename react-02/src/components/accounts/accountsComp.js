@@ -32,6 +32,7 @@ class AccountControllerComp extends React.Component {
 		this.setState({ accountController: a });
 		this.updateDisplays();
 	};
+
 	deleteAccount = key => {
 		let a = this.state.accountController;
 		a.removeAccount(key);
@@ -42,6 +43,7 @@ class AccountControllerComp extends React.Component {
 		this.setState({ accountController: a });
 		this.updateDisplays();
 	};
+
 	operationControl = e => {
 		let a = this.state.accountController;
 		if (this.selectedAccount.value === "default") {
@@ -145,6 +147,8 @@ class AccountControllerComp extends React.Component {
 									}}
 								/>
 							</div>
+
+							<p>{this.accountController.message}</p>
 						</div>
 					</div>
 					{/* TRANSACTION PANEL */}
@@ -202,6 +206,7 @@ class AccountControllerComp extends React.Component {
 								value="Submit"
 								onClick={this.operationControl}
 							/>
+							<p>{this.accountController.message}</p>
 						</div>
 					</div>
 				</div>

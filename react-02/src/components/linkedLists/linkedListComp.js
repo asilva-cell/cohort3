@@ -6,7 +6,7 @@ import IconComp from "./iconComp";
 import arrowDouble from "../icons/arrowDouble.svg";
 import arrowSingle from "../icons/arrowSingle.svg";
 
-const list = new LinkedList();
+const newList = new LinkedList();
 const icons = [
 	{ key: "leftDouble", src: arrowDouble, name: "First" },
 	{ key: "leftSingle", src: arrowSingle, name: "Previous" },
@@ -16,28 +16,19 @@ const icons = [
 
 const ListDisplay = () => {
 	let [subject, setSubject] = useState("");
-	let [amount, setAmount] = useState("");
+	let [amount, setAmount] = useState(0);
 	let [counter, setCounter] = useState(0);
 	let [card, setCard] = useState("");
 	let [message, setMessage] = useState("Your list is empty");
-
-	const capName = () => {
-		let firstCap = subject
-			.toLowerCase()
-			.split(" ")
-			.map(words => words.charAt(0).toUpperCase() + words.substring(1))
-			.join(" ");
-		setSubject((subject = firstCap));
-	};
 
 	const createCard = e => {
 		if (subject === "" || amount === "") {
 			console.log("from if");
 			setMessage("Please enter a valid name/amount");
+
 			return;
 		}
-		capName();
-		list.insert(subject, amount);
+		newList.insert(subject, amount);
 		setCounter(counter++);
 		setCard(
 			(card = (
@@ -73,26 +64,18 @@ const ListDisplay = () => {
 		console.log(list.current);
 		if (!list.current) return;
 		if (e.target.alt === "First") {
-			list.first();
+			newList.first();
 		}
 		if (e.target.alt === "Previous") {
-			list.previous();
+			newList.previous();
 		}
 		if (e.target.alt === "Next") {
-			list.next();
+			newList.next();
 		}
 		if (e.target.alt === "Last") {
-			list.last();
+			newList.last();
 		}
-		setCard(
-			(card = (
-				<CardComp
-					key={counter}
-					node={list.current}
-					onClick={deleteCard}
-				/>
-			))
-		);
+		setCard((card = <CardComp key={counter} node={newList.current} />));
 	};
 
 	return (
@@ -117,7 +100,6 @@ const ListDisplay = () => {
 				</div>
 			</div>
 			<h5>{message}</h5>
-
 			<div className="container">
 				<div className="panel">
 					<div className="form">

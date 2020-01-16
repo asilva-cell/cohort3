@@ -9,16 +9,6 @@ const CardComp = props => {
 					Amount:{` ${props.node.amount}`}
 				</p>
 			</div>
-			<div className="card-footer">
-				<button
-					type="button"
-					className="btn btn-primary btn-sm"
-					alt="Delete"
-					onClick={props.onClick}
-				>
-					Delete
-				</button>
-			</div>
 		</div>
 	);
 };

@@ -20,8 +20,6 @@ class CityCardComp extends Component {
 					<p className="card-text">
 						{`${cityName} is located on the ${hemisphere}, has a population of ${population} people and is considered a ${type}.`}
 					</p>
-				</div>
-				<div className="card-footer">
 					<button
 						type="button"
 						className="btn btn-primary btn-sm"
