@@ -7,7 +7,7 @@ const StackDisplay = () => {
 	let [counter, setCounter] = useState(1);
 	let [users, setUsers] = useState([]);
 	let [cards, setCards] = useState([]);
-	let [message, setMessage] = useState("Please add a user");
+	let [message, setMessage] = useState("Please add a new user");
 
 	const createCard = e => {
 		setCounter(counter + 1);
@@ -27,11 +27,13 @@ const StackDisplay = () => {
 	};
 
 	const fifo = e => {
+		if (users.length === 0) return setMessage(`Please add a new user`);
 		setMessage(`Users ${users[0]} has been removed`);
 		let updatedUsers = functions.fifo(users);
 		updateUsersArray(updatedUsers);
 	};
 	const lifo = e => {
+		if (users.length === 0) return setMessage(`Please add a new user`);
 		setMessage(`Users ${users[users.length - 1]} has been removed`);
 		let updatedUsers = functions.lifo(users);
 		updateUsersArray(updatedUsers);
@@ -62,7 +64,7 @@ const StackDisplay = () => {
 					Last In/First Out
 				</button>
 				<div className="container">
-					<p>{message}</p>
+					<h3>{message}</h3>
 				</div>
 				<div className="container">{cards}</div>
 			</div>
