@@ -6,16 +6,15 @@ h4,
 h5,
 h6 {
 	font-family: "Lato", sans-serif;
-	color: whitesmoke;
 }
-body,
-html {
-	background-color: #282c34;
-	width: auto;
+
+html,
+body {
+	overflow-y: scroll;
 	height: 100%;
+	width: auto;
 	line-height: 1.5;
 	margin: 0;
-	color: whitesmoke;
 }
 h1,
 h2,
@@ -39,9 +38,15 @@ h3 {
 	flex-wrap: wrap;
 	justify-content: center;
 }
+.panel-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	flex-grow: 1;
+}
 .report {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
 }
 .panel {
 	align-items: center;
@@ -58,12 +63,6 @@ h3 {
 	margin: 0;
 	padding: 5px;
 }
-/* .Delete {
-	grid-column: 5;
-	justify-self: end;
-	align-self: center;
-	margin: 5px;
-} */
 
 /* INPUT FIELDS */
 .input-group {
@@ -72,13 +71,11 @@ h3 {
 	width: 80%;
 	margin: 5px;
 	padding: 2px;
-	color: whitesmoke;
 }
-.input,
-.custom-select {
+.input {
+	background-color: white;
 	width: auto;
 	text-align: center;
-	color: rgb(14, 12, 12);
 	font-size-adjust: inherit;
 	border-radius: 0.2rem;
 	border-width: 1px;
@@ -147,7 +144,5 @@ h3 {
 
 label,
 select {
-	/* margin-right: 0.5rem;
-	margin-bottom: 0rem; */
 	margin: 0.5rem;
 }

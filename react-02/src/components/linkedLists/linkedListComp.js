@@ -19,7 +19,7 @@ const ListDisplay = () => {
 	let [amount, setAmount] = useState("");
 	let [counter, setCounter] = useState(0);
 	let [card, setCard] = useState("");
-	let [message, setMessage] = useState("Your list is empty");
+	let [message, setMessage] = useState("List is empty");
 
 	const capName = () => {
 		let firstCap = subject
@@ -120,6 +120,7 @@ const ListDisplay = () => {
 
 			<div className="container">
 				<div className="panel">
+					<h3>Your List</h3>
 					<div className="form">
 						<div>
 							To Buy:{" "}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./main.css";
+// import "./main.css";
 
 export default class SelectComp extends Component {
 	render() {

@@ -28,13 +28,13 @@ const StackDisplay = () => {
 
 	const fifo = e => {
 		if (users.length === 0) return setMessage(`Please add a new user`);
-		setMessage(`Users ${users[0]} has been removed`);
+		setMessage(`User ${users[0]} has been removed`);
 		let updatedUsers = functions.fifo(users);
 		updateUsersArray(updatedUsers);
 	};
 	const lifo = e => {
 		if (users.length === 0) return setMessage(`Please add a new user`);
-		setMessage(`Users ${users[users.length - 1]} has been removed`);
+		setMessage(`User ${users[users.length - 1]} has been removed`);
 		let updatedUsers = functions.lifo(users);
 		updateUsersArray(updatedUsers);
 	};
@@ -42,29 +42,33 @@ const StackDisplay = () => {
 	return (
 		<div>
 			<div className="container">
-				<button
-					type="button"
-					className="btn btn-primary btn-sm"
-					onClick={createCard}
-				>
-					Add User
-				</button>
-				<button
-					type="button"
-					className="btn btn-primary btn-sm"
-					onClick={fifo}
-				>
-					First In/First Out
-				</button>
-				<button
-					type="button"
-					className="btn btn-primary btn-sm"
-					onClick={lifo}
-				>
-					Last In/First Out
-				</button>
+				<div className="panel">
+					<h3>Your Stack/Queue</h3>
+					<button
+						type="button"
+						className="btn btn-primary btn-sm"
+						onClick={createCard}
+					>
+						Add User
+					</button>
+					<button
+						type="button"
+						className="btn btn-primary btn-sm"
+						onClick={fifo}
+					>
+						First In/First Out
+					</button>
+					<button
+						type="button"
+						className="btn btn-primary btn-sm"
+						onClick={lifo}
+					>
+						Last In/First Out
+					</button>
+				</div>
+
 				<div className="container">
-					<h3>{message}</h3>
+					<h5>{message}</h5>
 				</div>
 				<div className="container">{cards}</div>
 			</div>

@@ -93,115 +93,122 @@ class AccountControllerComp extends React.Component {
 				<h5>{this.state.accountController.message}</h5>
 				<div className="container">
 					{/* REPORT PANEL */}
-					<div className="panel ">
-						<p name="total">Total Balance: {this.state.totalBal}</p>
-						<p name="maxBalance">
-							Max Balance: {this.state.maxBal}
-						</p>
-						<p name="minBalance">
-							Min Balance: {this.state.minBal}
-						</p>
-					</div>
-					{/* ACCOUNT PANEL */}
-					<div className="panel">
-						<h3>Your Accounts</h3>
-						<div>
-							<div className="form">
-								Account Name:{" "}
-								<input
-									className="input"
-									name="accountName"
-									type="text"
-									placeholder="Example: Checking"
-									value={this.state.accountName}
+					<div className="panel-group">
+						<div className="panel report">
+							<p name="total">
+								Total Balance: {this.state.totalBal}
+							</p>
+							<p name="maxBalance">
+								Maximum Balance: {this.state.maxBal}
+							</p>
+							<p name="minBalance">
+								Minimum Balance: {this.state.minBal}
+							</p>
+						</div>
+
+						{/* ACCOUNT PANEL */}
+						<div className="panel">
+							<h3>Your Accounts</h3>
+							<div>
+								<div className="form">
+									Account Name:{" "}
+									<input
+										className="input"
+										name="accountName"
+										type="text"
+										placeholder="Example: Checking"
+										value={this.state.accountName}
+										ref={input => {
+											this.accountName = input;
+										}}
+										required
+									/>
+								</div>
+								<div className="form">
+									Opening Balance:{" "}
+									<input
+										className="input"
+										name="accountBal"
+										type="number"
+										min="0"
+										placeholder="0.00"
+										value={this.state.accountBal}
+										ref={input => {
+											this.accountBal = input;
+										}}
+										required
+									/>
+								</div>
+								<div>
+									<input
+										className="btn btn-primary btn-sm"
+										type="button"
+										value="Create Account"
+										onClick={e => {
+											this.addAccount(e);
+										}}
+									/>
+								</div>
+							</div>
+						</div>
+						{/* TRANSACTION PANEL */}
+						<div className="panel">
+							<div>
+								<h3>Quick Transactions</h3>
+								Select Account:
+								<select
+									name="selectedAccount"
+									value={this.state.selectedAccount}
 									ref={input => {
-										this.accountName = input;
+										this.selectedAccount = input;
 									}}
 									required
-								/>
-							</div>
-							<div className="form">
-								Opening Balance:{" "}
+								>
+									<option value="default">
+										Select Account
+									</option>
+									{a.userAccounts.map(account => (
+										<SelectComp
+											key={account.key}
+											account={account}
+										/>
+									))}
+								</select>
+								<br />
+								Transactions:
+								<select
+									required
+									name="transaction"
+									ref={input => {
+										this.transaction = input;
+									}}
+									required
+								>
+									<option value="deposit">Deposit</option>
+									<option value="withdraw">Withdraw</option>
+								</select>
+								<br />
+								$:
 								<input
 									className="input"
-									name="accountBal"
+									name="balanceInp"
 									type="number"
 									min="0"
 									placeholder="0.00"
-									value={this.state.accountBal}
+									value={this.state.balanceInp}
 									ref={input => {
-										this.accountBal = input;
+										this.balanceInp = input;
 									}}
 									required
 								/>
-							</div>
-							<div>
+								<br />
 								<input
 									className="btn btn-primary btn-sm"
 									type="button"
-									value="Create Account"
-									onClick={e => {
-										this.addAccount(e);
-									}}
+									value="Submit"
+									onClick={this.operationControl}
 								/>
 							</div>
-						</div>
-					</div>
-					{/* TRANSACTION PANEL */}
-					<div className="panel">
-						<div>
-							<h3>Quick Transactions</h3>
-							Select Account:
-							<select
-								name="selectedAccount"
-								value={this.state.selectedAccount}
-								ref={input => {
-									this.selectedAccount = input;
-								}}
-								required
-							>
-								<option value="default">Select Account</option>
-								{a.userAccounts.map(account => (
-									<SelectComp
-										key={account.key}
-										account={account}
-									/>
-								))}
-							</select>
-							<br />
-							Transactions:
-							<select
-								required
-								name="transaction"
-								ref={input => {
-									this.transaction = input;
-								}}
-								required
-							>
-								<option value="deposit">Deposit</option>
-								<option value="withdraw">Withdraw</option>
-							</select>
-							<br />
-							$:
-							<input
-								className="input"
-								name="balanceInp"
-								type="number"
-								min="0"
-								placeholder="0.00"
-								value={this.state.balanceInp}
-								ref={input => {
-									this.balanceInp = input;
-								}}
-								required
-							/>
-							<br />
-							<input
-								className="btn btn-primary btn-sm"
-								type="button"
-								value="Submit"
-								onClick={this.operationControl}
-							/>
 						</div>
 					</div>
 				</div>

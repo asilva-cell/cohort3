@@ -7,17 +7,20 @@ import CityComp from "./components/cities/cityComp";
 import ListDisplay from "./components/linkedLists/linkedListComp";
 import StackDisplay from "./components/stackQueue/stackComp";
 import ThemeSetting from "./components/settings/settingComp";
-
+import { ThemeContext } from "../src/components/settings/themeContext";
 import "./App.css";
 
 class App extends React.Component {
+	static contextType = ThemeContext;
 	constructor() {
 		super();
 		this.icon = "";
 		this.pages = {
 			mainPage: (
 				<div>
-					<header className="App-header">
+					<header className={"App-header"}>
+						<h3>Welcome to Your React App</h3>
+						<h5>Explore all tabs and have fun!</h5>
 						<img src={logo} className="App-logo" alt="logo" />
 						<p>
 							Edit <code>src/App.js</code> and save to reload.
@@ -64,8 +67,9 @@ class App extends React.Component {
 				</div>
 			)
 		};
-		this.state = { page: this.pages.settingsPage, theme: "dark" };
+		this.state = { page: this.pages.mainPage, theme: "dark" };
 	}
+
 	pageController = e => {
 		if (e.target.alt === "main") {
 			this.setState({ page: this.pages.mainPage });
@@ -92,7 +96,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div className="App">
+			<div className={` App ${this.context.backgroundColour}`}>
 				<div className="All-Icons">
 					<MyIcon onClick={this.pageController} />
 				</div>

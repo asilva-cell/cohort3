@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "../main.css";
 import { ThemeContext } from "./themeContext";
 
 const ThemeSetting = () => {
-	let [backgroundColor, setBackgroundColor] = useState("dark");
-	console.log(backgroundColor);
+	const theme = useContext(ThemeContext);
 
 	return (
 		<div>
-			<h1>Settings</h1>
+			<h3>Settings</h3>
 			<div className="container">
 				<label>Background Color:</label>
 				<select
 					className="input"
 					name="backgroundColor"
-					onChange={e => setBackgroundColor(e.target.value)}
+					value={theme.backgroundColour}
+					onChange={theme.handleBackgroundColour}
 				>
-					<option value="black">Black</option>
-					<option value="blue">Blue </option>
+					<option value="dark">Dark</option>
+					<option value="light">Light</option>
 				</select>
 			</div>
 		</div>

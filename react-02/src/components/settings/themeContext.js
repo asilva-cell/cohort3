@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const themes = {
-	black: "#282c34",
-	blue: "light"
-};
+export function ThemeContextProvider(props) {
+	// const themes = {
+	// 	black: "black",
+	// 	blue: "light"
+	// };
+	let [backgroundColour, setBackgroundColour] = useState("light");
 
-export const ThemeContext = React.createContext(themes.black);
+	const contextValues = {
+		backgroundColour: backgroundColour,
+		handleBackgroundColour: handleBackgroundColour
+	};
+
+	function handleBackgroundColour(e) {
+		// setBackgroundColour(backgroundColour === "black" ? "light" : "black");
+		setBackgroundColour(e.target.value);
+	}
+
+	return (
+		<ThemeContext.Provider value={contextValues}>
+			{props.children}
+		</ThemeContext.Provider>
+	);
+}
+
+export const ThemeContext = React.createContext("black");

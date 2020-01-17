@@ -124,7 +124,7 @@ class CityComp extends Component {
 				<h5>{this.state.community.message}</h5>
 				<div className="container">
 					{/* REPORT PANEL */}
-					<div className="panel">
+					<div className="panel report">
 						<p name="total">
 							Total Population: {this.state.totalPop}
 						</p>

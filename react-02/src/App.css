@@ -1,4 +1,9 @@
+#root {
+	height: 100%;
+}
 .App {
+	overflow-y: scroll;
+	height: 100%;
 	text-align: center;
 }
 
@@ -9,6 +14,7 @@
 	display: flex;
 	justify-content: center;
 }
+
 .Icons {
 	height: 7.5vmin;
 	margin: 10px;
@@ -35,15 +41,21 @@
 }
 
 .App-header {
-	background-color: #282c34;
 	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	color: white;
+}
+.dark {
+	background-color: #282c34;
+	color: whitesmoke;
 }
 
+.light {
+	background-color: white;
+	color: #282c34;
+}
 .App-link {
 	color: #09d3ac;
 }
