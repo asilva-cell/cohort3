@@ -9,7 +9,7 @@ let myArray = [
 	{ num: 4, str: "pineapple", origin: "Brazil" },
 	{ num: 3, str: "blueberries", origin: "Chile" },
 	{ num: 9, str: "pears", origin: "Oregon" },
-	{ num: 1, str: "cantaloupe", origin: "California" }
+	{ num: 1, str: "cantaloupe", origin: "California"}
 ];
 
 const people = [

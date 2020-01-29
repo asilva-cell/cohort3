@@ -1,23 +1,30 @@
 import {domCity} from './domCity.js';
 
-let selectList = document.createElement('select');
+
 
 test('check if options are ADDED to teh select menu', () => {
-    
+    let selectList = document.createElement('select');
     expect(selectList.length).toEqual(0); 
     domCity.createSelectOption(selectList, 'item1');
     expect(selectList.length).toEqual(1); 
     expect(selectList[0].value).toEqual('item1');   
 });
+test('loadSelectOptionServer and deleteSelectOption', () => {
 
-test('check if options are REMOVED to teh select menu', () => {
-    expect(selectList.length).toEqual(1);
-    domCity.deleteSelectOption(selectList, 'item1');
-    expect(selectList.length).toEqual(0);
-    expect(selectList[0]).toEqual(undefined); 
+    let selectParent = document.createElement('select');
+    let serverData = [
+        {key: 1, name: 'Medicine Hat', latitude: 50.0421, longitude: -110.7197, population: 63260},
+        {key: 2, name: 'Yellowknife', latitude: 62.453972, longitude: -114.371788, population: 19569}];
+    expect(selectParent.length).toEqual(0);
+    domCity.loadSelectOptionServer(selectParent, serverData);
+    expect(selectParent.length).toEqual(2);
+    console.log(selectParent[1].textContent);
+    expect(selectParent[1].textContent).toEqual("Yellowknife");
+
+    // delete Yellowknife from the select menu
+    domCity.deleteSelectOption(selectParent, "Yellowknife")
+    expect(selectParent[1]).toEqual(undefined);
 });
-
-
 test('check add button', () => {
     const myDiv = document.createElement('div');
     const newCard = domCity.addCard(myDiv, 0);
@@ -27,21 +34,16 @@ test('check add button', () => {
 
 test('check add card and adjust balance', () => {
     const myDiv = document.createElement('div');
-    let newCard = domCity.addCard(myDiv, 'card1', 50);
-    console.log(newCard.children[2].textContent);
-    expect(newCard.childElementCount).toEqual(3);
-    expect(newCard.children[0].textContent).toEqual('card1');
-    expect(newCard.children[1].textContent).toEqual('$50');
-
-    domCity.adjustCardBalance(newCard, 100);
-    expect(newCard.children[1].textContent).toEqual('$100');
+    let serverData = [
+        {key: 1, name: 'Medicine Hat', latitude: 50.0421, longitude: -110.7197, population: 63260},
+        {key: 2, name: 'Yellowknife', latitude: 62.453972, longitude: -114.371788, population: 19569}];
+    expect(myDiv.childElementCount).toEqual(0);
+    domCity.loadCardsServer(myDiv, serverData);
+    expect(myDiv.childElementCount).toEqual(2);
+    console.log(myDiv.children[0].children[0].textContent);
+    expect(myDiv.children[0].children[0].textContent).toEqual('Medicine Hat');
+    let currentCard= myDiv.children[0].children[0];
 });
-
-// adjustCardBalance : (accountCard, newBalance) => {
-//     accountCard.nextElementSibling.textContent = `$${newBalance}`;
-//     return newBalance;
-// },
-
 
 test('check delete card', () => {
     const myDiv = document.createElement('div');

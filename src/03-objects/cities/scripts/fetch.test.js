@@ -10,11 +10,5 @@ test('checking getting ALL first names', () => {
     console.log(allFnames);
     expect(allFnames.length).toEqual(10);
     expect(allFnames[0]).toEqual('Majzik');
-    // expect(allFnames[4]).toEqual('Alberta');
-    // expect(allFnames[9]).toEqual('Ερατοσθένης');
-
-
-    
-    
 });
 

@@ -39,6 +39,16 @@ class CityComp extends Component {
 			this.setState({ community: a });
 			return;
 		}
+		if (this.latitude.value > 90 || this.latitude.value < -90) {
+			a.message = "Please enter a valid latitude.";
+			this.setState({ community: a });
+			return;
+		}
+		if (this.longitude.value > 180 || this.longitude.value < -180) {
+			a.message = "Please enter a valid latitude.";
+			this.setState({ community: a });
+			return;
+		}
 		let checkCityExists = a.checkCityExists(
 			this.latitude.value,
 			this.longitude.value

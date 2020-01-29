@@ -104,9 +104,9 @@ class Game extends React.Component {
 		let status;
 		if (winner) {
 			status = "The winner is " + winner;
-		} else {
+		} else{
 			status = "The Next Player is " + (this.state.xIsNext ? "X" : "O");
-		}
+		};
 
 		return (
 			<div className="game">
@@ -151,6 +151,10 @@ function calculateWinner(squares) {
 			return squares[a];
 		}
 	}
-	return null;
+	for (let i = 0; i <= squares.length; i++) {
+		if(squares[i]=== null) return null;
+	}
+	return "No one.";
+	
 }
 export default Game;

@@ -22,8 +22,7 @@ const functions = {
 	sortAlpha: myArray => {
 		let sortedArray = myArray.sort(function sortAlpha(a, b) {
             if (a.str > b.str) {return 1;}
-            else if (a.str < b.str) {return -1;}
-            return 0;
+            else{return -1;}
 		});
 		return sortedArray;
 	},

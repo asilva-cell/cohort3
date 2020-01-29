@@ -33,9 +33,7 @@
 			});
 			// sprites Video 5
 			const texture = PIXI.Texture.from("fieldBG.jpg");
-			const texture2 = PIXI.Texture.from("houseR.png");
-
-			let sprite2, sprite3, sprite4, sprite5;
+		
 
 			img = new PIXI.Sprite(texture);
 			img.x = 250;
@@ -46,6 +44,9 @@
 			app.stage.addChild(img);
 
 			// create single house
+			const texture2 = PIXI.Texture.from("houseR.png");
+
+	let sprite2, sprite3, sprite4, sprite5;
 			createHouse(200, 100, 0);
 
 			function createHouse(xPos, yPos, i) {
@@ -107,7 +108,9 @@
 				});
 				// Applies fill to lines and shapes since the last call to beginFill.
 				bubble.endFill();
+				
 				app.stage.addChild(bubble);
+				bubble.speed = 2 + Math.random() * 2;
 			}
 
 			app.ticker.add(animate);
@@ -115,7 +118,7 @@
 			function animate() {
 				delta += 0.1;
 
-				container.y = Math.sin(delta) * 10; //OSCILATION on the y axis
+				container.y = Math.sin(delta) * 20; //OSCILATION on the y axis
 				sprite4.rotation += 0.01; //ROTATION about left top corner
 				sprite5.rotation += 0.01; //ROTATION about (1000,1000)
 				sprite2.blendMode = PIXI.BLEND_MODES.MULTIPLY; //OPACITY

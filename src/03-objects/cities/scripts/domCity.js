@@ -67,19 +67,12 @@ const domCity = {
         return;
     },
 
-    adjustCardBalance : (currentCard, newBalance) => {
-        currentCard.children[1].textContent = `$${newBalance}`;
-        return currentCard;
-    },
-
     deleteCard : (currentCard) => {
         let parent = currentCard.parentNode;
         currentCard.remove();
         return parent.childElementCount;
     }
 };
-
-
 
 export {domCity};
     
