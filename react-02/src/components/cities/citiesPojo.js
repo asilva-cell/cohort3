@@ -129,7 +129,6 @@ class Community {
 		return cityToUpdate;
 	}
 	populationControl(cityObj, change, peopleMoving) {
-		console.log(cityObj);
 		if (change === "moveOut") {
 			if (cityObj.population < peopleMoving) {
 				this.message =

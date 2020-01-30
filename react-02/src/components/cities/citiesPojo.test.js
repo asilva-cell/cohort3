@@ -1,6 +1,6 @@
 import { City, Community } from "./citiesPojo";
 
-// CLASS CITY TESTING. (-) longitude W, (-) latitude S
+// CLASS CITY TESTING longitude, latitude
 let key = 1;
 test("check show", () => {
 	let newCity = new City(key, "Calgary", 51.0447, -114.0719, 1267344);

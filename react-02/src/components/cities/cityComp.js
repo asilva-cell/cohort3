@@ -45,7 +45,7 @@ class CityComp extends Component {
 			return;
 		}
 		if (this.longitude.value > 180 || this.longitude.value < -180) {
-			a.message = "Please enter a valid latitude.";
+			a.message = "Please enter a valid longitude.";
 			this.setState({ community: a });
 			return;
 		}

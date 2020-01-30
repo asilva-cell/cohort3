@@ -1,5 +1,5 @@
 //  this file contain the classes to create and manade the accounts
-class Account {
+export class Account {
 	constructor(key, accountName, balance) {
 		this.key = Number(key);
 		this.accountName = accountName;
@@ -22,7 +22,7 @@ class Account {
 	}
 }
 
-class AccountController {
+export class AccountController {
 	constructor() {
 		this.message = "Please create a new account";
 		this.userAccounts = [];
@@ -86,7 +86,7 @@ class AccountController {
 			let withdraw = this.userAccounts[accountIndex].withdraw(amount);
 			if (withdraw === false) {
 				this.message =
-					"There is not enough fund in the selected account";
+					"There is not enough funds in the selected account";
 				return;
 			} else {
 				this.balance = withdraw;
@@ -127,4 +127,4 @@ class AccountController {
 	}
 }
 
-export { Account, AccountController };
+
