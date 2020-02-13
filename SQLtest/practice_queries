@@ -53,6 +53,18 @@ GROUP BY class_name, schedule_day, schedule_time;
 ALTER TABLE schedule
 ADD COLUMN active VARCHAR(3) DEFAULT 'yes';
 
+//Set all scheduled classes with only 1 user to 'no' active, class will be cancelled
+UPDATE schedule
+SET active = 'no'
+WHERE schedule_id IN 
+(SELECT  schedule.schedule_id
+FROM classes
+JOIN schedule ON classes.class_id = schedule.class_id
+JOIN enrolments ON schedule.schedule_id = enrolments.schedule_id
+GROUP BY class_name, schedule_day, schedule_time,schedule.schedule_id, schedule.active
+HAVING  COUNT(schedule.schedule_id) <2
+);
+
 
 
 

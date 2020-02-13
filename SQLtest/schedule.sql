@@ -1,1 +1,3 @@
-SELECT * FROM class_customer_attendence;
+SELECT * FROM SCHEDULE
+
+
