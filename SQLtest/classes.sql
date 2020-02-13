@@ -1,1 +1,1 @@
-SELECT * FROM classes;	
+SELECT * FROM classes;

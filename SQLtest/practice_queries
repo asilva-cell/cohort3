@@ -1,0 +1,64 @@
+
+
+// All ID values should start at 1, restart schedule_id at 1
+ALTER SEQUENCE schedule_schedule_id_seq RESTART WITH 1
+ALTER TABLE schedule ALTER COLUMN schedule_id SET DEFAULT nextval('schedule_schedule_id_seq')
+UPDATE schedule SET schedule_id = nextval('schedule_schedule_id_seq');
+
+// All ID values should start at 1, restart enrolment_id at 1
+ALTER SEQUENCE enrolments_enrolment_id_seq RESTART WITH 1
+ALTER TABLE enrolments ALTER COLUMN enrolment_id SET DEFAULT nextval('enrolments_enrolment_id_seq')
+UPDATE enrolments SET enrolment_id = nextval('enrolments_enrolment_id_seq');
+
+// Gym will close next Monday due to renovations. Get the phone number of the instructors that teach on Mondays
+SELECT  instructors.first_name, instructors.phone, class_name, schedule_day FROM instructors
+JOIN schedule ON instructors.instructor_id = schedule.instructor_id
+JOIN classes ON classes.class_id = schedule.class_id
+WHERE schedule_day = 'Monday';
+
+
+
+// Show which coustomers go to which classes
+CREATE VIEW class_customer_attendence AS
+SELECT customer_id, first_name, class_name, schedule_day, schedule_time, schedule_id
+FROM customers
+JOIN enrolments ON customers.customer_id = enrolments.customer_id
+JOIN schedule ON enrolments.schedule_id = schedule.schedule_id
+JOIN classes ON schedule.class_id = classes.class_id
+ORDER BY first_name
+;
+
+// ORDER the view by customer first name
+SELECT * FROM class_customer_attendence
+ORDER BY first_name;
+
+// Which are the most popular classes 
+SELECT COUNT(class_name), class_name, schedule_day, schedule_time FROM class_customer_attendence
+GROUP BY class_name, schedule_day, schedule_time
+ORDER BY COUNT(class_name) DESC;
+
+// view data above
+SELECT class_name, schedule_day, schedule_time,schedule.schedule_id, COUNT(schedule.schedule_id) AS amount_users, schedule.active
+FROM classes
+JOIN schedule ON classes.class_id = schedule.class_id
+JOIN enrolments ON schedule.schedule_id = enrolments.schedule_id
+GROUP BY class_name, schedule_day, schedule_time,schedule.schedule_id, schedule.active
+
+// How many people go to body attack class on Thursday
+SELECT COUNT(class_name), class_name, schedule_day, schedule_time FROM class_customer_attendence
+WHERE class_name = 'body attack' AND schedule_day = 'Thursday'
+GROUP BY class_name, schedule_day, schedule_time;
+
+//Add an active status to scheduled classes
+ALTER TABLE schedule
+ADD COLUMN active VARCHAR(3) DEFAULT 'yes';
+
+
+
+
+
+
+
+
+
+
