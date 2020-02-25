@@ -6,4 +6,4 @@
 
 /coverage
 /node_modules
-/__python37-venv__
+**/__python37-venv__
