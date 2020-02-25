@@ -7,7 +7,9 @@ verify_ssl = true
 pytest = "*"
 
 [packages]
-tkinter = "*"
+autopep8 = "*"
+pep8 = "*"
+openpyxl = "*"
 
 [requires]
 python_version = "3.7"
