@@ -1,0 +1,20 @@
+--------------------------------------------- INVOICE ----------------------------------------------
+Adriana Silva, you has attended 5 classes
+--------------------------------------------- Classes ----------------------------------------------
+        Class Name               Instructor                  Day                      Date          
+----------------------------------------------------------------------------------------------------
+Personal Training                  Carla                    Monday                Jan 06, 2020      
+
+
+Hot Yoga                           Carla                   Tuesday                Jan 07, 2020      
+
+
+Body Combat                         Jeff                  Wednesday               Jan 08, 2020      
+
+
+Step                                Mark                   Thursday               Jan 09, 2020      
+
+
+Body Attack                        James                    Friday                Jan 10, 2020      
+
+
