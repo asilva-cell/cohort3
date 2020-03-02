@@ -7,3 +7,4 @@
 /coverage
 /node_modules
 **/__python37-venv__
+**/__pycache__
