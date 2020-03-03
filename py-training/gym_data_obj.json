@@ -1,0 +1,435 @@
+{
+    "classes": [
+        {
+            "class_id": 1,
+            "class_name": "body combat",
+            "class_duration": 60
+        },
+        {
+            "class_id": 2,
+            "class_name": "body balance",
+            "class_duration": 60
+        },
+        {
+            "class_id": 3,
+            "class_name": "body attack",
+            "class_duration": 60
+        },
+        {
+            "class_id": 4,
+            "class_name": "step",
+            "class_duration": 60
+        },
+        {
+            "class_id": 5,
+            "class_name": "yoga",
+            "class_duration": 60
+        },
+        {
+            "class_id": 6,
+            "class_name": "hot yoga",
+            "class_duration": 45
+        },
+        {
+            "class_id": 7,
+            "class_name": "zumba",
+            "class_duration": 60
+        },
+        {
+            "class_id": 8,
+            "class_name": "personal training",
+            "class_duration": 30
+        }
+    ],
+    "customers": [
+        {
+            "customer_Id": 1,
+            "first_name": "Adriana",
+            "last_name": "Silva",
+            "email": "silva.adrianavc@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 2,
+            "first_name": "Chris",
+            "last_name": "Brooks",
+            "email": "chrisbrooks@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 3,
+            "first_name": "Haydee",
+            "last_name": "Lopez",
+            "email": "haydee.lopez@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 4,
+            "first_name": "Mark",
+            "last_name": "Ke",
+            "email": "mark.ke@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 5,
+            "first_name": "Dean",
+            "last_name": "Smith",
+            "email": "dsmith@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 6,
+            "first_name": "Geoff",
+            "last_name": "Brooth",
+            "email": "gbroo@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 7,
+            "first_name": "Danny",
+            "last_name": "Lee",
+            "email": "danny.lee@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 8,
+            "first_name": "Maria",
+            "last_name": "Paz",
+            "email": "mpaz@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 9,
+            "first_name": "Nathan",
+            "last_name": "Cooper",
+            "email": "nathan.cooper@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        },
+        {
+            "customer_Id": 10,
+            "first_name": "Jennifer",
+            "last_name": "Britten",
+            "email": "britten.jen@gmail.com",
+            "sign_up_date": "2020-01-01 00:00:00"
+        }
+    ],
+    "enrolments": [
+        {
+            "enrolment_Id": 1,
+            "customer_Id": 1,
+            "schedule_Id": 1,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 2,
+            "customer_Id": 1,
+            "schedule_Id": 3,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 3,
+            "customer_Id": 1,
+            "schedule_Id": 5,
+            "date": "2020-01-08 00:00:00"
+        },
+        {
+            "enrolment_Id": 4,
+            "customer_Id": 1,
+            "schedule_Id": 7,
+            "date": "2020-01-09 00:00:00"
+        },
+        {
+            "enrolment_Id": 5,
+            "customer_Id": 1,
+            "schedule_Id": 9,
+            "date": "2020-01-10 00:00:00"
+        },
+        {
+            "enrolment_Id": 6,
+            "customer_Id": 3,
+            "schedule_Id": 1,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 7,
+            "customer_Id": 3,
+            "schedule_Id": 3,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 8,
+            "customer_Id": 3,
+            "schedule_Id": 5,
+            "date": "2020-01-08 00:00:00"
+        },
+        {
+            "enrolment_Id": 9,
+            "customer_Id": 3,
+            "schedule_Id": 10,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 10,
+            "customer_Id": 2,
+            "schedule_Id": 2,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 11,
+            "customer_Id": 2,
+            "schedule_Id": 4,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 12,
+            "customer_Id": 2,
+            "schedule_Id": 6,
+            "date": "2020-01-08 00:00:00"
+        },
+        {
+            "enrolment_Id": 13,
+            "customer_Id": 2,
+            "schedule_Id": 8,
+            "date": "2020-01-09 00:00:00"
+        },
+        {
+            "enrolment_Id": 14,
+            "customer_Id": 2,
+            "schedule_Id": 10,
+            "date": "2020-01-10 00:00:00"
+        },
+        {
+            "enrolment_Id": 15,
+            "customer_Id": 4,
+            "schedule_Id": 2,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 16,
+            "customer_Id": 4,
+            "schedule_Id": 4,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 17,
+            "customer_Id": 4,
+            "schedule_Id": 6,
+            "date": "2020-01-08 00:00:00"
+        },
+        {
+            "enrolment_Id": 18,
+            "customer_Id": 4,
+            "schedule_Id": 8,
+            "date": "2020-01-09 00:00:00"
+        },
+        {
+            "enrolment_Id": 19,
+            "customer_Id": 4,
+            "schedule_Id": 10,
+            "date": "2020-01-10 00:00:00"
+        },
+        {
+            "enrolment_Id": 20,
+            "customer_Id": 5,
+            "schedule_Id": 10,
+            "date": "2020-01-10 00:00:00"
+        },
+        {
+            "enrolment_Id": 21,
+            "customer_Id": 6,
+            "schedule_Id": 1,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 22,
+            "customer_Id": 6,
+            "schedule_Id": 3,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 23,
+            "customer_Id": 6,
+            "schedule_Id": 6,
+            "date": "2020-01-08 00:00:00"
+        },
+        {
+            "enrolment_Id": 24,
+            "customer_Id": 7,
+            "schedule_Id": 1,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 25,
+            "customer_Id": 7,
+            "schedule_Id": 3,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 26,
+            "customer_Id": 7,
+            "schedule_Id": 7,
+            "date": "2020-01-09 00:00:00"
+        },
+        {
+            "enrolment_Id": 27,
+            "customer_Id": 8,
+            "schedule_Id": 2,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 28,
+            "customer_Id": 8,
+            "schedule_Id": 4,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 29,
+            "customer_Id": 9,
+            "schedule_Id": 1,
+            "date": "2020-01-06 00:00:00"
+        },
+        {
+            "enrolment_Id": 30,
+            "customer_Id": 9,
+            "schedule_Id": 3,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 31,
+            "customer_Id": 9,
+            "schedule_Id": 4,
+            "date": "2020-01-07 00:00:00"
+        },
+        {
+            "enrolment_Id": 32,
+            "customer_Id": 9,
+            "schedule_Id": 8,
+            "date": "2020-01-09 00:00:00"
+        },
+        {
+            "enrolment_Id": 33,
+            "customer_Id": 9,
+            "schedule_Id": 10,
+            "date": "2020-01-10 00:00:00"
+        }
+    ],
+    "instructors": [
+        {
+            "instructor_Id": 1,
+            "first_name": "Jeff",
+            "last_name": "Dell",
+            "email": "jeff.dell@gmail.com",
+            "phone": "403-456-3849"
+        },
+        {
+            "instructor_Id": 2,
+            "first_name": "Sarah",
+            "last_name": "Orr",
+            "email": "orr_sarah@gmail.com",
+            "phone": "587-578-9402"
+        },
+        {
+            "instructor_Id": 3,
+            "first_name": "Carla",
+            "last_name": "Luke",
+            "email": "luke.carla@gmail.com",
+            "phone": "403-589-9400"
+        },
+        {
+            "instructor_Id": 4,
+            "first_name": "Mark",
+            "last_name": "Lee",
+            "email": "mark.lee@gmail.com",
+            "phone": "587-492-0213"
+        },
+        {
+            "instructor_Id": 5,
+            "first_name": "James",
+            "last_name": "McDonald",
+            "email": "mcdonald.james@gmail.com",
+            "phone": "403-987-3682"
+        }
+    ],
+    "schedule": [
+        {
+            "schedule_Id": 1,
+            "class_Id": 8,
+            "instructor_Id": 3,
+            "schedule_day": "Monday",
+            "schedule_time": "18:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 2,
+            "class_Id": 7,
+            "instructor_Id": 2,
+            "schedule_day": "Monday",
+            "schedule_time": "16:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 3,
+            "class_Id": 6,
+            "instructor_Id": 3,
+            "schedule_day": "Tuesday",
+            "schedule_time": "08:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 4,
+            "class_Id": 5,
+            "instructor_Id": 1,
+            "schedule_day": "Tuesday",
+            "schedule_time": "10:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 5,
+            "class_Id": 1,
+            "instructor_Id": 1,
+            "schedule_day": "Wednesday",
+            "schedule_time": "17:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 6,
+            "class_Id": 2,
+            "instructor_Id": 5,
+            "schedule_day": "Wednesday",
+            "schedule_time": "18:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 7,
+            "class_Id": 4,
+            "instructor_Id": 4,
+            "schedule_day": "Thursday",
+            "schedule_time": "19:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 8,
+            "class_Id": 3,
+            "instructor_Id": 5,
+            "schedule_day": "Thursday",
+            "schedule_time": "18:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 10,
+            "class_Id": 1,
+            "instructor_Id": 2,
+            "schedule_day": "Friday",
+            "schedule_time": "18:30:00",
+            "active": "yes"
+        },
+        {
+            "schedule_Id": 9,
+            "class_Id": 3,
+            "instructor_Id": 5,
+            "schedule_day": "Friday",
+            "schedule_time": "18:30:00",
+            "active": "no"
+        }
+    ]
+}
